@@ -1,9 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { MICROSOFT_365_PRODUCTS } from '../../consts';
+import { SECURITY_PRODUCTS } from '../../consts';
 
-const title = "Microsoft 365 Platform Services - Waymark";
-const description = "Complete M365 security from assessment to managed operations. Tenant hardening, Defender enablement, identity protection, and collaboration governance.";
+const title = "Cyber Security & Risk Protection - Waymark";
+const description = "Modern security baseline, continuous monitoring, and incident readiness for SMBs. Vulnerability management, BEC protection, phishing simulations, and more.";
 ---
 
 <BaseLayout title={title} description={description}>
@@ -16,15 +16,15 @@ const description = "Complete M365 security from assessment to managed operation
         </svg>
         All Products
       </a>
-      <div class="hero-badge cyan">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
+      <div class="hero-badge blue">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
         </svg>
-        Microsoft 365 Services
+        Security Services
       </div>
-      <h1 class="hero-title">Microsoft 365 Platform Services</h1>
+      <h1 class="hero-title">Cyber Security & Risk Protection</h1>
       <p class="hero-description">
-        Complete M365 security from assessment to managed operations — your entire Microsoft estate secured.
+        Modern security baseline, continuous monitoring, and incident readiness. Protection that matches reality.
       </p>
     </div>
   </section>
@@ -33,7 +33,7 @@ const description = "Complete M365 security from assessment to managed operation
   <section class="products">
     <div class="container">
       <div class="products-grid">
-        {MICROSOFT_365_PRODUCTS.map((product) => (
+        {SECURITY_PRODUCTS.map((product) => (
           <div class="product-card">
             <div class="product-header">
               <span class={`product-type ${product.type}`}>{product.type}</span>
@@ -73,9 +73,9 @@ const description = "Complete M365 security from assessment to managed operation
   <section class="cta">
     <div class="container">
       <div class="cta-content">
-        <h2 class="cta-title">Ready to secure your Microsoft 365?</h2>
+        <h2 class="cta-title">Ready to secure your business?</h2>
         <p class="cta-description">
-          Get a free consultation to discuss your M365 security needs.
+          Get a free consultation to discuss your security needs.
         </p>
         <a href="/contact" class="btn-primary">Schedule a Call</a>
       </div>
@@ -132,9 +132,9 @@ const description = "Complete M365 security from assessment to managed operation
     margin-bottom: 1.5rem;
   }
 
-  .hero-badge.cyan {
-    background: rgba(6, 182, 212, 0.1);
-    color: #06b6d4;
+  .hero-badge.blue {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
   }
 
   .hero-title {

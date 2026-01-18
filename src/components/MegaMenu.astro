@@ -1,39 +1,38 @@
 ---
 import { SERVICE_CATEGORIES } from '../consts';
 
-// Group categories for mega menu layout
-const serviceGroups = [
+// Group categories for mega menu layout - 4 columns
+const menuColumns = [
   {
-    title: "Security Services",
-    categories: [
-      { id: "managed-security", title: "Managed Security", icon: "shield", description: "Continuous protection" },
-      { id: "incident-response", title: "Incident Response", icon: "alert", description: "Rapid response" },
-      { id: "configuration-reviews", title: "Security Reviews", icon: "check", description: "Configuration audits" },
-    ]
+    title: "Security",
+    categories: SERVICE_CATEGORIES.filter(c =>
+      ['managed-security', 'incident-response', 'configuration-reviews'].includes(c.id)
+    ),
   },
   {
-    title: "Microsoft & Cloud",
-    categories: [
-      { id: "microsoft-365", title: "Microsoft 365", icon: "microsoft", description: "M365 platform services" },
-      { id: "intune", title: "Intune & Endpoint", icon: "device", description: "Device management" },
-      { id: "identity", title: "Identity & Access", icon: "user", description: "Entra ID security" },
-      { id: "google-workspace", title: "Google Workspace", icon: "google", description: "Google admin & security" },
-    ]
+    title: "Microsoft Cloud",
+    categories: SERVICE_CATEGORIES.filter(c =>
+      ['microsoft-365', 'intune', 'identity'].includes(c.id)
+    ),
+  },
+  {
+    title: "Platforms",
+    categories: SERVICE_CATEGORIES.filter(c =>
+      ['google-workspace', 'migration', 'workload-services'].includes(c.id)
+    ),
   },
   {
     title: "Infrastructure & AI",
-    categories: [
-      { id: "networking", title: "Networking", icon: "network", description: "UniFi & site tech" },
-      { id: "ai-services", title: "AI Services", icon: "ai", description: "AI strategy & implementation" },
-      { id: "migration", title: "Migration", icon: "migration", description: "Platform migrations" },
-      { id: "web-security", title: "Web Security", icon: "globe", description: "Application security" },
-    ]
-  }
+    categories: SERVICE_CATEGORIES.filter(c =>
+      ['networking', 'web-security', 'ai-services'].includes(c.id)
+    ),
+  },
 ];
 
-const quickLinks = [
-  { title: "View All Services", href: "/services", description: "Browse our complete catalogue" },
-  { title: "Get a Quote", href: "/contact", description: "Request pricing for your project" },
+const featuredServices = [
+  { title: "M365 Security Assessment", href: "/services#m365-security-assessment", badge: "Popular" },
+  { title: "AI Readiness & Strategy", href: "/services#ai-readiness-strategy", badge: "New" },
+  { title: "UniFi Network Deployment", href: "/services#unifi-implementation", badge: null },
 ];
 ---
 
@@ -53,15 +52,32 @@ const quickLinks = [
 
       <div class="dropdown-panel mega-panel">
         <div class="mega-content">
+          <!-- Gradient Header -->
+          <div class="mega-header">
+            <div class="mega-header-content">
+              <h3 class="mega-header-title">Service Catalogue</h3>
+              <p class="mega-header-desc">60+ productized services across 12 categories</p>
+            </div>
+            <div class="mega-header-actions">
+              <a href="/services" class="mega-view-all">
+                View All Services
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Categories Grid -->
           <div class="mega-grid">
-            {serviceGroups.map((group) => (
+            {menuColumns.map((column) => (
               <div class="mega-column">
-                <h3 class="mega-heading">{group.title}</h3>
+                <h4 class="mega-column-title">{column.title}</h4>
                 <ul class="mega-list">
-                  {group.categories.map((cat) => (
+                  {column.categories.map((cat) => (
                     <li>
-                      <a href={`/services#${cat.id}`} class="mega-link">
-                        <div class="mega-link-icon">
+                      <a href={`/services#${cat.id}`} class={`mega-link color-${cat.color}`}>
+                        <div class={`mega-link-icon icon-${cat.color}`}>
                           {cat.icon === "shield" && (
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
@@ -100,19 +116,19 @@ const quickLinks = [
                               <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                             </svg>
                           )}
-                          {cat.icon === "network" && (
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
-                            </svg>
-                          )}
-                          {cat.icon === "ai" && (
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                            </svg>
-                          )}
                           {cat.icon === "migration" && (
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                               <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                            </svg>
+                          )}
+                          {cat.icon === "grid" && (
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+                            </svg>
+                          )}
+                          {cat.icon === "network" && (
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
                             </svg>
                           )}
                           {cat.icon === "globe" && (
@@ -120,11 +136,19 @@ const quickLinks = [
                               <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
                             </svg>
                           )}
+                          {cat.icon === "ai" && (
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
+                            </svg>
+                          )}
                         </div>
                         <div class="mega-link-content">
-                          <span class="mega-link-title">{cat.title}</span>
-                          <span class="mega-link-desc">{cat.description}</span>
+                          <span class="mega-link-title">{cat.shortTitle}</span>
+                          <span class="mega-link-count">{cat.services.length} services</span>
                         </div>
+                        <svg class="mega-link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
                       </a>
                     </li>
                   ))}
@@ -133,20 +157,27 @@ const quickLinks = [
             ))}
           </div>
 
+          <!-- Featured Services Footer -->
           <div class="mega-footer">
-            <div class="mega-footer-content">
-              <span class="mega-footer-label">Quick Actions</span>
-              <div class="mega-footer-links">
-                {quickLinks.map((link) => (
-                  <a href={link.href} class="mega-footer-link">
-                    <span>{link.title}</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                    </svg>
-                  </a>
-                ))}
-              </div>
+            <div class="mega-footer-label">Featured</div>
+            <div class="mega-footer-services">
+              {featuredServices.map((service) => (
+                <a href={service.href} class="mega-featured-link">
+                  <span class="mega-featured-title">{service.title}</span>
+                  {service.badge && (
+                    <span class={`mega-featured-badge ${service.badge === 'New' ? 'new' : 'popular'}`}>
+                      {service.badge}
+                    </span>
+                  )}
+                </a>
+              ))}
             </div>
+            <a href="/contact" class="mega-cta">
+              Get a Quote
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
           </div>
         </div>
       </div>
@@ -160,44 +191,57 @@ const quickLinks = [
         </svg>
       </button>
 
-      <div class="dropdown-panel">
-        <ul class="dropdown-list">
+      <div class="dropdown-panel solutions-panel">
+        <ul class="solutions-list">
           <li>
-            <a href="/solutions/microsoft-365" class="dropdown-link">
-              <div class="dropdown-link-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <a href="/solutions/microsoft-365" class="solution-link">
+              <div class="solution-icon purple">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
                 </svg>
               </div>
-              <div class="dropdown-link-content">
-                <span class="dropdown-link-title">Microsoft 365</span>
-                <span class="dropdown-link-desc">Security & management</span>
+              <div class="solution-content">
+                <span class="solution-title">Microsoft 365</span>
+                <span class="solution-desc">Complete M365 security and management</span>
               </div>
             </a>
           </li>
           <li>
-            <a href="/solutions/networking" class="dropdown-link">
-              <div class="dropdown-link-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <a href="/solutions/networking" class="solution-link">
+              <div class="solution-icon blue">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
                 </svg>
               </div>
-              <div class="dropdown-link-content">
-                <span class="dropdown-link-title">Networking</span>
-                <span class="dropdown-link-desc">UniFi & infrastructure</span>
+              <div class="solution-content">
+                <span class="solution-title">Networking</span>
+                <span class="solution-desc">UniFi deployment and site technology</span>
               </div>
             </a>
           </li>
           <li>
-            <a href="/services#ai-services" class="dropdown-link">
-              <div class="dropdown-link-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
+            <a href="/services#ai-services" class="solution-link">
+              <div class="solution-icon emerald">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
                 </svg>
               </div>
-              <div class="dropdown-link-content">
-                <span class="dropdown-link-title">AI & Automation</span>
-                <span class="dropdown-link-desc">Copilot & workflow AI</span>
+              <div class="solution-content">
+                <span class="solution-title">AI & Automation</span>
+                <span class="solution-desc">Copilot readiness and AI workflows</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="/services#managed-security" class="solution-link">
+              <div class="solution-icon rose">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                </svg>
+              </div>
+              <div class="solution-content">
+                <span class="solution-title">Managed Security</span>
+                <span class="solution-desc">Continuous protection programs</span>
               </div>
             </a>
           </li>
@@ -233,25 +277,22 @@ const quickLinks = [
       <li class="mobile-nav-group">
         <button class="mobile-nav-accordion" aria-expanded="false">
           Services
-          <svg class="accordion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg class="accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
           </svg>
         </button>
         <ul class="mobile-nav-submenu">
-          {serviceGroups.map((group) => (
-            <li class="mobile-nav-subgroup">
-              <span class="mobile-nav-subheading">{group.title}</span>
-              <ul>
-                {group.categories.map((cat) => (
-                  <li>
-                    <a href={`/services#${cat.id}`} class="mobile-nav-sublink">{cat.title}</a>
-                  </li>
-                ))}
-              </ul>
+          {SERVICE_CATEGORIES.map((cat) => (
+            <li>
+              <a href={`/services#${cat.id}`} class="mobile-nav-category">
+                <span class={`mobile-cat-dot color-${cat.color}`}></span>
+                <span class="mobile-cat-name">{cat.shortTitle}</span>
+                <span class="mobile-cat-count">{cat.services.length}</span>
+              </a>
             </li>
           ))}
           <li class="mobile-nav-cta">
-            <a href="/services" class="btn btn-primary btn-sm">View All Services</a>
+            <a href="/services" class="btn btn-primary">View All Services</a>
           </li>
         </ul>
       </li>
@@ -259,7 +300,7 @@ const quickLinks = [
       <li class="mobile-nav-group">
         <button class="mobile-nav-accordion" aria-expanded="false">
           Solutions
-          <svg class="accordion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg class="accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
           </svg>
         </button>
@@ -267,6 +308,7 @@ const quickLinks = [
           <li><a href="/solutions/microsoft-365" class="mobile-nav-sublink">Microsoft 365</a></li>
           <li><a href="/solutions/networking" class="mobile-nav-sublink">Networking</a></li>
           <li><a href="/services#ai-services" class="mobile-nav-sublink">AI & Automation</a></li>
+          <li><a href="/services#managed-security" class="mobile-nav-sublink">Managed Security</a></li>
         </ul>
       </li>
 
@@ -314,8 +356,8 @@ const quickLinks = [
     font-weight: 500;
     color: var(--text-secondary);
     text-decoration: none;
-    border-radius: 0.5rem;
-    transition: color 0.15s, background-color 0.15s;
+    border-radius: 0.625rem;
+    transition: all 0.2s ease;
     background: none;
     border: none;
     cursor: pointer;
@@ -324,12 +366,7 @@ const quickLinks = [
 
   .nav-link:hover {
     color: var(--text-primary);
-    background-color: var(--bg-secondary);
-  }
-
-  .dropdown-trigger {
-    display: flex;
-    align-items: center;
+    background-color: var(--bg-tertiary);
   }
 
   .dropdown-icon {
@@ -345,12 +382,12 @@ const quickLinks = [
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translateX(-50%) translateY(8px);
+    transform: translateX(-50%) translateY(12px);
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+    transition: all 0.25s ease;
     z-index: 100;
-    padding-top: 0.5rem;
+    padding-top: 0.75rem;
   }
 
   .has-dropdown:hover .dropdown-panel {
@@ -359,90 +396,85 @@ const quickLinks = [
     transform: translateX(-50%) translateY(0);
   }
 
-  /* Standard Dropdown */
-  .dropdown-list {
-    background: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    border-radius: 0.75rem;
-    padding: 0.5rem;
-    min-width: 280px;
-    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    list-style: none;
-    margin: 0;
-  }
-
-  .dropdown-link {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: background-color 0.15s;
-  }
-
-  .dropdown-link:hover {
-    background-color: var(--bg-secondary);
-  }
-
-  .dropdown-link-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    background: var(--bg-tertiary);
-    border-radius: 0.5rem;
-    color: var(--brand-primary);
-    flex-shrink: 0;
-  }
-
-  .dropdown-link-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.125rem;
-  }
-
-  .dropdown-link-title {
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: var(--text-primary);
-  }
-
-  .dropdown-link-desc {
-    font-size: 0.8125rem;
-    color: var(--text-tertiary);
-  }
-
   /* Mega Menu Panel */
   .mega-panel {
-    left: 50%;
-    transform: translateX(-50%) translateY(8px);
     width: 100vw;
-    max-width: 72rem;
-  }
-
-  .has-dropdown:hover .mega-panel {
-    transform: translateX(-50%) translateY(0);
+    max-width: 1000px;
+    left: 50%;
   }
 
   .mega-content {
     background: var(--bg-primary);
     border: 1px solid var(--border-primary);
-    border-radius: 1rem;
-    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+    border-radius: 1.25rem;
+    box-shadow:
+      0 25px 50px -12px rgba(0, 0, 0, 0.15),
+      0 0 0 1px rgba(0, 0, 0, 0.05);
     overflow: hidden;
   }
 
+  /* Mega Header */
+  .mega-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  .mega-header-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .mega-header-desc {
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+    margin: 0.25rem 0 0;
+  }
+
+  .mega-view-all {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--brand-primary);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+  }
+
+  .mega-view-all:hover {
+    background: var(--brand-primary);
+    color: white;
+    border-color: var(--brand-primary);
+  }
+
+  .mega-view-all svg {
+    transition: transform 0.2s;
+  }
+
+  .mega-view-all:hover svg {
+    transform: translateX(2px);
+  }
+
+  /* Categories Grid */
   .mega-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 0;
-    padding: 1.5rem;
+    padding: 1rem;
   }
 
   .mega-column {
-    padding: 0 1.5rem;
+    padding: 0.5rem 0.75rem;
     border-right: 1px solid var(--border-primary);
   }
 
@@ -450,22 +482,13 @@ const quickLinks = [
     border-right: none;
   }
 
-  .mega-column:first-child {
-    padding-left: 0;
-  }
-
-  .mega-column:last-child {
-    padding-right: 0;
-  }
-
-  .mega-heading {
+  .mega-column-title {
     font-size: 0.6875rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     color: var(--text-tertiary);
-    margin: 0 0 0.75rem 0;
-    padding: 0 0.75rem;
+    margin: 0 0 0.5rem 0.75rem;
   }
 
   .mega-list {
@@ -479,13 +502,13 @@ const quickLinks = [
     align-items: center;
     gap: 0.75rem;
     padding: 0.625rem 0.75rem;
-    border-radius: 0.5rem;
+    border-radius: 0.625rem;
     text-decoration: none;
-    transition: background-color 0.15s;
+    transition: all 0.2s ease;
   }
 
   .mega-link:hover {
-    background-color: var(--bg-secondary);
+    background: var(--bg-secondary);
   }
 
   .mega-link-icon {
@@ -494,79 +517,248 @@ const quickLinks = [
     justify-content: center;
     width: 2.25rem;
     height: 2.25rem;
-    background: var(--bg-tertiary);
     border-radius: 0.5rem;
-    color: var(--brand-primary);
     flex-shrink: 0;
-    transition: background-color 0.15s, color 0.15s;
+    transition: all 0.2s ease;
+  }
+
+  /* Icon colors */
+  .icon-blue {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05));
+    color: #3b82f6;
+  }
+  .icon-purple {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(139, 92, 246, 0.05));
+    color: #8b5cf6;
+  }
+  .icon-cyan {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(6, 182, 212, 0.05));
+    color: #06b6d4;
+  }
+  .icon-emerald {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05));
+    color: #10b981;
+  }
+  .icon-orange {
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(249, 115, 22, 0.05));
+    color: #f97316;
+  }
+  .icon-rose {
+    background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(244, 63, 94, 0.05));
+    color: #f43f5e;
   }
 
   .mega-link:hover .mega-link-icon {
-    background: var(--brand-primary);
-    color: white;
+    transform: scale(1.1);
   }
 
   .mega-link-content {
     display: flex;
     flex-direction: column;
     gap: 0.0625rem;
+    flex: 1;
+    min-width: 0;
   }
 
   .mega-link-title {
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .mega-link-desc {
+  .mega-link-count {
     font-size: 0.75rem;
     color: var(--text-tertiary);
   }
 
-  .mega-footer {
-    background: var(--bg-secondary);
-    border-top: 1px solid var(--border-primary);
-    padding: 1rem 1.5rem;
+  .mega-link-arrow {
+    opacity: 0;
+    color: var(--text-tertiary);
+    transition: all 0.2s ease;
+    flex-shrink: 0;
   }
 
-  .mega-footer-content {
+  .mega-link:hover .mega-link-arrow {
+    opacity: 1;
+    transform: translateX(2px);
+    color: var(--brand-primary);
+  }
+
+  /* Mega Footer */
+  .mega-footer {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-primary);
   }
 
   .mega-footer-label {
-    font-size: 0.8125rem;
-    font-weight: 500;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
     color: var(--text-tertiary);
   }
 
-  .mega-footer-links {
-    display: flex;
-    gap: 1.5rem;
-  }
-
-  .mega-footer-link {
+  .mega-footer-services {
     display: flex;
     align-items: center;
-    gap: 0.375rem;
+    gap: 0.5rem;
+    flex: 1;
+  }
+
+  .mega-featured-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.875rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .mega-featured-link:hover {
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px var(--brand-light);
+  }
+
+  .mega-featured-badge {
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+  }
+
+  .mega-featured-badge.new {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.25));
+    color: #10b981;
+  }
+
+  .mega-featured-badge.popular {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.25));
+    color: #3b82f6;
+  }
+
+  .mega-cta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    background: linear-gradient(135deg, var(--brand-primary), #1d4ed8);
+    color: white;
     font-size: 0.875rem;
     font-weight: 500;
-    color: var(--brand-primary);
+    border-radius: 0.5rem;
     text-decoration: none;
-    transition: color 0.15s;
+    transition: all 0.2s ease;
+    margin-left: auto;
   }
 
-  .mega-footer-link:hover {
-    color: var(--brand-hover);
+  .mega-cta:hover {
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
   }
 
-  .mega-footer-link svg {
-    transition: transform 0.15s;
+  .mega-cta svg {
+    transition: transform 0.2s;
   }
 
-  .mega-footer-link:hover svg {
+  .mega-cta:hover svg {
     transform: translateX(2px);
+  }
+
+  /* Solutions Panel */
+  .solutions-panel {
+    width: 360px;
+  }
+
+  .solutions-list {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+    padding: 0.5rem;
+    list-style: none;
+    margin: 0;
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12);
+  }
+
+  .solution-link {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.875rem 1rem;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .solution-link:hover {
+    background: var(--bg-secondary);
+  }
+
+  .solution-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+
+  .solution-icon.purple {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(139, 92, 246, 0.05));
+    color: #8b5cf6;
+  }
+
+  .solution-icon.blue {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05));
+    color: #3b82f6;
+  }
+
+  .solution-icon.emerald {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05));
+    color: #10b981;
+  }
+
+  .solution-icon.rose {
+    background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(244, 63, 94, 0.05));
+    color: #f43f5e;
+  }
+
+  .solution-link:hover .solution-icon {
+    transform: scale(1.05);
+  }
+
+  .solution-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .solution-title {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .solution-desc {
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
   }
 
   /* Mobile Menu Button */
@@ -579,12 +771,12 @@ const quickLinks = [
     background: none;
     border: none;
     cursor: pointer;
-    border-radius: 0.5rem;
-    transition: background-color 0.15s;
+    border-radius: 0.625rem;
+    transition: background-color 0.2s;
   }
 
   .mobile-menu-btn:hover {
-    background-color: var(--bg-secondary);
+    background-color: var(--bg-tertiary);
   }
 
   @media (min-width: 1024px) {
@@ -605,7 +797,7 @@ const quickLinks = [
     height: 2px;
     background: var(--text-primary);
     border-radius: 1px;
-    transition: transform 0.2s, opacity 0.2s;
+    transition: transform 0.25s ease, opacity 0.25s ease;
   }
 
   .mobile-menu-btn[aria-expanded="true"] .hamburger span:nth-child(1) {
@@ -647,6 +839,7 @@ const quickLinks = [
     display: flex;
     flex-direction: column;
     min-height: calc(100vh - 4rem);
+    min-height: calc(100dvh - 4rem);
     padding: 1rem;
   }
 
@@ -659,13 +852,13 @@ const quickLinks = [
 
   .mobile-nav-link {
     display: block;
-    padding: 1rem;
+    padding: 1rem 1.25rem;
     font-size: 1.0625rem;
     font-weight: 500;
     color: var(--text-primary);
     text-decoration: none;
-    border-radius: 0.5rem;
-    transition: background-color 0.15s;
+    border-radius: 0.75rem;
+    transition: background-color 0.2s;
   }
 
   .mobile-nav-link:hover {
@@ -677,16 +870,16 @@ const quickLinks = [
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 1rem;
+    padding: 1rem 1.25rem;
     font-size: 1.0625rem;
     font-weight: 500;
     color: var(--text-primary);
     background: none;
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     cursor: pointer;
     font-family: inherit;
-    transition: background-color 0.15s;
+    transition: background-color 0.2s;
   }
 
   .mobile-nav-accordion:hover {
@@ -694,7 +887,7 @@ const quickLinks = [
   }
 
   .accordion-icon {
-    transition: transform 0.2s;
+    transition: transform 0.25s ease;
   }
 
   .mobile-nav-accordion[aria-expanded="true"] .accordion-icon {
@@ -705,42 +898,65 @@ const quickLinks = [
     display: none;
     list-style: none;
     margin: 0;
-    padding: 0 0 0.5rem 0;
+    padding: 0.5rem 0.5rem 1rem;
   }
 
   .mobile-nav-accordion[aria-expanded="true"] + .mobile-nav-submenu {
     display: block;
+    animation: fade-in 0.2s ease;
   }
 
-  .mobile-nav-subgroup {
-    padding: 0.5rem 1rem;
+  .mobile-nav-category {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.625rem;
+    text-decoration: none;
+    transition: background-color 0.2s;
   }
 
-  .mobile-nav-subheading {
-    display: block;
-    font-size: 0.6875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+  .mobile-nav-category:hover {
+    background-color: var(--bg-secondary);
+  }
+
+  .mobile-cat-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .mobile-cat-dot.color-blue { background: #3b82f6; }
+  .mobile-cat-dot.color-purple { background: #8b5cf6; }
+  .mobile-cat-dot.color-cyan { background: #06b6d4; }
+  .mobile-cat-dot.color-emerald { background: #10b981; }
+  .mobile-cat-dot.color-orange { background: #f97316; }
+  .mobile-cat-dot.color-rose { background: #f43f5e; }
+
+  .mobile-cat-name {
+    flex: 1;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .mobile-cat-count {
+    font-size: 0.8125rem;
     color: var(--text-tertiary);
-    margin-bottom: 0.5rem;
-    padding-left: 1rem;
-  }
-
-  .mobile-nav-subgroup ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    background: var(--bg-tertiary);
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
   }
 
   .mobile-nav-sublink {
     display: block;
-    padding: 0.625rem 1rem;
+    padding: 0.75rem 1rem;
     font-size: 0.9375rem;
     color: var(--text-secondary);
     text-decoration: none;
-    border-radius: 0.375rem;
-    transition: background-color 0.15s, color 0.15s;
+    border-radius: 0.625rem;
+    transition: all 0.2s;
   }
 
   .mobile-nav-sublink:hover {
@@ -752,6 +968,10 @@ const quickLinks = [
     padding: 1rem;
   }
 
+  .mobile-nav-cta .btn {
+    width: 100%;
+  }
+
   .mobile-menu-footer {
     padding: 1rem;
     border-top: 1px solid var(--border-primary);
@@ -761,51 +981,66 @@ const quickLinks = [
   .mobile-menu-footer .btn {
     width: 100%;
   }
+
+  /* Animation */
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
 </style>
 
 <script>
-  // Mobile menu toggle
-  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-  const mobileMenu = document.querySelector('.mobile-menu');
+  function initMegaMenu() {
+    // Mobile menu toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileMenu = document.querySelector('.mobile-menu');
 
-  if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', () => {
-      const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-      mobileMenuBtn.setAttribute('aria-expanded', (!isExpanded).toString());
-      mobileMenu.setAttribute('aria-hidden', isExpanded.toString());
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+        mobileMenuBtn.setAttribute('aria-expanded', (!isExpanded).toString());
+        mobileMenu.setAttribute('aria-hidden', isExpanded.toString());
+        document.body.style.overflow = isExpanded ? '' : 'hidden';
+      });
+    }
 
-      // Prevent body scroll when menu is open
-      document.body.style.overflow = isExpanded ? '' : 'hidden';
+    // Mobile accordion
+    const accordionButtons = document.querySelectorAll('.mobile-nav-accordion');
+    accordionButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+        // Close other accordions
+        accordionButtons.forEach((otherBtn) => {
+          if (otherBtn !== btn) {
+            otherBtn.setAttribute('aria-expanded', 'false');
+          }
+        });
+        btn.setAttribute('aria-expanded', (!isExpanded).toString());
+      });
     });
-  }
 
-  // Mobile accordion
-  const accordionButtons = document.querySelectorAll('.mobile-nav-accordion');
-  accordionButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', (!isExpanded).toString());
+    // Close mobile menu on link click
+    const mobileLinks = document.querySelectorAll('.mobile-menu a');
+    mobileLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        if (mobileMenuBtn && mobileMenu) {
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
+          mobileMenu.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        }
+      });
     });
-  });
 
-  // Close mobile menu when clicking a link
-  const mobileLinks = document.querySelectorAll('.mobile-menu a');
-  mobileLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-      if (mobileMenuBtn && mobileMenu) {
+    // Close on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenuBtn && mobileMenu) {
         mobileMenuBtn.setAttribute('aria-expanded', 'false');
         mobileMenu.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
       }
     });
-  });
+  }
 
-  // Close mobile menu on escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.setAttribute('aria-expanded', 'false');
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-  });
+  initMegaMenu();
+  document.addEventListener('astro:after-swap', initMegaMenu);
 </script>
