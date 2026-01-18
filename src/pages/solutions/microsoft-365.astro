@@ -1,0 +1,278 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+
+const title = "Microsoft 365 Security Solutions";
+const description = "Enterprise-grade Microsoft 365 security with advanced threat protection, identity management, and compliance solutions.";
+
+const features = [
+	{
+		title: "Advanced Threat Protection",
+		description: "Protect against sophisticated cyber attacks with AI-powered threat detection and automated response.",
+		icon: "shield",
+	},
+	{
+		title: "Identity & Access Management",
+		description: "Secure identity management with Azure AD, conditional access policies, and MFA enforcement.",
+		icon: "lock",
+	},
+	{
+		title: "Data Loss Prevention",
+		description: "Prevent data leaks with intelligent DLP policies across emails, files, and collaboration tools.",
+		icon: "cloud",
+	},
+	{
+		title: "Compliance Management",
+		description: "Meet regulatory requirements with compliance solutions for GDPR, HIPAA, and industry standards.",
+		icon: "chart",
+	},
+	{
+		title: "Email Security",
+		description: "Block phishing, malware, and spam with Microsoft Defender for Office 365 and custom policies.",
+		icon: "microsoft",
+	},
+	{
+		title: "Security Score Optimization",
+		description: "Continuously improve your security posture with expert guidance and best practice implementation.",
+		icon: "chart",
+	},
+];
+
+const benefits = [
+	"99.9% threat detection rate",
+	"50% reduction in security incidents",
+	"Compliance with major regulations",
+	"24/7 security monitoring",
+	"Expert Microsoft certified engineers",
+	"Rapid incident response",
+];
+
+const pricingTiers = [
+	{
+		name: "Essentials",
+		description: "For small businesses getting started with M365 security",
+		features: [
+			"Security assessment & audit",
+			"Basic threat protection setup",
+			"MFA implementation",
+			"Email security configuration",
+			"Monthly security report",
+		],
+	},
+	{
+		name: "Professional",
+		description: "Comprehensive security for growing organizations",
+		features: [
+			"Everything in Essentials",
+			"Advanced Threat Protection",
+			"Conditional Access policies",
+			"Data Loss Prevention",
+			"Compliance configuration",
+			"Quarterly security review",
+		],
+		popular: true,
+	},
+	{
+		name: "Enterprise",
+		description: "Full-scale security operations for large enterprises",
+		features: [
+			"Everything in Professional",
+			"24/7 SOC monitoring",
+			"Custom security policies",
+			"Incident response retainer",
+			"Executive security briefings",
+			"Dedicated security advisor",
+		],
+	},
+];
+---
+
+<BaseLayout title={title} description={description}>
+	<!-- Hero Section -->
+	<section class="relative py-24 lg:py-32 overflow-hidden">
+		<div class="absolute inset-0">
+			<div class="absolute inset-0 bg-gradient-to-br from-slate-950 via-brand-950/20 to-slate-950"></div>
+			<div class="absolute top-1/4 right-1/4 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl"></div>
+		</div>
+
+		<div class="container-wide relative z-10">
+			<div class="max-w-4xl">
+				<span class="badge-brand mb-6">Microsoft 365 Security</span>
+				<h1 class="text-5xl md:text-6xl font-bold text-white mb-6">
+					Secure Your Microsoft 365 Environment
+				</h1>
+				<p class="text-xl text-slate-400 mb-10 max-w-2xl">
+					Comprehensive security solutions for Microsoft 365, Azure AD, and your entire Microsoft ecosystem with enterprise-grade protection.
+				</p>
+				<div class="flex flex-wrap gap-4">
+					<a href="/contact" class="btn-primary btn-lg">
+						Get Security Assessment
+						<svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+						</svg>
+					</a>
+					<a href="#features" class="btn-secondary btn-lg">
+						View Features
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Microsoft Logo Section -->
+	<section class="py-12 border-y border-slate-800 bg-slate-900/50">
+		<div class="container-wide">
+			<div class="flex flex-wrap items-center justify-center gap-8">
+				<span class="text-slate-500 text-sm">Certified Partner:</span>
+				<div class="flex items-center gap-3 text-white">
+					<svg class="w-8 h-8" viewBox="0 0 23 23" fill="none">
+						<path fill="#f25022" d="M0 0h11v11H0z"/>
+						<path fill="#00a4ef" d="M0 12h11v11H0z"/>
+						<path fill="#7fba00" d="M12 0h11v11H12z"/>
+						<path fill="#ffb900" d="M12 12h11v11H12z"/>
+					</svg>
+					<span class="font-semibold">Microsoft Gold Partner</span>
+				</div>
+				<span class="px-4 py-2 rounded-lg bg-slate-800 text-sm text-slate-400">
+					Azure Expert MSP
+				</span>
+				<span class="px-4 py-2 rounded-lg bg-slate-800 text-sm text-slate-400">
+					Security Specialization
+				</span>
+			</div>
+		</div>
+	</section>
+
+	<!-- Features Section -->
+	<section id="features" class="section-padding">
+		<div class="container-wide">
+			<div class="text-center max-w-3xl mx-auto mb-16">
+				<h2 class="text-4xl font-bold text-white mb-6">
+					Complete Microsoft 365 Security
+				</h2>
+				<p class="text-xl text-slate-400">
+					Our comprehensive suite of security solutions protects every aspect of your Microsoft environment.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				{features.map((feature) => (
+					<ServiceCard
+						title={feature.title}
+						description={feature.description}
+						icon={feature.icon}
+					/>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Benefits Section -->
+	<section class="section-padding bg-slate-900/50">
+		<div class="container-wide">
+			<div class="grid lg:grid-cols-2 gap-16 items-center">
+				<div>
+					<h2 class="text-4xl font-bold text-white mb-6">
+						Why Choose Waymark for M365 Security?
+					</h2>
+					<p class="text-xl text-slate-400 mb-8">
+						Our Microsoft-certified experts bring years of experience securing enterprise environments of all sizes.
+					</p>
+					<ul class="space-y-4">
+						{benefits.map((benefit) => (
+							<li class="flex items-center gap-3 text-slate-300">
+								<svg class="w-5 h-5 text-accent-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+								</svg>
+								{benefit}
+							</li>
+						))}
+					</ul>
+				</div>
+
+				<div class="grid grid-cols-2 gap-4">
+					<div class="glass-card text-center py-8">
+						<div class="text-4xl font-bold text-white mb-2">500+</div>
+						<div class="text-slate-400">M365 Deployments</div>
+					</div>
+					<div class="glass-card text-center py-8">
+						<div class="text-4xl font-bold text-white mb-2">99.9%</div>
+						<div class="text-slate-400">Threat Detection</div>
+					</div>
+					<div class="glass-card text-center py-8">
+						<div class="text-4xl font-bold text-white mb-2">85+</div>
+						<div class="text-slate-400">Avg Security Score</div>
+					</div>
+					<div class="glass-card text-center py-8">
+						<div class="text-4xl font-bold text-white mb-2">24/7</div>
+						<div class="text-slate-400">Monitoring</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Pricing Section -->
+	<section class="section-padding">
+		<div class="container-wide">
+			<div class="text-center max-w-3xl mx-auto mb-16">
+				<h2 class="text-4xl font-bold text-white mb-6">
+					Security Packages
+				</h2>
+				<p class="text-xl text-slate-400">
+					Choose the right level of protection for your organization. All packages include initial security assessment.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				{pricingTiers.map((tier) => (
+					<div class:list={[
+						"card p-8",
+						tier.popular && "gradient-border"
+					]}>
+						{tier.popular && (
+							<span class="badge-accent mb-4">Most Popular</span>
+						)}
+						<h3 class="text-2xl font-bold text-white mb-2">{tier.name}</h3>
+						<p class="text-slate-400 mb-6">{tier.description}</p>
+						<ul class="space-y-3 mb-8">
+							{tier.features.map((feature) => (
+								<li class="flex items-start gap-3 text-slate-300 text-sm">
+									<svg class="w-5 h-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+									</svg>
+									{feature}
+								</li>
+							))}
+						</ul>
+						<a href="/contact" class:list={[
+							tier.popular ? "btn-primary w-full" : "btn-secondary w-full"
+						]}>
+							Get Started
+						</a>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA Section -->
+	<section class="section-padding bg-slate-900/50">
+		<div class="container-wide">
+			<div class="text-center max-w-3xl mx-auto">
+				<h2 class="text-4xl font-bold text-white mb-6">
+					Ready to Secure Your Microsoft 365?
+				</h2>
+				<p class="text-xl text-slate-400 mb-10">
+					Get a free security assessment and discover vulnerabilities in your Microsoft environment.
+				</p>
+				<a href="/contact" class="btn-primary btn-lg">
+					Schedule Free Assessment
+					<svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+					</svg>
+				</a>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
