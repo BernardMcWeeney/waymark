@@ -1,145 +1,159 @@
 ---
-import { SITE_TITLE, NAV_LINKS } from '../consts';
 import ThemeToggle from './ThemeToggle.astro';
-
-const pathname = Astro.url.pathname;
+import MegaMenu from './MegaMenu.astro';
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="main-header">
-	<div class="container-wide">
-		<nav class="flex items-center justify-between h-20">
-			<!-- Logo -->
-			<a href="/" class="flex items-center gap-3 group" style="color: var(--text-primary);">
-				<div class="w-10 h-10 bg-gradient-to-br from-brand-500 to-accent-500 rounded-xl flex items-center justify-center transition-transform group-hover:scale-105">
-					<svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-					</svg>
-				</div>
-				<span class="text-xl font-bold tracking-tight">{SITE_TITLE}</span>
-			</a>
+<header class="header" id="main-header">
+  <div class="header-container">
+    <!-- Logo -->
+    <a href="/" class="logo" aria-label="Waymark Home">
+      <div class="logo-mark">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="currentColor"/>
+          <path d="M8 12L16 8L24 12V20L16 24L8 20V12Z" stroke="white" stroke-width="1.5" fill="none"/>
+          <path d="M16 8V24M8 12L24 20M24 12L8 20" stroke="white" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <span class="logo-text">Waymark</span>
+    </a>
 
-			<!-- Desktop Navigation -->
-			<div class="hidden lg:flex items-center gap-1">
-				{NAV_LINKS.slice(0, -1).map((link) => (
-					<a
-						href={link.href}
-						class:list={[
-							"px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
-							pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))
-								? "nav-link-active"
-								: "nav-link"
-						]}
-					>
-						{link.label}
-					</a>
-				))}
-			</div>
+    <!-- Desktop Navigation with Mega Menu -->
+    <MegaMenu />
 
-			<!-- CTA Button & Theme Toggle -->
-			<div class="hidden lg:flex items-center gap-3">
-				<ThemeToggle />
-				<a href="/contact" class="btn-primary">
-					Get Started
-					<svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-					</svg>
-				</a>
-			</div>
-
-			<!-- Mobile Menu Button -->
-			<div class="lg:hidden flex items-center gap-2">
-				<ThemeToggle />
-				<button
-					class="p-2 transition-colors rounded-lg"
-					style="color: var(--text-secondary);"
-					id="mobile-menu-btn"
-					aria-label="Toggle menu"
-				>
-					<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-					</svg>
-				</button>
-			</div>
-		</nav>
-	</div>
-
-	<!-- Mobile Menu -->
-	<div class="lg:hidden hidden" id="mobile-menu">
-		<div class="container-wide py-4 border-t" style="border-color: var(--border-primary);">
-			<div class="flex flex-col gap-2">
-				{NAV_LINKS.map((link) => (
-					<a
-						href={link.href}
-						class:list={[
-							"px-4 py-3 rounded-xl text-base font-medium transition-all duration-200",
-							pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))
-								? "nav-link-active"
-								: "nav-link"
-						]}
-					>
-						{link.label}
-					</a>
-				))}
-				<a href="/contact" class="btn-primary mt-4 text-center">
-					Get Started
-				</a>
-			</div>
-		</div>
-	</div>
+    <!-- Actions -->
+    <div class="header-actions">
+      <ThemeToggle />
+      <a href="/contact" class="btn btn-primary header-cta">
+        Get Started
+      </a>
+    </div>
+  </div>
 </header>
 
 <style>
-	.nav-link {
-		color: var(--text-secondary);
-	}
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--header-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    height: 4rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
 
-	.nav-link:hover {
-		color: var(--text-primary);
-		background-color: var(--bg-tertiary);
-	}
+  .header.scrolled {
+    border-bottom-color: var(--header-border);
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+  }
 
-	.nav-link-active {
-		color: var(--text-primary);
-		background-color: var(--bg-tertiary);
-	}
+  .header-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
 
-	#main-header.scrolled {
-		background-color: var(--header-bg);
-		backdrop-filter: blur(16px);
-		-webkit-backdrop-filter: blur(16px);
-		border-bottom: 1px solid var(--border-primary);
-	}
+  @media (min-width: 640px) {
+    .header-container {
+      padding: 0 2rem;
+    }
+  }
+
+  /* Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo:hover {
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    color: var(--brand-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.025em;
+  }
+
+  /* Actions */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .header-cta {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .header-cta {
+      display: inline-flex;
+    }
+  }
+
+  /* Button styles */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    transition: all 0.15s ease;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background-color: var(--brand-primary);
+    color: #ffffff;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--brand-hover);
+    color: #ffffff;
+  }
 </style>
 
 <script>
-	// Header scroll effect
-	const header = document.getElementById('main-header');
-	let lastScroll = 0;
+  function initHeader() {
+    const header = document.getElementById('main-header');
 
-	function handleScroll() {
-		const currentScroll = window.pageYOffset;
+    // Scroll effect
+    function handleScroll() {
+      if (window.scrollY > 10) {
+        header?.classList.add('scrolled');
+      } else {
+        header?.classList.remove('scrolled');
+      }
+    }
 
-		if (currentScroll > 50) {
-			header?.classList.add('scrolled');
-		} else {
-			header?.classList.remove('scrolled');
-		}
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+  }
 
-		lastScroll = currentScroll;
-	}
-
-	window.addEventListener('scroll', handleScroll);
-
-	// Mobile menu toggle
-	const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-	const mobileMenu = document.getElementById('mobile-menu');
-
-	mobileMenuBtn?.addEventListener('click', () => {
-		mobileMenu?.classList.toggle('hidden');
-	});
-
-	// Re-initialize on Astro page transitions
-	document.addEventListener('astro:after-swap', () => {
-		handleScroll();
-	});
+  initHeader();
+  document.addEventListener('astro:after-swap', initHeader);
 </script>
