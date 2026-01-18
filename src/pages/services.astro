@@ -1,10 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { FLAGSHIP_SERVICES, SERVICE_CATEGORIES, RECURRING_PLANS } from '../consts';
+import { SERVICE_CATEGORIES, getAllServices, getFeaturedServices } from '../consts';
 import type { Service, ServiceType } from '../consts';
 
 const title = "Services";
-const description = "Productized security services with fixed scope, clear outcomes, and measurable results. From assessment to managed services.";
+const description = "60+ productized security services across 12 categories. Fixed scope, clear outcomes, and predictable pricing for every engagement.";
+
+const allServices = getAllServices();
+const featuredServices = getFeaturedServices();
 
 // Icon component helper
 function getIcon(icon: string): string {
@@ -18,11 +21,9 @@ function getIcon(icon: string): string {
 		ai: `<path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />`,
 		alert: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />`,
 		migration: `<path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />`,
-		endpoint: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />`,
 		user: `<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />`,
 		globe: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />`,
 		check: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />`,
-		settings: `<path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />`,
 		search: `<path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />`,
 		key: `<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />`,
 		mail: `<path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />`,
@@ -30,30 +31,24 @@ function getIcon(icon: string): string {
 		eye: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />`,
 		cloud: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />`,
 		users: `<path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />`,
-		tag: `<path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" /><path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />`,
-		activity: `<path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />`,
-		blueprint: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />`,
-		mobile: `<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />`,
-		windows: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />`,
-		google: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18zM9.75 12h4.5M12 9.75v4.5" />`,
-		merge: `<path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />`,
-		building: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />`,
-		code: `<path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />`,
-		workflow: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zm0 9.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />`,
-		beaker: `<path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />`,
-		graduation: `<path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />`,
 		share: `<path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />`,
 		link: `<path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />`,
-		app: `<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 002.25-2.25V6a2.25 2.25 0 00-2.25-2.25H6A2.25 2.25 0 003.75 6v2.25A2.25 2.25 0 006 10.5zm0 9.75h2.25A2.25 2.25 0 0010.5 18v-2.25a2.25 2.25 0 00-2.25-2.25H6a2.25 2.25 0 00-2.25 2.25V18A2.25 2.25 0 006 20.25zm9.75-9.75H18a2.25 2.25 0 002.25-2.25V6A2.25 2.25 0 0018 3.75h-2.25A2.25 2.25 0 0013.5 6v2.25a2.25 2.25 0 002.25 2.25z" />`,
+		activity: `<path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />`,
+		blueprint: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />`,
+		building: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />`,
+		settings: `<path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />`,
+		google: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18zM9.75 12h4.5M12 9.75v4.5" />`,
+		merge: `<path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />`,
+		grid: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />`,
 	};
 	return icons[icon] || icons.shield;
 }
 
 function getServiceTypeBadge(type: ServiceType): string {
 	const badges: Record<ServiceType, string> = {
-		assessment: "type-badge type-badge-assessment",
-		implementation: "type-badge type-badge-implementation",
-		managed: "type-badge type-badge-managed",
+		assessment: "type-badge type-assessment",
+		implementation: "type-badge type-implementation",
+		managed: "type-badge type-managed",
 	};
 	return badges[type];
 }
@@ -66,65 +61,173 @@ function getServiceTypeLabel(type: ServiceType): string {
 	};
 	return labels[type];
 }
+
+function getCategoryColor(color: string): string {
+	const colors: Record<string, string> = {
+		blue: "var(--blue-500)",
+		purple: "var(--purple-500)",
+		cyan: "var(--cyan-500)",
+		emerald: "var(--emerald-500)",
+		orange: "var(--orange-500)",
+		rose: "var(--rose-500)",
+	};
+	return colors[color] || colors.blue;
+}
 ---
 
 <BaseLayout title={title} description={description}>
-	<!-- Hero Section -->
-	<section class="hero">
-		<div class="container-wide">
+	<!-- Hero Section with Background Effects -->
+	<section class="hero-section">
+		<!-- Background Effects -->
+		<div class="hero-bg">
+			<div class="hero-gradient"></div>
+			<div class="hero-grid"></div>
+			<div class="hero-glow hero-glow-1"></div>
+			<div class="hero-glow hero-glow-2"></div>
+		</div>
+
+		<div class="container-wide relative">
 			<div class="hero-content">
-				<span class="badge badge-primary">Productized Services</span>
+				<div class="hero-badge">
+					<span class="badge-dot"></span>
+					<span>Productized Services</span>
+				</div>
+
 				<h1 class="hero-title">
-					Security Services with <span class="hero-title-accent">Clear Outcomes</span>
+					<span class="hero-title-gradient">60+ Services</span>
+					<br />
+					<span class="hero-title-white">Across 12 Categories</span>
 				</h1>
+
 				<p class="hero-description">
-					Fixed scope. Defined deliverables. Predictable pricing. Every service designed to deliver measurable results for your business.
+					Every service has fixed scope, defined deliverables, and predictable pricing.
+					Choose Assessment to understand risk, Implementation to build solutions,
+					or Managed for ongoing protection.
 				</p>
+
+				<div class="hero-stats">
+					<div class="hero-stat">
+						<span class="hero-stat-value">{SERVICE_CATEGORIES.length}</span>
+						<span class="hero-stat-label">Categories</span>
+					</div>
+					<div class="stat-divider"></div>
+					<div class="hero-stat">
+						<span class="hero-stat-value">{allServices.length}+</span>
+						<span class="hero-stat-label">Services</span>
+					</div>
+					<div class="stat-divider"></div>
+					<div class="hero-stat">
+						<span class="hero-stat-value">100%</span>
+						<span class="hero-stat-label">Fixed Pricing</span>
+					</div>
+				</div>
+
 				<div class="hero-actions">
-					<a href="#flagship" class="btn btn-primary">
-						View Flagship Products
-						<svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+					<a href="#categories" class="btn btn-primary btn-lg">
+						Browse All Services
+						<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
 						</svg>
 					</a>
-					<a href="#plans" class="btn btn-secondary">
-						See Recurring Plans
+					<a href="/contact" class="btn btn-glass btn-lg">
+						Get a Quote
 					</a>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- Flagship Products Section -->
-	<section id="flagship" class="section-padding scroll-mt-24">
+	<!-- Service Types Explained -->
+	<section class="types-section">
+		<div class="container-wide">
+			<div class="types-grid">
+				<div class="type-card type-card-assessment">
+					<div class="type-icon">
+						<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+						</svg>
+					</div>
+					<h3 class="type-title">Assessment</h3>
+					<p class="type-description">Find risk, produce a backlog, prioritize what matters</p>
+					<span class="type-timeframe">5-10 days typical</span>
+				</div>
+
+				<div class="type-card type-card-implementation">
+					<div class="type-icon">
+						<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
+						</svg>
+					</div>
+					<h3 class="type-title">Implementation</h3>
+					<p class="type-description">Build and configure with fixed scope sprints</p>
+					<span class="type-timeframe">1-4 weeks typical</span>
+				</div>
+
+				<div class="type-card type-card-managed">
+					<div class="type-icon">
+						<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+						</svg>
+					</div>
+					<h3 class="type-title">Managed</h3>
+					<p class="type-description">Ongoing monitoring, tuning, and reporting</p>
+					<span class="type-timeframe">Monthly recurring</span>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Quick Category Navigation -->
+	<section class="nav-section">
+		<div class="container-wide">
+			<div class="nav-header">
+				<h2 class="nav-title">Jump to Category</h2>
+			</div>
+			<div class="category-nav">
+				{SERVICE_CATEGORIES.map((category) => (
+					<a href={`#${category.id}`} class="category-nav-item" data-color={category.color}>
+						<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" set:html={getIcon(category.icon)} />
+						<span>{category.shortTitle}</span>
+					</a>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Featured Services -->
+	<section class="featured-section">
 		<div class="container-wide">
 			<div class="section-header">
-				<span class="badge badge-primary">Featured</span>
-				<h2 class="section-title">Flagship Products</h2>
+				<span class="section-badge">Most Popular</span>
+				<h2 class="section-title">Featured Services</h2>
 				<p class="section-description">
-					Our most popular services. Each designed to deliver specific outcomes with clear deliverables.
+					Our most requested services - each with proven outcomes and clear deliverables.
 				</p>
 			</div>
 
-			<div class="flagship-grid">
-				{FLAGSHIP_SERVICES.map((service) => (
-					<div class="flagship-card group">
-						<div class="flagship-card-header">
-							<div class="icon-box">
-								<svg class="w-5 h-5" style="color: var(--brand-primary);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" set:html={getIcon(service.icon)} />
+			<div class="featured-grid">
+				{featuredServices.map((service) => (
+					<div class="featured-card group">
+						<div class="featured-card-header">
+							<div class="featured-icon">
+								<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" set:html={getIcon(service.icon)} />
 							</div>
-							<div class="flagship-card-badges">
+							<div class="featured-badges">
 								{service.types.map((type) => (
 									<span class={getServiceTypeBadge(type)}>{getServiceTypeLabel(type)}</span>
 								))}
 							</div>
 						</div>
-						<h3 class="flagship-card-title">{service.shortTitle || service.title}</h3>
-						<p class="flagship-card-description">{service.description}</p>
-						<div class="flagship-card-footer">
-							<span class="flagship-card-timeframe">{service.timeframe}</span>
-							<a href="/contact" class="flagship-card-link">
-								Learn more
+						<h3 class="featured-title">{service.shortTitle || service.title}</h3>
+						<p class="featured-description">{service.description}</p>
+						<div class="featured-outcome">
+							<span class="outcome-label">Outcome:</span>
+							<span class="outcome-text">{service.outcome}</span>
+						</div>
+						<div class="featured-footer">
+							<span class="featured-timeframe">{service.timeframe}</span>
+							<a href="/contact" class="featured-link">
+								Get Started
 								<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
 								</svg>
@@ -136,156 +239,109 @@ function getServiceTypeLabel(type: ServiceType): string {
 		</div>
 	</section>
 
-	<!-- Recurring Plans Section -->
-	<section id="plans" class="section-padding section-alt scroll-mt-24">
+	<!-- All Categories & Services -->
+	<section id="categories" class="categories-section">
 		<div class="container-wide">
 			<div class="section-header">
-				<span class="badge badge-neutral">Recurring Revenue</span>
-				<h2 class="section-title">Managed Security Plans</h2>
+				<span class="section-badge">Complete Catalogue</span>
+				<h2 class="section-title">All Services by Category</h2>
 				<p class="section-description">
-					Ongoing protection with predictable monthly pricing. Choose the level that fits your needs.
+					Explore our complete range of {allServices.length}+ productized services organized across {SERVICE_CATEGORIES.length} categories.
 				</p>
 			</div>
 
-			<div class="plans-grid">
-				{RECURRING_PLANS.map((plan) => (
-					<div class:list={["plan-card", plan.featured && "plan-card-featured"]}>
-						{plan.featured && (
-							<div class="plan-card-badge">
-								<span class="badge badge-success">{plan.tagline}</span>
-							</div>
-						)}
-						<div class="plan-card-header">
-							<h3 class="plan-card-title">{plan.name}</h3>
-							{!plan.featured && <p class="plan-card-tagline">{plan.tagline}</p>}
-							<p class="plan-card-description">{plan.description}</p>
-						</div>
-						<div class="plan-card-price">
-							<span class="plan-price">{plan.monthlyPrice}</span>
-						</div>
-						<ul class="plan-features">
-							{plan.includes.map((item) => (
-								<li class="plan-feature">
-									<svg class="plan-feature-check" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-										<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-									</svg>
-									<span>{item}</span>
-								</li>
-							))}
-						</ul>
-						{plan.addOns && plan.addOns.length > 0 && (
-							<div class="plan-addons">
-								<p class="plan-addons-label">Optional add-ons:</p>
-								<div class="plan-addons-list">
-									{plan.addOns.map((addon) => (
-										<span class="plan-addon">{addon}</span>
-									))}
-								</div>
-							</div>
-						)}
-						<a href="/contact" class:list={["btn w-full", plan.featured ? "btn-primary" : "btn-secondary"]}>
-							Get Started
-						</a>
-					</div>
-				))}
-			</div>
-		</div>
-	</section>
-
-	<!-- Full Catalogue Section -->
-	<section id="catalogue" class="section-padding scroll-mt-24">
-		<div class="container-wide">
-			<div class="section-header">
-				<span class="badge badge-primary">Full Catalogue</span>
-				<h2 class="section-title">All Services</h2>
-				<p class="section-description">
-					Complete list of productized services organized by category.
-				</p>
-			</div>
-
-			<div class="catalogue-list">
-				{SERVICE_CATEGORIES.map((category) => (
-					<div class="category-section" id={category.id}>
+			<div class="categories-list">
+				{SERVICE_CATEGORIES.map((category, index) => (
+					<div id={category.id} class="category-block" style={`--category-color: ${getCategoryColor(category.color)}`}>
 						<div class="category-header">
-							<div class="icon-box">
-								<svg class="w-5 h-5" style="color: var(--brand-primary);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" set:html={getIcon(category.icon)} />
+							<div class="category-header-left">
+								<div class="category-icon-wrapper">
+									<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" set:html={getIcon(category.icon)} />
+								</div>
+								<div class="category-info">
+									<span class="category-number">0{index + 1}</span>
+									<h3 class="category-title">{category.title}</h3>
+									<p class="category-description">{category.description}</p>
+								</div>
 							</div>
-							<div class="category-info">
-								<h3 class="category-title">{category.title}</h3>
-								<p class="category-description">{category.description}</p>
+							<div class="category-count">
+								<span class="count-value">{category.services.length}</span>
+								<span class="count-label">Services</span>
 							</div>
 						</div>
-						<div class="category-services">
+
+						<div class="services-grid">
 							{category.services.map((service) => (
-								<div class="service-item group">
-									<div class="service-item-badges">
-										{service.types.map((type) => (
-											<span class={getServiceTypeBadge(type)}>{getServiceTypeLabel(type)}</span>
-										))}
+								<div class="service-card group">
+									<div class="service-card-top">
+										<div class="service-badges">
+											{service.types.map((type) => (
+												<span class={getServiceTypeBadge(type)}>{getServiceTypeLabel(type)}</span>
+											))}
+										</div>
+										{service.featured && (
+											<span class="featured-badge">Popular</span>
+										)}
 									</div>
-									<h4 class="service-item-title">{service.title}</h4>
-									<p class="service-item-description">{service.description}</p>
-									<div class="service-item-footer">
-										<span class="service-item-timeframe">{service.timeframe}</span>
-										<span class="service-item-deliverables">{service.deliverables.length} deliverables</span>
+									<h4 class="service-title">{service.title}</h4>
+									<p class="service-description">{service.description}</p>
+
+									{service.deliverables && service.deliverables.length > 0 && (
+										<div class="service-deliverables">
+											<span class="deliverables-label">Deliverables:</span>
+											<ul class="deliverables-list">
+												{service.deliverables.slice(0, 3).map((d) => (
+													<li>{d}</li>
+												))}
+												{service.deliverables.length > 3 && (
+													<li class="more">+{service.deliverables.length - 3} more</li>
+												)}
+											</ul>
+										</div>
+									)}
+
+									<div class="service-footer">
+										<span class="service-timeframe">{service.timeframe || 'Varies'}</span>
+										<a href="/contact" class="service-link">
+											Learn more
+											<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+												<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+											</svg>
+										</a>
 									</div>
 								</div>
 							))}
 						</div>
 					</div>
 				))}
-			</div>
-		</div>
-	</section>
-
-	<!-- How It Works Section -->
-	<section class="section-padding section-alt">
-		<div class="container-wide">
-			<div class="section-header">
-				<h2 class="section-title">How Our Products Work</h2>
-				<p class="section-description">
-					Every service follows the same pattern: clear scope, defined deliverables, predictable results.
-				</p>
-			</div>
-
-			<div class="process-grid">
-				<div class="process-step">
-					<div class="process-step-number">1</div>
-					<h3 class="process-step-title">Assessment</h3>
-					<p class="process-step-description">Find risk, produce a backlog, and prioritize what matters. Typically 5-10 days.</p>
-				</div>
-				<div class="process-step">
-					<div class="process-step-number process-step-number-mid">2</div>
-					<h3 class="process-step-title">Implementation</h3>
-					<p class="process-step-description">Build and configure. Fixed scope sprints from 1-4 weeks with clear deliverables.</p>
-				</div>
-				<div class="process-step">
-					<div class="process-step-number process-step-number-end">3</div>
-					<h3 class="process-step-title">Managed</h3>
-					<p class="process-step-description">Ongoing monitoring, changes, tuning, and reporting. Monthly recurring engagement.</p>
-				</div>
 			</div>
 		</div>
 	</section>
 
 	<!-- CTA Section -->
-	<section class="section-padding">
+	<section class="cta-section">
 		<div class="container-wide">
 			<div class="cta-card">
-				<h2 class="cta-title">Ready to Get Started?</h2>
-				<p class="cta-description">
-					Contact us for a free consultation. We'll help you identify the right services for your security needs.
-				</p>
-				<div class="cta-actions">
-					<a href="/contact" class="btn btn-primary btn-lg">
-						Schedule Consultation
-						<svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-						</svg>
-					</a>
-					<a href="/solutions/microsoft-365" class="btn btn-secondary btn-lg">
-						Explore M365 Services
-					</a>
+				<div class="cta-bg">
+					<div class="cta-gradient"></div>
+				</div>
+				<div class="cta-content">
+					<h2 class="cta-title">Ready to Secure Your Business?</h2>
+					<p class="cta-description">
+						Contact us for a free consultation. We'll help identify the right services
+						for your needs and provide clear pricing upfront.
+					</p>
+					<div class="cta-actions">
+						<a href="/contact" class="btn btn-white btn-lg">
+							Schedule Consultation
+							<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+							</svg>
+						</a>
+						<a href="/" class="btn btn-outline-white btn-lg">
+							Back to Home
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -294,514 +350,804 @@ function getServiceTypeLabel(type: ServiceType): string {
 
 <style>
 	/* Hero Section */
-	.hero {
-		padding-top: 8rem;
-		padding-bottom: 5rem;
-		background-color: var(--bg-secondary);
+	.hero-section {
+		position: relative;
+		padding: 10rem 0 6rem;
+		overflow: hidden;
 	}
 
-	@media (min-width: 768px) {
-		.hero {
-			padding-top: 10rem;
-			padding-bottom: 6rem;
-		}
+	.hero-bg {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+	}
+
+	.hero-gradient {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
+	}
+
+	.hero-grid {
+		position: absolute;
+		inset: 0;
+		background-image: linear-gradient(var(--border-primary) 1px, transparent 1px),
+			linear-gradient(90deg, var(--border-primary) 1px, transparent 1px);
+		background-size: 60px 60px;
+		opacity: 0.4;
+		mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, black 70%, transparent 100%);
+	}
+
+	.hero-glow {
+		position: absolute;
+		width: 600px;
+		height: 600px;
+		border-radius: 50%;
+		filter: blur(120px);
+		opacity: 0.15;
+	}
+
+	.hero-glow-1 {
+		top: -200px;
+		left: -100px;
+		background: var(--brand-primary);
+		animation: float 20s ease-in-out infinite;
+	}
+
+	.hero-glow-2 {
+		bottom: -200px;
+		right: -100px;
+		background: var(--purple-500);
+		animation: float 20s ease-in-out infinite reverse;
 	}
 
 	.hero-content {
+		position: relative;
+		z-index: 1;
 		max-width: 48rem;
 	}
 
+	.hero-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.5rem 1rem;
+		background: var(--glass-bg);
+		backdrop-filter: blur(12px);
+		border: 1px solid var(--glass-border);
+		border-radius: 9999px;
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: var(--text-primary);
+		margin-bottom: 1.5rem;
+		animation: fadeIn 0.6s ease-out;
+	}
+
+	.badge-dot {
+		width: 0.5rem;
+		height: 0.5rem;
+		background: var(--brand-primary);
+		border-radius: 50%;
+		animation: pulse-glow 2s ease-in-out infinite;
+	}
+
 	.hero-title {
-		font-size: 2.5rem;
+		font-size: 3rem;
 		font-weight: 700;
 		line-height: 1.1;
-		letter-spacing: -0.02em;
-		color: var(--text-primary);
-		margin: 1rem 0 1.5rem;
+		letter-spacing: -0.03em;
+		margin-bottom: 1.5rem;
+		animation: fadeInUp 0.6s ease-out 0.1s both;
 	}
 
 	@media (min-width: 768px) {
 		.hero-title {
-			font-size: 3rem;
+			font-size: 4rem;
 		}
 	}
 
 	@media (min-width: 1024px) {
 		.hero-title {
-			font-size: 3.5rem;
+			font-size: 4.5rem;
 		}
 	}
 
-	.hero-title-accent {
-		color: var(--brand-primary);
+	.hero-title-gradient {
+		background: linear-gradient(135deg, var(--brand-primary), var(--purple-500));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.hero-title-white {
+		color: var(--text-primary);
 	}
 
 	.hero-description {
 		font-size: 1.125rem;
-		line-height: 1.6;
+		line-height: 1.7;
 		color: var(--text-secondary);
 		margin-bottom: 2rem;
-		max-width: 36rem;
+		animation: fadeInUp 0.6s ease-out 0.2s both;
+	}
+
+	@media (min-width: 768px) {
+		.hero-description {
+			font-size: 1.25rem;
+		}
+	}
+
+	.hero-stats {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		padding: 1.5rem 0;
+		margin-bottom: 2rem;
+		border-top: 1px solid var(--border-primary);
+		border-bottom: 1px solid var(--border-primary);
+		animation: fadeInUp 0.6s ease-out 0.3s both;
+	}
+
+	@media (min-width: 768px) {
+		.hero-stats {
+			gap: 2.5rem;
+		}
+	}
+
+	.hero-stat {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.hero-stat-value {
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: var(--text-primary);
+		letter-spacing: -0.02em;
+	}
+
+	@media (min-width: 768px) {
+		.hero-stat-value {
+			font-size: 2rem;
+		}
+	}
+
+	.hero-stat-label {
+		font-size: 0.75rem;
+		font-weight: 500;
+		color: var(--text-tertiary);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.stat-divider {
+		width: 1px;
+		height: 2.5rem;
+		background: var(--border-primary);
 	}
 
 	.hero-actions {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 1rem;
+		animation: fadeInUp 0.6s ease-out 0.4s both;
 	}
 
-	/* Section Styles */
-	.section-alt {
-		background-color: var(--bg-secondary);
+	/* Types Section */
+	.types-section {
+		padding: 4rem 0;
+		background: var(--bg-secondary);
+		border-top: 1px solid var(--border-primary);
+		border-bottom: 1px solid var(--border-primary);
+	}
+
+	.types-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+	}
+
+	@media (min-width: 768px) {
+		.types-grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	.type-card {
+		padding: 1.5rem;
+		background: var(--bg-primary);
+		border: 1px solid var(--border-primary);
+		border-radius: 1rem;
+		text-align: center;
+		transition: all 0.3s ease;
+	}
+
+	.type-card:hover {
+		border-color: var(--border-secondary);
+		transform: translateY(-2px);
+	}
+
+	.type-icon {
+		width: 3rem;
+		height: 3rem;
+		margin: 0 auto 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 0.75rem;
+	}
+
+	.type-card-assessment .type-icon {
+		background: var(--brand-light);
+		color: var(--brand-primary);
+	}
+
+	.type-card-implementation .type-icon {
+		background: var(--success-light);
+		color: var(--success);
+	}
+
+	.type-card-managed .type-icon {
+		background: var(--bg-tertiary);
+		color: var(--text-secondary);
+	}
+
+	.type-title {
+		font-size: 1.125rem;
+		font-weight: 600;
+		color: var(--text-primary);
+		margin-bottom: 0.5rem;
+	}
+
+	.type-description {
+		font-size: 0.875rem;
+		color: var(--text-secondary);
+		margin-bottom: 0.75rem;
+	}
+
+	.type-timeframe {
+		font-size: 0.75rem;
+		color: var(--text-tertiary);
+	}
+
+	/* Category Navigation */
+	.nav-section {
+		padding: 3rem 0;
+		background: var(--bg-primary);
+		position: sticky;
+		top: 4rem;
+		z-index: 40;
+		border-bottom: 1px solid var(--border-primary);
+	}
+
+	.nav-header {
+		margin-bottom: 1rem;
+	}
+
+	.nav-title {
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: var(--text-tertiary);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.category-nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.category-nav-item {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.375rem;
+		padding: 0.5rem 0.875rem;
+		font-size: 0.8125rem;
+		font-weight: 500;
+		color: var(--text-secondary);
+		background: var(--bg-secondary);
+		border: 1px solid var(--border-primary);
+		border-radius: 9999px;
+		text-decoration: none;
+		transition: all 0.2s ease;
+		white-space: nowrap;
+	}
+
+	.category-nav-item:hover {
+		color: var(--brand-primary);
+		border-color: var(--brand-primary);
+		background: var(--brand-light);
+	}
+
+	/* Featured Section */
+	.featured-section {
+		padding: 6rem 0;
+		background: var(--bg-primary);
 	}
 
 	.section-header {
 		text-align: center;
-		max-width: 48rem;
+		max-width: 40rem;
 		margin: 0 auto 4rem;
+	}
+
+	.section-badge {
+		display: inline-block;
+		padding: 0.25rem 0.75rem;
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--brand-primary);
+		background: var(--brand-light);
+		border-radius: 9999px;
+		margin-bottom: 1rem;
 	}
 
 	.section-title {
 		font-size: 2rem;
 		font-weight: 700;
 		color: var(--text-primary);
-		margin: 1rem 0;
 		letter-spacing: -0.02em;
+		margin-bottom: 1rem;
 	}
 
 	@media (min-width: 768px) {
 		.section-title {
-			font-size: 2.25rem;
+			font-size: 2.5rem;
 		}
 	}
 
 	.section-description {
-		font-size: 1.125rem;
+		font-size: 1.0625rem;
 		color: var(--text-secondary);
 		line-height: 1.6;
 	}
 
-	/* Type Badges */
-	.type-badge {
-		display: inline-flex;
-		padding: 0.125rem 0.5rem;
-		font-size: 0.6875rem;
-		font-weight: 500;
-		border-radius: 9999px;
-		text-transform: uppercase;
-		letter-spacing: 0.025em;
-	}
-
-	.type-badge-assessment {
-		background-color: var(--brand-light);
-		color: var(--brand-primary);
-	}
-
-	.type-badge-implementation {
-		background-color: var(--success-light);
-		color: var(--success);
-	}
-
-	.type-badge-managed {
-		background-color: var(--bg-tertiary);
-		color: var(--text-secondary);
-	}
-
-	/* Flagship Grid */
-	.flagship-grid {
+	.featured-grid {
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: 1.5rem;
 	}
 
 	@media (min-width: 640px) {
-		.flagship-grid {
+		.featured-grid {
 			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 
 	@media (min-width: 1024px) {
-		.flagship-grid {
+		.featured-grid {
 			grid-template-columns: repeat(3, 1fr);
 		}
 	}
 
-	.flagship-card {
-		background-color: var(--bg-primary);
+	.featured-card {
+		background: var(--bg-primary);
 		border: 1px solid var(--border-primary);
-		border-radius: 0.75rem;
+		border-radius: 1rem;
 		padding: 1.5rem;
-		transition: border-color 0.15s ease, box-shadow 0.15s ease;
+		transition: all 0.3s ease;
+		display: flex;
+		flex-direction: column;
 	}
 
-	.flagship-card:hover {
-		border-color: var(--border-secondary);
-		box-shadow: var(--shadow-md);
+	.featured-card:hover {
+		border-color: var(--brand-primary);
+		box-shadow: 0 0 0 1px var(--brand-primary), var(--shadow-lg);
+		transform: translateY(-4px);
 	}
 
-	.flagship-card-header {
+	.featured-card-header {
 		display: flex;
 		align-items: flex-start;
+		justify-content: space-between;
 		gap: 1rem;
 		margin-bottom: 1rem;
 	}
 
-	.flagship-card-badges {
+	.featured-icon {
+		width: 2.5rem;
+		height: 2.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: var(--gradient-primary);
+		border-radius: 0.625rem;
+		color: #fff;
+		flex-shrink: 0;
+	}
+
+	.featured-badges {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.375rem;
 	}
 
-	.flagship-card-title {
-		font-size: 1rem;
+	.featured-title {
+		font-size: 1.125rem;
 		font-weight: 600;
 		color: var(--text-primary);
 		margin-bottom: 0.5rem;
-		transition: color 0.15s ease;
+		transition: color 0.2s ease;
 	}
 
-	.flagship-card:hover .flagship-card-title {
+	.featured-card:hover .featured-title {
 		color: var(--brand-primary);
 	}
 
-	.flagship-card-description {
+	.featured-description {
 		font-size: 0.875rem;
 		color: var(--text-secondary);
 		line-height: 1.6;
 		margin-bottom: 1rem;
 	}
 
-	.flagship-card-footer {
+	.featured-outcome {
+		padding: 0.875rem;
+		background: var(--bg-tertiary);
+		border-radius: 0.5rem;
+		margin-bottom: 1rem;
+		flex-grow: 1;
+	}
+
+	.outcome-label {
+		display: block;
+		font-size: 0.6875rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--text-tertiary);
+		margin-bottom: 0.25rem;
+	}
+
+	.outcome-text {
+		font-size: 0.8125rem;
+		color: var(--text-secondary);
+		line-height: 1.5;
+	}
+
+	.featured-footer {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		padding-top: 1rem;
 		border-top: 1px solid var(--border-primary);
+		margin-top: auto;
 	}
 
-	.flagship-card-timeframe {
+	.featured-timeframe {
 		font-size: 0.75rem;
 		color: var(--text-tertiary);
 	}
 
-	.flagship-card-link {
+	.featured-link {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.25rem;
+		gap: 0.375rem;
 		font-size: 0.875rem;
 		font-weight: 500;
 		color: var(--brand-primary);
 		text-decoration: none;
-		transition: color 0.15s ease;
+		transition: gap 0.2s ease;
 	}
 
-	.flagship-card-link:hover {
-		color: var(--brand-hover);
+	.featured-link:hover {
+		gap: 0.625rem;
 	}
 
-	/* Plans Grid */
-	.plans-grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 2rem;
-		max-width: 72rem;
-		margin: 0 auto;
+	/* Type Badges */
+	.type-badge {
+		display: inline-flex;
+		padding: 0.125rem 0.5rem;
+		font-size: 0.625rem;
+		font-weight: 600;
+		border-radius: 9999px;
+		text-transform: uppercase;
+		letter-spacing: 0.025em;
 	}
 
-	@media (min-width: 768px) {
-		.plans-grid {
-			grid-template-columns: repeat(3, 1fr);
-		}
+	.type-assessment {
+		background: var(--brand-light);
+		color: var(--brand-primary);
 	}
 
-	.plan-card {
-		position: relative;
-		background-color: var(--bg-primary);
-		border: 1px solid var(--border-primary);
-		border-radius: 1rem;
-		padding: 2rem;
-		transition: border-color 0.15s ease, box-shadow 0.15s ease;
-	}
-
-	.plan-card:hover {
-		border-color: var(--border-secondary);
-		box-shadow: var(--shadow-md);
-	}
-
-	.plan-card-featured {
-		border: 2px solid var(--brand-primary);
-		box-shadow: var(--shadow-md);
-	}
-
-	.plan-card-featured:hover {
-		box-shadow: var(--shadow-lg);
-	}
-
-	.plan-card-badge {
-		position: absolute;
-		top: -0.75rem;
-		left: 50%;
-		transform: translateX(-50%);
-	}
-
-	.plan-card-header {
-		text-align: center;
-		margin-bottom: 1.5rem;
-	}
-
-	.plan-card-title {
-		font-size: 1.25rem;
-		font-weight: 700;
-		color: var(--text-primary);
-		margin-bottom: 0.25rem;
-	}
-
-	.plan-card-tagline {
-		font-size: 0.875rem;
-		color: var(--text-tertiary);
-	}
-
-	.plan-card-description {
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-		margin-top: 0.5rem;
-	}
-
-	.plan-card-price {
-		text-align: center;
-		padding: 1rem 0;
-		border-top: 1px solid var(--border-primary);
-		border-bottom: 1px solid var(--border-primary);
-		margin-bottom: 1.5rem;
-	}
-
-	.plan-price {
-		font-size: 1.5rem;
-		font-weight: 700;
-		color: var(--text-primary);
-	}
-
-	.plan-features {
-		list-style: none;
-		padding: 0;
-		margin: 0 0 1.5rem;
-	}
-
-	.plan-feature {
-		display: flex;
-		align-items: flex-start;
-		gap: 0.75rem;
-		padding: 0.5rem 0;
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-	}
-
-	.plan-feature-check {
-		width: 1.25rem;
-		height: 1.25rem;
-		flex-shrink: 0;
+	.type-implementation {
+		background: var(--success-light);
 		color: var(--success);
-		margin-top: 0.125rem;
 	}
 
-	.plan-addons {
-		padding-top: 1rem;
-		border-top: 1px solid var(--border-primary);
-		margin-bottom: 1.5rem;
-	}
-
-	.plan-addons-label {
-		font-size: 0.75rem;
-		color: var(--text-tertiary);
-		margin-bottom: 0.5rem;
-	}
-
-	.plan-addons-list {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.375rem;
-	}
-
-	.plan-addon {
-		font-size: 0.75rem;
-		padding: 0.25rem 0.5rem;
-		background-color: var(--bg-tertiary);
-		border-radius: 0.25rem;
+	.type-managed {
+		background: var(--bg-tertiary);
 		color: var(--text-secondary);
 	}
 
-	/* Catalogue */
-	.catalogue-list {
+	/* Categories Section */
+	.categories-section {
+		padding: 6rem 0;
+		background: var(--bg-secondary);
+	}
+
+	.categories-list {
 		display: flex;
 		flex-direction: column;
-		gap: 4rem;
+		gap: 5rem;
 	}
 
-	.category-section {
-		padding-bottom: 3rem;
-		border-bottom: 1px solid var(--border-primary);
-	}
-
-	.category-section:last-child {
-		border-bottom: none;
-		padding-bottom: 0;
+	.category-block {
+		scroll-margin-top: 8rem;
 	}
 
 	.category-header {
 		display: flex;
-		align-items: flex-start;
-		gap: 1rem;
+		flex-direction: column;
+		gap: 1.5rem;
+		padding-bottom: 2rem;
 		margin-bottom: 2rem;
+		border-bottom: 1px solid var(--border-primary);
+	}
+
+	@media (min-width: 768px) {
+		.category-header {
+			flex-direction: row;
+			align-items: flex-start;
+			justify-content: space-between;
+		}
+	}
+
+	.category-header-left {
+		display: flex;
+		gap: 1.25rem;
+	}
+
+	.category-icon-wrapper {
+		width: 3rem;
+		height: 3rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: var(--bg-primary);
+		border: 1px solid var(--border-primary);
+		border-radius: 0.75rem;
+		color: var(--category-color, var(--brand-primary));
+		flex-shrink: 0;
 	}
 
 	.category-info {
 		flex: 1;
 	}
 
+	.category-number {
+		display: block;
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: var(--category-color, var(--brand-primary));
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		margin-bottom: 0.25rem;
+	}
+
 	.category-title {
 		font-size: 1.5rem;
 		font-weight: 700;
 		color: var(--text-primary);
-		margin-bottom: 0.25rem;
+		letter-spacing: -0.02em;
+		margin-bottom: 0.5rem;
 	}
 
 	.category-description {
 		font-size: 0.9375rem;
 		color: var(--text-secondary);
+		line-height: 1.5;
+		max-width: 36rem;
 	}
 
-	.category-services {
+	.category-count {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 1rem 1.5rem;
+		background: var(--bg-primary);
+		border: 1px solid var(--border-primary);
+		border-radius: 0.75rem;
+		flex-shrink: 0;
+	}
+
+	.count-value {
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: var(--category-color, var(--brand-primary));
+	}
+
+	.count-label {
+		font-size: 0.6875rem;
+		font-weight: 500;
+		color: var(--text-tertiary);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	/* Services Grid */
+	.services-grid {
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: 1rem;
 	}
 
 	@media (min-width: 640px) {
-		.category-services {
+		.services-grid {
 			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 
 	@media (min-width: 1024px) {
-		.category-services {
+		.services-grid {
 			grid-template-columns: repeat(3, 1fr);
 		}
 	}
 
-	.service-item {
-		background-color: var(--bg-primary);
+	@media (min-width: 1280px) {
+		.services-grid {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+
+	.service-card {
+		background: var(--bg-primary);
 		border: 1px solid var(--border-primary);
-		border-radius: 0.75rem;
+		border-radius: 0.875rem;
 		padding: 1.25rem;
-		transition: border-color 0.15s ease, box-shadow 0.15s ease;
-	}
-
-	.service-item:hover {
-		border-color: var(--border-secondary);
-		box-shadow: var(--shadow-sm);
-	}
-
-	.service-item-badges {
+		transition: all 0.2s ease;
 		display: flex;
-		flex-wrap: wrap;
-		gap: 0.375rem;
+		flex-direction: column;
+	}
+
+	.service-card:hover {
+		border-color: var(--category-color, var(--border-secondary));
+		box-shadow: var(--shadow-md);
+	}
+
+	.service-card-top {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 0.5rem;
 		margin-bottom: 0.75rem;
 	}
 
-	.service-item-title {
+	.service-badges {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem;
+	}
+
+	.featured-badge {
+		font-size: 0.5625rem;
+		font-weight: 600;
+		padding: 0.125rem 0.375rem;
+		background: var(--gradient-primary);
+		color: #fff;
+		border-radius: 0.25rem;
+		text-transform: uppercase;
+		letter-spacing: 0.025em;
+	}
+
+	.service-title {
 		font-size: 0.9375rem;
 		font-weight: 600;
 		color: var(--text-primary);
 		margin-bottom: 0.5rem;
-		transition: color 0.15s ease;
+		line-height: 1.3;
+		transition: color 0.2s ease;
 	}
 
-	.service-item:hover .service-item-title {
-		color: var(--brand-primary);
+	.service-card:hover .service-title {
+		color: var(--category-color, var(--brand-primary));
 	}
 
-	.service-item-description {
+	.service-description {
 		font-size: 0.8125rem;
 		color: var(--text-secondary);
 		line-height: 1.5;
 		margin-bottom: 0.75rem;
+		flex-grow: 1;
 	}
 
-	.service-item-footer {
+	.service-deliverables {
+		padding: 0.75rem;
+		background: var(--bg-tertiary);
+		border-radius: 0.5rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.deliverables-label {
+		display: block;
+		font-size: 0.625rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--text-tertiary);
+		margin-bottom: 0.375rem;
+	}
+
+	.deliverables-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.deliverables-list li {
+		font-size: 0.75rem;
+		color: var(--text-secondary);
+		padding: 0.125rem 0;
+		padding-left: 0.875rem;
+		position: relative;
+	}
+
+	.deliverables-list li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.5rem;
+		width: 0.25rem;
+		height: 0.25rem;
+		background: var(--category-color, var(--brand-primary));
+		border-radius: 50%;
+	}
+
+	.deliverables-list li.more {
+		color: var(--text-tertiary);
+		font-style: italic;
+	}
+
+	.deliverables-list li.more::before {
+		display: none;
+	}
+
+	.service-footer {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		padding-top: 0.75rem;
 		border-top: 1px solid var(--border-primary);
+		margin-top: auto;
 	}
 
-	.service-item-timeframe,
-	.service-item-deliverables {
+	.service-timeframe {
 		font-size: 0.6875rem;
 		color: var(--text-tertiary);
 	}
 
-	/* Process Grid */
-	.process-grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 2rem;
-		max-width: 48rem;
-		margin: 0 auto;
-	}
-
-	@media (min-width: 768px) {
-		.process-grid {
-			grid-template-columns: repeat(3, 1fr);
-		}
-	}
-
-	.process-step {
-		text-align: center;
-	}
-
-	.process-step-number {
-		width: 3.5rem;
-		height: 3.5rem;
-		background-color: var(--brand-primary);
-		border-radius: 0.75rem;
-		display: flex;
+	.service-link {
+		display: inline-flex;
 		align-items: center;
-		justify-content: center;
-		margin: 0 auto 1rem;
-		font-size: 1.25rem;
-		font-weight: 700;
-		color: #ffffff;
+		gap: 0.25rem;
+		font-size: 0.8125rem;
+		font-weight: 500;
+		color: var(--category-color, var(--brand-primary));
+		text-decoration: none;
+		transition: gap 0.2s ease;
 	}
 
-	.process-step-number-mid {
-		background: linear-gradient(135deg, var(--brand-primary), var(--success));
-	}
-
-	.process-step-number-end {
-		background-color: var(--success);
-	}
-
-	.process-step-title {
-		font-size: 1.125rem;
-		font-weight: 600;
-		color: var(--text-primary);
-		margin-bottom: 0.5rem;
-	}
-
-	.process-step-description {
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-		line-height: 1.6;
+	.service-link:hover {
+		gap: 0.5rem;
 	}
 
 	/* CTA Section */
+	.cta-section {
+		padding: 6rem 0;
+		background: var(--bg-primary);
+	}
+
 	.cta-card {
-		background-color: var(--bg-secondary);
-		border: 1px solid var(--border-primary);
-		border-radius: 1rem;
+		position: relative;
+		background: var(--gradient-primary);
+		border-radius: 1.5rem;
 		padding: 4rem 2rem;
-		text-align: center;
+		overflow: hidden;
 	}
 
 	@media (min-width: 768px) {
@@ -810,25 +1156,46 @@ function getServiceTypeLabel(type: ServiceType): string {
 		}
 	}
 
+	.cta-bg {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+	}
+
+	.cta-gradient {
+		position: absolute;
+		inset: 0;
+		background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+			radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 40%);
+	}
+
+	.cta-content {
+		position: relative;
+		z-index: 1;
+		text-align: center;
+		max-width: 36rem;
+		margin: 0 auto;
+	}
+
 	.cta-title {
 		font-size: 2rem;
 		font-weight: 700;
-		color: var(--text-primary);
-		margin-bottom: 1rem;
+		color: #ffffff;
 		letter-spacing: -0.02em;
+		margin-bottom: 1rem;
 	}
 
 	@media (min-width: 768px) {
 		.cta-title {
-			font-size: 2.25rem;
+			font-size: 2.5rem;
 		}
 	}
 
 	.cta-description {
-		font-size: 1.125rem;
-		color: var(--text-secondary);
-		max-width: 36rem;
-		margin: 0 auto 2.5rem;
+		font-size: 1.0625rem;
+		color: rgba(255, 255, 255, 0.85);
+		line-height: 1.6;
+		margin-bottom: 2.5rem;
 	}
 
 	.cta-actions {
@@ -836,5 +1203,92 @@ function getServiceTypeLabel(type: ServiceType): string {
 		flex-wrap: wrap;
 		justify-content: center;
 		gap: 1rem;
+	}
+
+	/* Button Styles */
+	.btn-white {
+		background: #ffffff;
+		color: var(--brand-primary);
+		border: none;
+	}
+
+	.btn-white:hover {
+		background: rgba(255, 255, 255, 0.9);
+		transform: translateY(-2px);
+	}
+
+	.btn-outline-white {
+		background: transparent;
+		color: #ffffff;
+		border: 1px solid rgba(255, 255, 255, 0.3);
+	}
+
+	.btn-outline-white:hover {
+		background: rgba(255, 255, 255, 0.1);
+		border-color: rgba(255, 255, 255, 0.5);
+	}
+
+	.btn-glass {
+		background: var(--glass-bg);
+		backdrop-filter: blur(12px);
+		border: 1px solid var(--glass-border);
+		color: var(--text-primary);
+	}
+
+	.btn-glass:hover {
+		background: var(--glass-bg-hover);
+		border-color: var(--border-secondary);
+	}
+
+	/* Animations */
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes float {
+		0%, 100% {
+			transform: translateY(0) translateX(0);
+		}
+		25% {
+			transform: translateY(-20px) translateX(10px);
+		}
+		50% {
+			transform: translateY(0) translateX(20px);
+		}
+		75% {
+			transform: translateY(20px) translateX(10px);
+		}
+	}
+
+	@keyframes pulse-glow {
+		0%, 100% {
+			opacity: 1;
+			box-shadow: 0 0 0 0 var(--brand-primary);
+		}
+		50% {
+			opacity: 0.8;
+			box-shadow: 0 0 0 4px transparent;
+		}
+	}
+
+	/* Utility */
+	.relative {
+		position: relative;
 	}
 </style>
