@@ -1,50 +1,357 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { SITE_TITLE, SITE_DESCRIPTION, SERVICES } from '../consts';
+
+const stats = [
+	{ value: '500+', label: 'Clients Protected' },
+	{ value: '99.9%', label: 'Uptime SLA' },
+	{ value: '24/7', label: 'Security Monitoring' },
+	{ value: '15+', label: 'Years Experience' },
+];
+
+const products = [
+	{
+		title: 'Microsoft 365 Security',
+		description: 'Enterprise-grade protection for your Microsoft environment with advanced threat detection and compliance.',
+		image: '/images/m365-security.jpg',
+		href: '/solutions/microsoft-365',
+		badge: 'Most Popular',
+	},
+	{
+		title: 'Network Infrastructure',
+		description: 'High-performance networking with Ubiquiti and enterprise-grade hardware for reliable connectivity.',
+		image: '/images/networking.jpg',
+		href: '/solutions/networking',
+		badge: 'Enterprise',
+	},
+	{
+		title: 'Security Operations Center',
+		description: 'Round-the-clock monitoring and rapid incident response from our expert security team.',
+		image: '/images/soc.jpg',
+		href: '/services#monitoring',
+		badge: 'Premium',
+	},
+];
+
+const trustedBy = [
+	'Microsoft Partner',
+	'Ubiquiti Certified',
+	'ISO 27001',
+	'SOC 2 Compliant',
+];
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<!-- Hero Section -->
+	<section class="relative min-h-[90vh] flex items-center overflow-hidden">
+		<!-- Background Effects -->
+		<div class="absolute inset-0">
+			<div class="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"></div>
+			<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl"></div>
+			<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl"></div>
+			<div class="absolute inset-0 bg-[url('/images/grid.svg')] bg-center opacity-20"></div>
+		</div>
+
+		<div class="container-wide relative z-10">
+			<div class="max-w-4xl">
+				<!-- Badge -->
+				<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700/50 mb-8 animate-in">
+					<span class="w-2 h-2 rounded-full bg-accent-500 animate-pulse"></span>
+					<span class="text-sm text-slate-300">Securing businesses since 2010</span>
+				</div>
+
+				<!-- Headline -->
+				<h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-in" style="animation-delay: 100ms;">
+					Enterprise Security.<br/>
+					<span class="gradient-text">Simplified.</span>
+				</h1>
+
+				<!-- Subheadline -->
+				<p class="text-xl md:text-2xl text-slate-400 mb-10 max-w-2xl animate-in" style="animation-delay: 200ms;">
+					Protect your business with industry-leading Microsoft 365 security solutions and enterprise networking infrastructure.
+				</p>
+
+				<!-- CTAs -->
+				<div class="flex flex-wrap gap-4 mb-16 animate-in" style="animation-delay: 300ms;">
+					<a href="/contact" class="btn-primary btn-lg">
+						Get a Free Assessment
+						<svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+						</svg>
+					</a>
+					<a href="/solutions/microsoft-365" class="btn-secondary btn-lg">
+						Explore Solutions
+					</a>
+				</div>
+
+				<!-- Trust Badges -->
+				<div class="flex flex-wrap items-center gap-6 animate-in" style="animation-delay: 400ms;">
+					<span class="text-sm text-slate-500">Trusted by:</span>
+					{trustedBy.map((badge) => (
+						<span class="px-4 py-2 rounded-lg bg-slate-800/30 border border-slate-700/30 text-sm text-slate-400">
+							{badge}
+						</span>
+					))}
+				</div>
+			</div>
+		</div>
+
+		<!-- Scroll indicator -->
+		<div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+			<svg class="w-6 h-6 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+			</svg>
+		</div>
+	</section>
+
+	<!-- Stats Section -->
+	<section class="py-16 border-y border-slate-800 bg-slate-900/50">
+		<div class="container-wide">
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+				{stats.map((stat) => (
+					<div class="text-center">
+						<div class="text-4xl md:text-5xl font-bold text-white mb-2">{stat.value}</div>
+						<div class="text-slate-400">{stat.label}</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Services Section -->
+	<section class="section-padding">
+		<div class="container-wide">
+			<div class="text-center max-w-3xl mx-auto mb-16">
+				<span class="badge-brand mb-4">Our Services</span>
+				<h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+					Complete Security Solutions
+				</h2>
+				<p class="text-xl text-slate-400">
+					From assessment to implementation, we provide end-to-end security services tailored to your business needs.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+				{SERVICES.map((service) => (
+					<ServiceCard
+						title={service.title}
+						description={service.description}
+						icon={service.icon}
+						href="/services"
+					/>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Products Section -->
+	<section class="section-padding bg-slate-900/50">
+		<div class="container-wide">
+			<div class="text-center max-w-3xl mx-auto mb-16">
+				<span class="badge-accent mb-4">Solutions</span>
+				<h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+					Products Built for Security
+				</h2>
+				<p class="text-xl text-slate-400">
+					Industry-leading solutions designed to protect your infrastructure and empower your team.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{products.map((product) => (
+					<ProductCard
+						title={product.title}
+						description={product.description}
+						href={product.href}
+						badge={product.badge}
+					/>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Microsoft 365 Feature Section -->
+	<section class="section-padding">
+		<div class="container-wide">
+			<div class="grid lg:grid-cols-2 gap-16 items-center">
+				<div>
+					<span class="badge-brand mb-4">Microsoft 365</span>
+					<h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+						Secure Your Microsoft Environment
+					</h2>
+					<p class="text-xl text-slate-400 mb-8">
+						Comprehensive security for Microsoft 365, Azure AD, and your entire Microsoft ecosystem with advanced threat protection and compliance management.
+					</p>
+
+					<ul class="space-y-4 mb-8">
+						{[
+							'Advanced Threat Protection & Email Security',
+							'Identity & Access Management',
+							'Data Loss Prevention & Compliance',
+							'Microsoft Defender Integration',
+							'Security Score Optimization',
+						].map((feature) => (
+							<li class="flex items-center gap-3 text-slate-300">
+								<svg class="w-5 h-5 text-accent-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+								</svg>
+								{feature}
+							</li>
+						))}
+					</ul>
+
+					<a href="/solutions/microsoft-365" class="btn-primary">
+						Learn More
+						<svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+						</svg>
+					</a>
+				</div>
+
+				<div class="relative">
+					<div class="aspect-square rounded-3xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 p-8 flex items-center justify-center">
+						<div class="grid grid-cols-2 gap-4 w-full max-w-sm">
+							<div class="glass-card text-center py-6">
+								<div class="text-3xl font-bold text-white mb-1">99.9%</div>
+								<div class="text-sm text-slate-400">Threat Detection</div>
+							</div>
+							<div class="glass-card text-center py-6">
+								<div class="text-3xl font-bold text-white mb-1">85+</div>
+								<div class="text-sm text-slate-400">Security Score</div>
+							</div>
+							<div class="glass-card text-center py-6">
+								<div class="text-3xl font-bold text-white mb-1">Zero</div>
+								<div class="text-sm text-slate-400">Data Breaches</div>
+							</div>
+							<div class="glass-card text-center py-6">
+								<div class="text-3xl font-bold text-white mb-1">24/7</div>
+								<div class="text-sm text-slate-400">Monitoring</div>
+							</div>
+						</div>
+					</div>
+					<!-- Decorative elements -->
+					<div class="absolute -top-4 -right-4 w-32 h-32 bg-brand-500/20 rounded-full blur-2xl"></div>
+					<div class="absolute -bottom-4 -left-4 w-32 h-32 bg-accent-500/20 rounded-full blur-2xl"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Networking Section -->
+	<section class="section-padding bg-slate-900/50">
+		<div class="container-wide">
+			<div class="grid lg:grid-cols-2 gap-16 items-center">
+				<div class="order-2 lg:order-1 relative">
+					<div class="aspect-square rounded-3xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 p-8 flex items-center justify-center">
+						<!-- Network visualization -->
+						<div class="relative w-full h-full flex items-center justify-center">
+							<div class="absolute w-48 h-48 rounded-full border-2 border-dashed border-slate-700"></div>
+							<div class="absolute w-72 h-72 rounded-full border border-slate-800"></div>
+							<div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-brand-500 to-accent-500 flex items-center justify-center z-10">
+								<svg class="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
+								</svg>
+							</div>
+							<!-- Connection nodes -->
+							<div class="absolute top-8 left-1/2 -translate-x-1/2 w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center">
+								<svg class="w-5 h-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+								</svg>
+							</div>
+							<div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center">
+								<svg class="w-5 h-5 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M21.75 17.25v-.228a4.5 4.5 0 00-.12-1.03l-2.268-9.64a3.375 3.375 0 00-3.285-2.602H7.923a3.375 3.375 0 00-3.285 2.602l-2.268 9.64a4.5 4.5 0 00-.12 1.03v.228m19.5 0a3 3 0 01-3 3H5.25a3 3 0 01-3-3m19.5 0a3 3 0 00-3-3H5.25a3 3 0 00-3 3m16.5 0h.008v.008h-.008v-.008zm-3 0h.008v.008h-.008v-.008z" />
+								</svg>
+							</div>
+							<div class="absolute left-8 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center">
+								<svg class="w-5 h-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+								</svg>
+							</div>
+							<div class="absolute right-8 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center">
+								<svg class="w-5 h-5 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />
+								</svg>
+							</div>
+						</div>
+					</div>
+					<!-- Decorative elements -->
+					<div class="absolute -top-4 -left-4 w-32 h-32 bg-accent-500/20 rounded-full blur-2xl"></div>
+					<div class="absolute -bottom-4 -right-4 w-32 h-32 bg-brand-500/20 rounded-full blur-2xl"></div>
+				</div>
+
+				<div class="order-1 lg:order-2">
+					<span class="badge-accent mb-4">Networking</span>
+					<h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+						Enterprise-Grade Network Solutions
+					</h2>
+					<p class="text-xl text-slate-400 mb-8">
+						Build reliable, high-performance networks with Ubiquiti hardware and professional implementation services.
+					</p>
+
+					<ul class="space-y-4 mb-8">
+						{[
+							'Ubiquiti UniFi & EdgeMAX Systems',
+							'Secure VPN & Remote Access',
+							'Network Segmentation & VLANs',
+							'High-Availability Architecture',
+							'Real-time Network Monitoring',
+						].map((feature) => (
+							<li class="flex items-center gap-3 text-slate-300">
+								<svg class="w-5 h-5 text-accent-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+								</svg>
+								{feature}
+							</li>
+						))}
+					</ul>
+
+					<a href="/solutions/networking" class="btn-primary">
+						Explore Networking
+						<svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+						</svg>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA Section -->
+	<section class="section-padding">
+		<div class="container-wide">
+			<div class="relative rounded-3xl bg-gradient-to-br from-brand-900/50 to-slate-900 border border-brand-800/30 overflow-hidden">
+				<!-- Background -->
+				<div class="absolute inset-0">
+					<div class="absolute top-0 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl"></div>
+					<div class="absolute bottom-0 left-0 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl"></div>
+				</div>
+
+				<div class="relative z-10 px-8 py-16 md:px-16 md:py-24 text-center">
+					<h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+						Ready to Secure Your Business?
+					</h2>
+					<p class="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+						Get a free security assessment and discover how Waymark can protect your organization from modern threats.
+					</p>
+					<div class="flex flex-wrap justify-center gap-4">
+						<a href="/contact" class="btn-primary btn-lg">
+							Schedule a Consultation
+							<svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+							</svg>
+						</a>
+						<a href="tel:+15551234567" class="btn-secondary btn-lg">
+							<svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+							</svg>
+							Call Us
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

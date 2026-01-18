@@ -1,0 +1,333 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+
+const title = "Enterprise Networking Solutions";
+const description = "High-performance network infrastructure with Ubiquiti, secure VPN solutions, and professional network management.";
+
+const products = [
+	{
+		name: "UniFi Dream Machine Pro",
+		description: "All-in-one gateway with security, routing, and controller capabilities",
+		category: "Gateway",
+	},
+	{
+		name: "UniFi Switches",
+		description: "Enterprise-grade managed switches with PoE+ support",
+		category: "Switching",
+	},
+	{
+		name: "UniFi Access Points",
+		description: "High-performance WiFi 6/6E access points for seamless coverage",
+		category: "Wireless",
+	},
+	{
+		name: "UniFi Protect",
+		description: "Complete video surveillance with NVR and IP cameras",
+		category: "Security",
+	},
+	{
+		name: "EdgeRouter Series",
+		description: "Advanced routing with deep packet inspection and firewall",
+		category: "Routing",
+	},
+	{
+		name: "UniFi Talk",
+		description: "Enterprise VoIP phone system with modern features",
+		category: "Communication",
+	},
+];
+
+const features = [
+	{
+		title: "Network Design & Architecture",
+		description: "Custom network topology design optimized for your business requirements and growth.",
+		icon: "network",
+	},
+	{
+		title: "Secure VPN & Remote Access",
+		description: "Site-to-site VPN and secure remote access solutions for distributed teams.",
+		icon: "lock",
+	},
+	{
+		title: "Network Segmentation",
+		description: "VLAN implementation and micro-segmentation for enhanced security.",
+		icon: "shield",
+	},
+	{
+		title: "High Availability",
+		description: "Redundant architecture with automatic failover for maximum uptime.",
+		icon: "server",
+	},
+	{
+		title: "WiFi Site Surveys",
+		description: "Professional RF analysis and access point placement optimization.",
+		icon: "network",
+	},
+	{
+		title: "24/7 Network Monitoring",
+		description: "Real-time monitoring with proactive alerting and rapid response.",
+		icon: "monitor",
+	},
+];
+
+const stats = [
+	{ value: "99.99%", label: "Uptime SLA" },
+	{ value: "1000+", label: "Networks Deployed" },
+	{ value: "<15min", label: "Response Time" },
+	{ value: "10Gbps", label: "Max Throughput" },
+];
+---
+
+<BaseLayout title={title} description={description}>
+	<!-- Hero Section -->
+	<section class="relative py-24 lg:py-32 overflow-hidden">
+		<div class="absolute inset-0">
+			<div class="absolute inset-0 bg-gradient-to-br from-slate-950 via-accent-950/10 to-slate-950"></div>
+			<div class="absolute bottom-1/4 left-1/4 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl"></div>
+		</div>
+
+		<div class="container-wide relative z-10">
+			<div class="max-w-4xl">
+				<span class="badge-accent mb-6">Network Solutions</span>
+				<h1 class="text-5xl md:text-6xl font-bold text-white mb-6">
+					Enterprise-Grade Network Infrastructure
+				</h1>
+				<p class="text-xl text-slate-400 mb-10 max-w-2xl">
+					Build reliable, high-performance networks with Ubiquiti hardware and professional implementation from certified experts.
+				</p>
+				<div class="flex flex-wrap gap-4">
+					<a href="/contact" class="btn-primary btn-lg">
+						Get Network Assessment
+						<svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+						</svg>
+					</a>
+					<a href="#products" class="btn-secondary btn-lg">
+						View Products
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Stats Section -->
+	<section class="py-12 border-y border-slate-800 bg-slate-900/50">
+		<div class="container-wide">
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+				{stats.map((stat) => (
+					<div class="text-center">
+						<div class="text-3xl md:text-4xl font-bold text-white mb-2">{stat.value}</div>
+						<div class="text-slate-400 text-sm">{stat.label}</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Products Section -->
+	<section id="products" class="section-padding">
+		<div class="container-wide">
+			<div class="text-center max-w-3xl mx-auto mb-16">
+				<h2 class="text-4xl font-bold text-white mb-6">
+					Ubiquiti Product Portfolio
+				</h2>
+				<p class="text-xl text-slate-400">
+					We deploy and support the full range of Ubiquiti enterprise networking products.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				{products.map((product) => (
+					<div class="card p-6 hover-lift">
+						<span class="badge-accent mb-4">{product.category}</span>
+						<h3 class="text-xl font-semibold text-white mb-2">{product.name}</h3>
+						<p class="text-slate-400 text-sm">{product.description}</p>
+					</div>
+				))}
+			</div>
+
+			<div class="text-center mt-12">
+				<p class="text-slate-400 mb-4">Certified Ubiquiti Partner</p>
+				<div class="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-slate-800 border border-slate-700">
+					<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+						<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+						<circle cx="12" cy="12" r="5"/>
+					</svg>
+					<span class="text-white font-semibold">Ubiquiti Certified Installer</span>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Services Section -->
+	<section class="section-padding bg-slate-900/50">
+		<div class="container-wide">
+			<div class="text-center max-w-3xl mx-auto mb-16">
+				<h2 class="text-4xl font-bold text-white mb-6">
+					Network Services
+				</h2>
+				<p class="text-xl text-slate-400">
+					From design to deployment and ongoing management, we handle every aspect of your network infrastructure.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				{features.map((feature) => (
+					<ServiceCard
+						title={feature.title}
+						description={feature.description}
+						icon={feature.icon}
+					/>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Network Diagram Section -->
+	<section class="section-padding">
+		<div class="container-wide">
+			<div class="grid lg:grid-cols-2 gap-16 items-center">
+				<div>
+					<h2 class="text-4xl font-bold text-white mb-6">
+						Modern Network Architecture
+					</h2>
+					<p class="text-xl text-slate-400 mb-8">
+						We design networks that scale with your business, incorporating security best practices and high availability from day one.
+					</p>
+
+					<ul class="space-y-4 mb-8">
+						{[
+							"Hierarchical network design for scalability",
+							"Zero-trust network segmentation",
+							"Redundant internet and WAN connections",
+							"Centralized management and monitoring",
+							"Automated backup and disaster recovery",
+						].map((feature) => (
+							<li class="flex items-center gap-3 text-slate-300">
+								<svg class="w-5 h-5 text-accent-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+								</svg>
+								{feature}
+							</li>
+						))}
+					</ul>
+
+					<a href="/contact" class="btn-primary">
+						Design My Network
+						<svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+						</svg>
+					</a>
+				</div>
+
+				<!-- Network Diagram Visualization -->
+				<div class="relative">
+					<div class="aspect-square rounded-3xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 p-8">
+						<div class="relative w-full h-full">
+							<!-- Cloud -->
+							<div class="absolute top-4 left-1/2 -translate-x-1/2 flex flex-col items-center">
+								<div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-500/20 to-brand-500/10 border border-brand-500/30 flex items-center justify-center mb-2">
+									<svg class="w-8 h-8 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />
+									</svg>
+								</div>
+								<span class="text-xs text-slate-500">Internet</span>
+							</div>
+
+							<!-- Firewall -->
+							<div class="absolute top-1/3 left-1/2 -translate-x-1/2 flex flex-col items-center">
+								<div class="w-14 h-14 rounded-xl bg-gradient-to-br from-accent-500/20 to-accent-500/10 border border-accent-500/30 flex items-center justify-center mb-2">
+									<svg class="w-7 h-7 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+									</svg>
+								</div>
+								<span class="text-xs text-slate-500">Firewall</span>
+							</div>
+
+							<!-- Core Switch -->
+							<div class="absolute top-1/2 left-1/2 -translate-x-1/2 flex flex-col items-center">
+								<div class="w-20 h-12 rounded-lg bg-slate-700 border border-slate-600 flex items-center justify-center mb-2">
+									<div class="flex gap-1">
+										{[1,2,3,4].map(() => (
+											<div class="w-2 h-2 rounded-full bg-accent-500"></div>
+										))}
+									</div>
+								</div>
+								<span class="text-xs text-slate-500">Core Switch</span>
+							</div>
+
+							<!-- Access Switches -->
+							<div class="absolute bottom-1/4 left-1/4 flex flex-col items-center">
+								<div class="w-16 h-10 rounded-lg bg-slate-700 border border-slate-600 flex items-center justify-center mb-2">
+									<div class="flex gap-1">
+										{[1,2,3].map(() => (
+											<div class="w-1.5 h-1.5 rounded-full bg-brand-400"></div>
+										))}
+									</div>
+								</div>
+								<span class="text-xs text-slate-500">Access</span>
+							</div>
+
+							<div class="absolute bottom-1/4 right-1/4 flex flex-col items-center">
+								<div class="w-16 h-10 rounded-lg bg-slate-700 border border-slate-600 flex items-center justify-center mb-2">
+									<div class="flex gap-1">
+										{[1,2,3].map(() => (
+											<div class="w-1.5 h-1.5 rounded-full bg-brand-400"></div>
+										))}
+									</div>
+								</div>
+								<span class="text-xs text-slate-500">Access</span>
+							</div>
+
+							<!-- AP -->
+							<div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center">
+								<div class="w-12 h-12 rounded-full bg-slate-700 border border-slate-600 flex items-center justify-center mb-2">
+									<svg class="w-6 h-6 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
+									</svg>
+								</div>
+								<span class="text-xs text-slate-500">WiFi</span>
+							</div>
+
+							<!-- Connection lines -->
+							<svg class="absolute inset-0 w-full h-full" style="z-index: -1;">
+								<line x1="50%" y1="20%" x2="50%" y2="33%" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4"/>
+								<line x1="50%" y1="40%" x2="50%" y2="50%" stroke="#3b82f6" stroke-width="2"/>
+								<line x1="50%" y1="58%" x2="30%" y2="70%" stroke="#22c55e" stroke-width="2"/>
+								<line x1="50%" y1="58%" x2="70%" y2="70%" stroke="#22c55e" stroke-width="2"/>
+								<line x1="50%" y1="58%" x2="50%" y2="82%" stroke="#22c55e" stroke-width="2" stroke-dasharray="4"/>
+							</svg>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA Section -->
+	<section class="section-padding bg-slate-900/50">
+		<div class="container-wide">
+			<div class="relative rounded-3xl bg-gradient-to-br from-accent-900/30 to-slate-900 border border-accent-800/30 overflow-hidden">
+				<div class="absolute inset-0">
+					<div class="absolute top-0 right-0 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl"></div>
+				</div>
+
+				<div class="relative z-10 px-8 py-16 md:px-16 md:py-24 text-center">
+					<h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+						Ready to Upgrade Your Network?
+					</h2>
+					<p class="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+						Get a free network assessment and discover how we can improve your infrastructure performance and security.
+					</p>
+					<a href="/contact" class="btn-primary btn-lg">
+						Get Free Assessment
+						<svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+						</svg>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
