@@ -1,0 +1,493 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Infrastructure Services - Waymark";
+const description = "Modern infrastructure services for SMBs. Network deployment, cloud migrations, and site technology with enterprise-grade quality at SMB prices.";
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
+          </svg>
+        </div>
+        <h1 class="hero-title">Infrastructure</h1>
+        <p class="hero-description">
+          Build a solid foundation for your business with modern networks,
+          smooth migrations, and reliable site technology.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="services">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Infrastructure services</h2>
+        <p class="section-description">
+          Enterprise-grade infrastructure at SMB prices.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Networking -->
+        <div class="service-category">
+          <div class="category-header">
+            <span class="category-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
+              </svg>
+            </span>
+            <h3 class="category-title">Networking</h3>
+            <p class="category-description">
+              Professional network design and deployment with UniFi equipment.
+            </p>
+          </div>
+
+          <div class="service-list">
+            <div class="service-item">
+              <h4 class="service-name">Network Assessment</h4>
+              <p class="service-desc">Review of current network with recommendations for improvement.</p>
+              <span class="service-time">3-5 days</span>
+            </div>
+
+            <div class="service-item">
+              <h4 class="service-name">UniFi Deployment</h4>
+              <p class="service-desc">Full deployment of UniFi network infrastructure including design, procurement, and configuration.</p>
+              <span class="service-time">1-3 weeks</span>
+            </div>
+
+            <div class="service-item">
+              <h4 class="service-name">Network Monitoring</h4>
+              <p class="service-desc">Ongoing monitoring of network health with alerts and monthly reporting.</p>
+              <span class="service-time">Monthly</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Migrations -->
+        <div class="service-category">
+          <div class="category-header">
+            <span class="category-icon purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+              </svg>
+            </span>
+            <h3 class="category-title">Migrations</h3>
+            <p class="category-description">
+              Move to the cloud or between platforms with minimal disruption.
+            </p>
+          </div>
+
+          <div class="service-list">
+            <div class="service-item">
+              <h4 class="service-name">Email Migration</h4>
+              <p class="service-desc">Migrate to Microsoft 365 or Google Workspace with zero data loss.</p>
+              <span class="service-time">1-2 weeks</span>
+            </div>
+
+            <div class="service-item">
+              <h4 class="service-name">Cloud Migration</h4>
+              <p class="service-desc">Move file servers and applications to Azure, AWS, or Google Cloud.</p>
+              <span class="service-time">2-4 weeks</span>
+            </div>
+
+            <div class="service-item">
+              <h4 class="service-name">Tenant-to-Tenant Migration</h4>
+              <p class="service-desc">Consolidate or split Microsoft 365 tenants during M&A.</p>
+              <span class="service-time">2-6 weeks</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Web & Site -->
+        <div class="service-category">
+          <div class="category-header">
+            <span class="category-icon blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+              </svg>
+            </span>
+            <h3 class="category-title">Web & Site Technology</h3>
+            <p class="category-description">
+              Protect your web presence and optimize performance with Cloudflare.
+            </p>
+          </div>
+
+          <div class="service-list">
+            <div class="service-item">
+              <h4 class="service-name">Cloudflare Setup</h4>
+              <p class="service-desc">Configure Cloudflare for DDoS protection, WAF, and performance optimization.</p>
+              <span class="service-time">3-5 days</span>
+            </div>
+
+            <div class="service-item">
+              <h4 class="service-name">DNS Management</h4>
+              <p class="service-desc">Migrate and manage DNS with best-practice security configurations.</p>
+              <span class="service-time">1-2 days</span>
+            </div>
+
+            <div class="service-item">
+              <h4 class="service-name">Zero Trust Access</h4>
+              <p class="service-desc">Implement Cloudflare Access for secure remote access to internal apps.</p>
+              <span class="service-time">1-2 weeks</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology Partners -->
+  <section class="partners">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Technology we work with</h2>
+      </div>
+
+      <div class="partners-grid">
+        <div class="partner-item">
+          <span class="partner-name">UniFi</span>
+          <span class="partner-desc">Enterprise networking</span>
+        </div>
+        <div class="partner-item">
+          <span class="partner-name">Cloudflare</span>
+          <span class="partner-desc">Web security & CDN</span>
+        </div>
+        <div class="partner-item">
+          <span class="partner-name">Microsoft Azure</span>
+          <span class="partner-desc">Cloud infrastructure</span>
+        </div>
+        <div class="partner-item">
+          <span class="partner-name">AWS</span>
+          <span class="partner-desc">Cloud services</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Ready to upgrade your infrastructure?</h2>
+        <p class="cta-description">
+          Get a free consultation to discuss your needs.
+        </p>
+        <a href="/contact" class="btn-primary">
+          Schedule a Call
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Container */
+  .container {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding: 0 2rem;
+    }
+  }
+
+  /* Hero */
+  .hero {
+    padding: 8rem 0 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero {
+      padding: 10rem 0 5rem;
+    }
+  }
+
+  .hero-content {
+    max-width: 40rem;
+  }
+
+  .hero-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: 3rem;
+    }
+  }
+
+  .hero-description {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .hero-description {
+      font-size: 1.25rem;
+    }
+  }
+
+  /* Section Header */
+  .section-header {
+    text-align: center;
+    max-width: 32rem;
+    margin: 0 auto 3rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 768px) {
+    .section-title {
+      font-size: 2rem;
+    }
+  }
+
+  .section-description {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  /* Services Section */
+  .services {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .services {
+      padding: 6rem 0;
+    }
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .service-category {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .category-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  .category-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .category-icon.purple {
+    background: rgba(139, 92, 246, 0.1);
+    color: #8b5cf6;
+  }
+
+  .category-icon.blue {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+  }
+
+  .category-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .category-description {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  .service-list {
+    padding: 0.5rem;
+  }
+
+  .service-item {
+    padding: 1rem;
+    border-radius: 0.625rem;
+    transition: background-color 0.15s ease;
+  }
+
+  .service-item:hover {
+    background: var(--bg-secondary);
+  }
+
+  .service-name {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .service-desc {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .service-time {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+  }
+
+  /* Partners */
+  .partners {
+    padding: 5rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .partners {
+      padding: 6rem 0;
+    }
+  }
+
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    max-width: 40rem;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 640px) {
+    .partners-grid {
+      grid-template-columns: repeat(4, 1fr);
+      max-width: none;
+    }
+  }
+
+  .partner-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.75rem;
+    text-align: center;
+  }
+
+  .partner-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .partner-desc {
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+  }
+
+  /* CTA */
+  .cta {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .cta {
+      padding: 6rem 0;
+    }
+  }
+
+  .cta-content {
+    max-width: 32rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cta-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .cta-description {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #ffffff;
+    background: var(--brand-primary);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .btn-primary:hover {
+    background: var(--brand-hover);
+    transform: translateY(-1px);
+  }
+</style>

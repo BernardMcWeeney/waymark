@@ -1,428 +1,261 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE_TITLE, SITE_DESCRIPTION, SERVICE_CATEGORIES, SITE_STATS, PARTNERS, getFeaturedServices } from '../consts';
 
-const featuredServices = getFeaturedServices();
-
-// Get first 6 categories for the grid
-const highlightCategories = SERVICE_CATEGORIES.slice(0, 6);
-
-// Service type badges
-const serviceTypes = [
-  { label: 'Assessment', icon: 'search', color: 'blue' },
-  { label: 'Implementation', icon: 'wrench', color: 'purple' },
-  { label: 'Managed', icon: 'refresh', color: 'emerald' },
-];
+const title = "Waymark - IT Security for Growing Businesses";
+const description = "Protect your business with expert IT security services. Microsoft 365, identity management, network security, and ongoing protection for small and medium businesses.";
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<BaseLayout title={title} description={description}>
   <!-- Hero Section -->
   <section class="hero">
-    <!-- Background Effects -->
-    <div class="hero-bg">
-      <div class="hero-gradient"></div>
-      <div class="hero-grid-pattern"></div>
-      <div class="hero-glow hero-glow-1"></div>
-      <div class="hero-glow hero-glow-2"></div>
-    </div>
-
-    <div class="container-wide hero-container">
+    <div class="container">
       <div class="hero-content">
-        <div class="hero-badge">
-          <span class="hero-badge-dot"></span>
-          <span>Productized IT Security Services</span>
-        </div>
-
+        <p class="hero-eyebrow">IT Security for SMBs</p>
         <h1 class="hero-title">
-          Enterprise security,<br/>
-          <span class="gradient-text-animated">delivered simply</span>
+          Secure your business.<br />
+          <span class="hero-title-accent">Simply.</span>
         </h1>
-
         <p class="hero-description">
-          From Microsoft 365 security to AI readiness, we deliver fixed-scope services
-          with clear outcomes and predictable pricing. No hourly billing. No surprises.
+          We help small and medium businesses protect their data, manage their devices,
+          and secure their cloud with clear, fixed-price services.
         </p>
-
         <div class="hero-actions">
-          <a href="/contact" class="btn btn-primary btn-lg">
-            Get Started
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <a href="/contact" class="btn-primary">
+            Get a Free Consultation
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
           </a>
-          <a href="/services" class="btn btn-secondary btn-lg">
-            Browse Services
-          </a>
-        </div>
-
-        <div class="hero-partners">
-          {PARTNERS.map((partner) => (
-            <span class="partner-badge">{partner}</span>
-          ))}
-        </div>
-      </div>
-
-      <div class="hero-visual">
-        <!-- Floating Cards -->
-        <div class="hero-cards">
-          <div class="hero-card hero-card-1 float">
-            <div class="hero-card-icon blue">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-              </svg>
-            </div>
-            <div class="hero-card-content">
-              <span class="hero-card-title">M365 Assessment</span>
-              <span class="hero-card-desc">Security score: 87/100</span>
-            </div>
-            <span class="hero-card-status green">Complete</span>
-          </div>
-
-          <div class="hero-card hero-card-2 float float-delay-1">
-            <div class="hero-card-icon purple">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
-              </svg>
-            </div>
-            <div class="hero-card-content">
-              <span class="hero-card-title">Copilot Readiness</span>
-              <span class="hero-card-desc">Permissions cleaned</span>
-            </div>
-            <span class="hero-card-status blue">Active</span>
-          </div>
-
-          <div class="hero-card hero-card-3 float float-delay-2">
-            <div class="hero-card-icon cyan">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
-              </svg>
-            </div>
-            <div class="hero-card-content">
-              <span class="hero-card-title">UniFi Network</span>
-              <span class="hero-card-desc">12 devices online</span>
-            </div>
-            <span class="hero-card-status green">Deployed</span>
-          </div>
-        </div>
-
-        <!-- Decorative elements -->
-        <div class="hero-orbit">
-          <div class="orbit-ring orbit-ring-1"></div>
-          <div class="orbit-ring orbit-ring-2"></div>
-          <div class="orbit-dot orbit-dot-1"></div>
-          <div class="orbit-dot orbit-dot-2"></div>
-          <div class="orbit-dot orbit-dot-3"></div>
+          <a href="/services" class="btn-secondary">View Services</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Stats Bar -->
-  <section class="stats-section">
-    <div class="container-wide">
-      <div class="stats-grid">
-        {SITE_STATS.map((stat, i) => (
-          <div class="stat-item animate-in" style={`animation-delay: ${i * 100}ms`}>
-            <span class="stat-value gradient-text">{stat.value}</span>
-            <span class="stat-label">{stat.label}</span>
-          </div>
-        ))}
+  <!-- Trust Bar -->
+  <section class="trust-bar">
+    <div class="container">
+      <div class="trust-items">
+        <div class="trust-item">
+          <span class="trust-value">100%</span>
+          <span class="trust-label">Fixed Pricing</span>
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <span class="trust-value">SMB</span>
+          <span class="trust-label">Focused</span>
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <span class="trust-value">Microsoft</span>
+          <span class="trust-label">Partner</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Service Types Section -->
-  <section class="section-padding">
-    <div class="container-wide">
+  <!-- Core Pillars -->
+  <section class="pillars">
+    <div class="container">
       <div class="section-header">
-        <span class="badge badge-primary">How We Work</span>
-        <h2 class="section-title">Three ways to engage</h2>
+        <h2 class="section-title">How we help</h2>
         <p class="section-description">
-          Every service follows our productized model with clear scope and fixed pricing
+          Three core areas of focus to keep your business secure and productive.
         </p>
       </div>
 
-      <div class="service-types-grid">
-        <div class="service-type-card">
-          <div class="service-type-icon icon-box icon-box-lg icon-box-blue">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+      <div class="pillars-grid">
+        <!-- Microsoft 365 -->
+        <a href="/solutions/microsoft-365" class="pillar-card">
+          <div class="pillar-icon blue">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
             </svg>
           </div>
-          <h3 class="service-type-title">Assessment</h3>
-          <p class="service-type-desc">Deep-dive reviews that identify risks and provide clear remediation roadmaps</p>
-          <ul class="service-type-features">
-            <li>Security posture review</li>
-            <li>Risk prioritization</li>
-            <li>Actionable recommendations</li>
+          <h3 class="pillar-title">Microsoft 365</h3>
+          <p class="pillar-description">
+            Secure your cloud productivity suite. Email protection, data governance,
+            and compliance for your entire organization.
+          </p>
+          <ul class="pillar-features">
+            <li>Security assessments & hardening</li>
+            <li>Intune device management</li>
+            <li>Identity with Entra ID</li>
+            <li>Copilot readiness</li>
           </ul>
-        </div>
+          <span class="pillar-link">
+            Learn more
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </span>
+        </a>
 
-        <div class="service-type-card featured">
-          <div class="service-type-icon icon-box icon-box-lg icon-box-purple">
+        <!-- Security -->
+        <a href="/solutions/security" class="pillar-card">
+          <div class="pillar-icon rose">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
             </svg>
           </div>
-          <h3 class="service-type-title">Implementation</h3>
-          <p class="service-type-desc">Hands-on deployment and configuration with documentation and handover</p>
-          <ul class="service-type-features">
-            <li>Expert configuration</li>
-            <li>Best-practice setup</li>
-            <li>Knowledge transfer</li>
+          <h3 class="pillar-title">Security Services</h3>
+          <p class="pillar-description">
+            Assess your risks, implement protections, and get ongoing monitoring.
+            Cyber security that grows with your business.
+          </p>
+          <ul class="pillar-features">
+            <li>Security assessments</li>
+            <li>Managed security programs</li>
+            <li>Incident response</li>
+            <li>Compliance reviews</li>
           </ul>
-        </div>
+          <span class="pillar-link">
+            Learn more
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </span>
+        </a>
 
-        <div class="service-type-card">
-          <div class="service-type-icon icon-box icon-box-lg icon-box-emerald">
+        <!-- Infrastructure -->
+        <a href="/solutions/infrastructure" class="pillar-card">
+          <div class="pillar-icon emerald">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
             </svg>
           </div>
-          <h3 class="service-type-title">Managed</h3>
-          <p class="service-type-desc">Ongoing operations with monthly reporting and continuous improvement</p>
-          <ul class="service-type-features">
-            <li>Recurring monitoring</li>
-            <li>Monthly reporting</li>
-            <li>Proactive maintenance</li>
+          <h3 class="pillar-title">Infrastructure</h3>
+          <p class="pillar-description">
+            Modern networks and smooth migrations. Get your foundation right
+            with enterprise-grade infrastructure at SMB prices.
+          </p>
+          <ul class="pillar-features">
+            <li>UniFi network deployment</li>
+            <li>Cloud migrations</li>
+            <li>Site technology</li>
+            <li>Web security (Cloudflare)</li>
           </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Categories Grid Section -->
-  <section class="section-padding section-alt">
-    <div class="container-wide">
-      <div class="section-header">
-        <span class="badge badge-neutral">Service Catalogue</span>
-        <h2 class="section-title">12 Categories. 60+ Services.</h2>
-        <p class="section-description">
-          From security assessments to AI implementation - everything your business needs
-        </p>
-      </div>
-
-      <div class="categories-showcase">
-        {SERVICE_CATEGORIES.map((cat, i) => (
-          <a href={`/services#${cat.id}`} class={`category-showcase-card color-${cat.color}`} style={`animation-delay: ${i * 50}ms`}>
-            <div class={`category-icon icon-${cat.color}`}>
-              {cat.icon === "shield" && (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                </svg>
-              )}
-              {cat.icon === "microsoft" && (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
-                </svg>
-              )}
-              {cat.icon === "device" && (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
-                </svg>
-              )}
-              {cat.icon === "user" && (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                </svg>
-              )}
-              {cat.icon === "google" && (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                </svg>
-              )}
-              {cat.icon === "migration" && (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
-                </svg>
-              )}
-              {cat.icon === "network" && (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
-                </svg>
-              )}
-              {cat.icon === "globe" && (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
-                </svg>
-              )}
-              {cat.icon === "check" && (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              )}
-              {cat.icon === "ai" && (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
-                </svg>
-              )}
-              {cat.icon === "alert" && (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-                </svg>
-              )}
-              {cat.icon === "grid" && (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
-                </svg>
-              )}
-            </div>
-            <div class="category-content">
-              <h3 class="category-title">{cat.shortTitle}</h3>
-              <p class="category-desc">{cat.description}</p>
-            </div>
-            <div class="category-footer">
-              <span class="category-count">{cat.services.length} services</span>
-              <svg class="category-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-            </div>
-          </a>
-        ))}
-      </div>
-
-      <div class="section-cta">
-        <a href="/services" class="btn btn-primary btn-lg">
-          View Complete Catalogue
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-          </svg>
+          <span class="pillar-link">
+            Learn more
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- AI Spotlight Section -->
-  <section class="section-padding ai-spotlight">
-    <div class="container-wide">
-      <div class="ai-grid">
-        <div class="ai-content">
-          <span class="badge badge-glow">New for 2026</span>
-          <h2 class="ai-title">AI-Ready Security</h2>
-          <p class="ai-description">
-            Prepare your organization for AI adoption with our comprehensive readiness services.
-            From Microsoft 365 Copilot to custom AI workflows, we ensure your data is protected
-            while enabling innovation.
+  <!-- How We Work -->
+  <section class="process">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">How we work</h2>
+        <p class="section-description">
+          Every engagement follows a clear path. No hidden fees, no surprises.
+        </p>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="process-number">1</div>
+          <h3 class="process-title">Assess</h3>
+          <p class="process-description">
+            We review your current setup, identify risks, and create a prioritized action plan.
           </p>
-
-          <div class="ai-services">
-            <a href="/services#ai-readiness-strategy" class="ai-service-item">
-              <div class="ai-service-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
-                </svg>
-              </div>
-              <div class="ai-service-content">
-                <strong>AI Readiness & Strategy</strong>
-                <span>Business-aligned AI roadmap</span>
-              </div>
-              <svg class="ai-service-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-              </svg>
-            </a>
-            <a href="/services#copilot-readiness" class="ai-service-item">
-              <div class="ai-service-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
-                </svg>
-              </div>
-              <div class="ai-service-content">
-                <strong>Copilot Readiness</strong>
-                <span>Safe M365 Copilot deployment</span>
-              </div>
-              <svg class="ai-service-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-              </svg>
-            </a>
-            <a href="/services#ai-governance-baseline" class="ai-service-item">
-              <div class="ai-service-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                </svg>
-              </div>
-              <div class="ai-service-content">
-                <strong>AI Governance</strong>
-                <span>Policies and controls</span>
-              </div>
-              <svg class="ai-service-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-              </svg>
-            </a>
-            <a href="/services#ai-workflow-automation" class="ai-service-item">
-              <div class="ai-service-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-                </svg>
-              </div>
-              <div class="ai-service-content">
-                <strong>Workflow Automation</strong>
-                <span>AI-powered processes</span>
-              </div>
-              <svg class="ai-service-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-              </svg>
-            </a>
-          </div>
-
-          <a href="/services#ai-services" class="btn btn-primary">
-            Explore AI Services
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-          </a>
         </div>
 
-        <div class="ai-visual">
-          <div class="ai-graphic">
-            <div class="ai-orbit ai-orbit-1"></div>
-            <div class="ai-orbit ai-orbit-2"></div>
-            <div class="ai-center">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
-              </svg>
-            </div>
-            <div class="ai-node ai-node-1">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
-              </svg>
-            </div>
-            <div class="ai-node ai-node-2">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-              </svg>
-            </div>
-            <div class="ai-node ai-node-3">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-              </svg>
-            </div>
-          </div>
+        <div class="process-step">
+          <div class="process-number">2</div>
+          <h3 class="process-title">Implement</h3>
+          <p class="process-description">
+            Fixed-scope projects to deploy solutions. Clear deliverables with predictable timelines.
+          </p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-number">3</div>
+          <h3 class="process-title">Manage</h3>
+          <p class="process-description">
+            Ongoing monitoring and maintenance. Monthly plans that keep you protected.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Featured Services -->
+  <section class="featured">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Popular services</h2>
+        <p class="section-description">
+          Our most requested services for small and medium businesses.
+        </p>
+      </div>
+
+      <div class="featured-grid">
+        <div class="featured-card">
+          <span class="featured-type">Assessment</span>
+          <h3 class="featured-title">M365 Security Assessment</h3>
+          <p class="featured-description">
+            Comprehensive review of your Microsoft 365 security configuration with
+            prioritized recommendations.
+          </p>
+          <div class="featured-footer">
+            <span class="featured-time">5-7 days</span>
+            <a href="/contact" class="featured-link">Get started</a>
+          </div>
+        </div>
+
+        <div class="featured-card">
+          <span class="featured-type">Implementation</span>
+          <h3 class="featured-title">Intune Deployment</h3>
+          <p class="featured-description">
+            Full setup of Microsoft Intune for device management, security policies,
+            and app deployment.
+          </p>
+          <div class="featured-footer">
+            <span class="featured-time">2-4 weeks</span>
+            <a href="/contact" class="featured-link">Get started</a>
+          </div>
+        </div>
+
+        <div class="featured-card">
+          <span class="featured-type">Managed</span>
+          <h3 class="featured-title">Security Monitoring</h3>
+          <p class="featured-description">
+            Continuous monitoring of your environment with monthly reporting
+            and incident response.
+          </p>
+          <div class="featured-footer">
+            <span class="featured-time">Monthly</span>
+            <a href="/contact" class="featured-link">Get started</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="featured-cta">
+        <a href="/services" class="btn-secondary">View all services</a>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA Section -->
-  <section class="section-padding cta-section">
-    <div class="container-wide">
+  <section class="cta">
+    <div class="container">
       <div class="cta-content">
         <h2 class="cta-title">Ready to secure your business?</h2>
         <p class="cta-description">
-          Book a free consultation to discuss your security needs.
-          We'll recommend the right services for your business.
+          Get a free consultation to discuss your security needs.
+          No obligation, just honest advice.
         </p>
         <div class="cta-actions">
-          <a href="/contact" class="btn btn-primary btn-lg">
-            Schedule Consultation
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <a href="/contact" class="btn-primary">
+            Schedule a Call
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
-          </a>
-          <a href="/services" class="btn btn-secondary btn-lg">
-            View All Services
           </a>
         </div>
       </div>
@@ -431,113 +264,31 @@ const serviceTypes = [
 </BaseLayout>
 
 <style>
-  /* Hero Section */
+  /* Hero */
   .hero {
-    position: relative;
-    padding: 10rem 0 6rem;
-    overflow: hidden;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+    padding: 8rem 0 4rem;
   }
 
   @media (min-width: 768px) {
     .hero {
-      padding: 12rem 0 8rem;
-    }
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-  }
-
-  .hero-gradient {
-    position: absolute;
-    inset: 0;
-    background: var(--bg-gradient-hero);
-  }
-
-  .hero-grid-pattern {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(var(--border-primary) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border-primary) 1px, transparent 1px);
-    background-size: 60px 60px;
-    opacity: 0.4;
-    mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, black, transparent);
-    -webkit-mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, black, transparent);
-  }
-
-  .hero-glow {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(100px);
-  }
-
-  .hero-glow-1 {
-    width: 600px;
-    height: 600px;
-    background: rgba(59, 130, 246, 0.15);
-    top: -200px;
-    right: -100px;
-  }
-
-  .hero-glow-2 {
-    width: 400px;
-    height: 400px;
-    background: rgba(139, 92, 246, 0.1);
-    bottom: 0;
-    left: -100px;
-  }
-
-  .hero-container {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 4rem;
-    align-items: center;
-  }
-
-  @media (min-width: 1024px) {
-    .hero-container {
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
+      padding: 10rem 0 5rem;
     }
   }
 
   .hero-content {
-    max-width: 38rem;
+    max-width: 40rem;
   }
 
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: var(--bg-glass);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--border-primary);
-    border-radius: 9999px;
+  .hero-eyebrow {
     font-size: 0.875rem;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-badge-dot {
-    width: 8px;
-    height: 8px;
-    background: linear-gradient(135deg, #10b981, #22c55e);
-    border-radius: 50%;
-    animation: pulse-glow 2s ease-in-out infinite;
+    font-weight: 500;
+    color: var(--brand-primary);
+    margin-bottom: 1rem;
+    letter-spacing: 0.025em;
   }
 
   .hero-title {
-    font-size: 2.75rem;
+    font-size: 2.5rem;
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: -0.03em;
@@ -551,10 +302,8 @@ const serviceTypes = [
     }
   }
 
-  @media (min-width: 1024px) {
-    .hero-title {
-      font-size: 4rem;
-    }
+  .hero-title-accent {
+    color: var(--brand-primary);
   }
 
   .hero-description {
@@ -573,773 +322,458 @@ const serviceTypes = [
   .hero-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 3rem;
+    gap: 0.75rem;
   }
 
-  .hero-partners {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .partner-badge {
-    padding: 0.375rem 0.875rem;
+  /* Trust Bar */
+  .trust-bar {
+    padding: 2rem 0;
+    border-top: 1px solid var(--border-primary);
+    border-bottom: 1px solid var(--border-primary);
     background: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
-    border-radius: 0.5rem;
-    font-size: 0.8125rem;
+  }
+
+  .trust-items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: 768px) {
+    .trust-items {
+      gap: 4rem;
+    }
+  }
+
+  .trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .trust-value {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .trust-label {
+    font-size: 0.75rem;
     color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
-  /* Hero Visual */
-  .hero-visual {
+  .trust-divider {
+    width: 1px;
+    height: 2rem;
+    background: var(--border-primary);
     display: none;
-    position: relative;
-    height: 400px;
   }
 
-  @media (min-width: 1024px) {
-    .hero-visual {
+  @media (min-width: 768px) {
+    .trust-divider {
       display: block;
     }
   }
 
-  .hero-cards {
-    position: relative;
-    z-index: 2;
-  }
-
-  .hero-card {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 1.25rem;
-    background: var(--bg-glass-heavy);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border-primary);
-    border-radius: 1rem;
-    box-shadow: var(--shadow-lg);
-    min-width: 280px;
-  }
-
-  .hero-card-1 {
-    top: 0;
-    left: 0;
-  }
-
-  .hero-card-2 {
-    top: 100px;
-    left: 80px;
-  }
-
-  .hero-card-3 {
-    top: 200px;
-    left: 40px;
-  }
-
-  .hero-card-icon {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .hero-card-icon.blue {
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05));
-    color: #3b82f6;
-  }
-
-  .hero-card-icon.purple {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(139, 92, 246, 0.05));
-    color: #8b5cf6;
-  }
-
-  .hero-card-icon.cyan {
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(6, 182, 212, 0.05));
-    color: #06b6d4;
-  }
-
-  .hero-card-content {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .hero-card-title {
-    display: block;
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--text-primary);
-  }
-
-  .hero-card-desc {
-    font-size: 0.8125rem;
-    color: var(--text-tertiary);
-  }
-
-  .hero-card-status {
-    padding: 0.25rem 0.625rem;
-    border-radius: 9999px;
-    font-size: 0.6875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    flex-shrink: 0;
-  }
-
-  .hero-card-status.green {
-    background: rgba(16, 185, 129, 0.1);
-    color: #10b981;
-  }
-
-  .hero-card-status.blue {
-    background: rgba(59, 130, 246, 0.1);
-    color: #3b82f6;
-  }
-
-  /* Hero Orbit */
-  .hero-orbit {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
-    height: 500px;
-    z-index: 1;
-  }
-
-  .orbit-ring {
-    position: absolute;
-    border: 1px solid var(--border-primary);
-    border-radius: 50%;
-  }
-
-  .orbit-ring-1 {
-    inset: 0;
-    animation: rotate-slow 30s linear infinite;
-  }
-
-  .orbit-ring-2 {
-    inset: 50px;
-    border-style: dashed;
-    animation: rotate-slow 25s linear infinite reverse;
-  }
-
-  .orbit-dot {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: var(--brand-primary);
-    border-radius: 50%;
-    box-shadow: 0 0 20px var(--brand-glow);
-  }
-
-  .orbit-dot-1 {
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    animation: pulse-glow 2s ease-in-out infinite;
-  }
-
-  .orbit-dot-2 {
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: pulse-glow 2s ease-in-out infinite 0.5s;
-  }
-
-  .orbit-dot-3 {
-    bottom: 25%;
-    right: 10%;
-    animation: pulse-glow 2s ease-in-out infinite 1s;
-  }
-
-  /* Stats Section */
-  .stats-section {
-    padding: 3rem 0;
-    background: var(--bg-secondary);
-    border-top: 1px solid var(--border-primary);
-    border-bottom: 1px solid var(--border-primary);
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+  /* Pillars */
+  .pillars {
+    padding: 5rem 0;
   }
 
   @media (min-width: 768px) {
-    .stats-grid {
-      grid-template-columns: repeat(4, 1fr);
+    .pillars {
+      padding: 6rem 0;
     }
   }
 
-  .stat-item {
-    text-align: center;
-  }
-
-  .stat-value {
-    display: block;
-    font-size: 2.5rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-  }
-
-  .stat-label {
-    font-size: 0.875rem;
-    color: var(--text-tertiary);
-    margin-top: 0.25rem;
-  }
-
-  /* Section Styles */
-  .section-alt {
-    background: var(--bg-secondary);
-  }
-
-  .section-header {
-    text-align: center;
-    max-width: 40rem;
-    margin: 0 auto 3rem;
-  }
-
-  .section-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0.75rem 0;
-    letter-spacing: -0.025em;
-  }
-
-  @media (min-width: 768px) {
-    .section-title {
-      font-size: 2.5rem;
-    }
-  }
-
-  .section-description {
-    font-size: 1.0625rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-
-  .section-cta {
-    text-align: center;
-    margin-top: 3rem;
-  }
-
-  /* Service Types Grid */
-  .service-types-grid {
+  .pillars-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 
   @media (min-width: 768px) {
-    .service-types-grid {
+    .pillars-grid {
       grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
     }
   }
 
-  .service-type-card {
+  .pillar-card {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
     background: var(--bg-primary);
     border: 1px solid var(--border-primary);
-    border-radius: 1.25rem;
-    padding: 2rem;
-    text-align: center;
-    transition: all 0.3s ease;
+    border-radius: 1rem;
+    text-decoration: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   }
 
-  .service-type-card:hover {
+  .pillar-card:hover {
     border-color: var(--border-secondary);
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-4px);
+    box-shadow: 0 8px 30px -10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
   }
 
-  .service-type-card.featured {
-    border-color: var(--brand-primary);
-    box-shadow: var(--shadow-glow);
+  .pillar-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 0.875rem;
+    margin-bottom: 1.5rem;
   }
 
-  .service-type-icon {
-    margin: 0 auto 1.5rem;
+  .pillar-icon.blue {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
   }
 
-  .service-type-title {
+  .pillar-icon.rose {
+    background: rgba(244, 63, 94, 0.1);
+    color: #f43f5e;
+  }
+
+  .pillar-icon.emerald {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+  }
+
+  .pillar-title {
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 0.75rem;
   }
 
-  .service-type-desc {
+  .pillar-description {
     font-size: 0.9375rem;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
     line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
   }
 
-  .service-type-features {
+  .pillar-features {
     list-style: none;
     padding: 0;
-    margin: 0;
-    text-align: left;
+    margin: 0 0 1.5rem;
+    flex-grow: 1;
   }
 
-  .service-type-features li {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.375rem 0;
+  .pillar-features li {
+    position: relative;
+    padding-left: 1.25rem;
     font-size: 0.875rem;
     color: var(--text-secondary);
+    margin-bottom: 0.5rem;
   }
 
-  .service-type-features li::before {
+  .pillar-features li::before {
     content: '';
-    width: 6px;
-    height: 6px;
-    background: var(--success);
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 0.375rem;
+    height: 0.375rem;
     border-radius: 50%;
-    flex-shrink: 0;
+    background: var(--brand-primary);
   }
 
-  /* Categories Showcase */
-  .categories-showcase {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  .pillar-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--brand-primary);
   }
 
-  @media (min-width: 640px) {
-    .categories-showcase {
-      grid-template-columns: repeat(2, 1fr);
+  .pillar-card:hover .pillar-link svg {
+    transform: translateX(3px);
+  }
+
+  .pillar-link svg {
+    transition: transform 0.2s ease;
+  }
+
+  /* Process */
+  .process {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .process {
+      padding: 6rem 0;
     }
   }
 
-  @media (min-width: 1024px) {
-    .categories-showcase {
+  .process-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 48rem;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .process-grid {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: none;
+    }
+  }
+
+  .process-step {
+    text-align: center;
+  }
+
+  .process-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    margin: 0 auto 1rem;
+    background: var(--brand-primary);
+    color: #ffffff;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-radius: 0.75rem;
+  }
+
+  .process-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .process-description {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  /* Featured Services */
+  .featured {
+    padding: 5rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .featured {
+      padding: 6rem 0;
+    }
+  }
+
+  .featured-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .featured-grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }
 
-  @media (min-width: 1280px) {
-    .categories-showcase {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-
-  .category-showcase-card {
+  .featured-card {
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
     background: var(--bg-primary);
     border: 1px solid var(--border-primary);
-    border-radius: 1rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    border-radius: 0.875rem;
   }
 
-  .category-showcase-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .category-showcase-card.color-blue::before {
-    background: linear-gradient(90deg, #3b82f6, #60a5fa);
-  }
-
-  .category-showcase-card.color-purple::before {
-    background: linear-gradient(90deg, #8b5cf6, #a78bfa);
-  }
-
-  .category-showcase-card.color-cyan::before {
-    background: linear-gradient(90deg, #06b6d4, #22d3ee);
-  }
-
-  .category-showcase-card.color-emerald::before {
-    background: linear-gradient(90deg, #10b981, #34d399);
-  }
-
-  .category-showcase-card.color-orange::before {
-    background: linear-gradient(90deg, #f97316, #fb923c);
-  }
-
-  .category-showcase-card.color-rose::before {
-    background: linear-gradient(90deg, #f43f5e, #fb7185);
-  }
-
-  .category-showcase-card:hover {
-    border-color: var(--border-secondary);
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-4px);
-  }
-
-  .category-showcase-card:hover::before {
-    opacity: 1;
-  }
-
-  .category-icon {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .featured-type {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--brand-primary);
+    background: var(--brand-light);
+    border-radius: 0.375rem;
     margin-bottom: 1rem;
-    transition: transform 0.3s ease;
+    width: fit-content;
   }
 
-  .category-showcase-card:hover .category-icon {
-    transform: scale(1.1);
-  }
-
-  .icon-blue {
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05));
-    color: #3b82f6;
-  }
-
-  .icon-purple {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(139, 92, 246, 0.05));
-    color: #8b5cf6;
-  }
-
-  .icon-cyan {
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(6, 182, 212, 0.05));
-    color: #06b6d4;
-  }
-
-  .icon-emerald {
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05));
-    color: #10b981;
-  }
-
-  .icon-orange {
-    background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(249, 115, 22, 0.05));
-    color: #f97316;
-  }
-
-  .icon-rose {
-    background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(244, 63, 94, 0.05));
-    color: #f43f5e;
-  }
-
-  .category-content {
-    flex: 1;
-  }
-
-  .category-title {
+  .featured-title {
     font-size: 1.0625rem;
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 0.375rem;
+    margin-bottom: 0.5rem;
   }
 
-  .category-desc {
-    font-size: 0.8125rem;
-    color: var(--text-tertiary);
-    line-height: 1.5;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  .featured-description {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
   }
 
-  .category-footer {
+  .featured-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 1rem;
     padding-top: 1rem;
     border-top: 1px solid var(--border-primary);
   }
 
-  .category-count {
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--text-tertiary);
-  }
-
-  .category-arrow {
-    color: var(--text-muted);
-    transition: all 0.3s ease;
-  }
-
-  .category-showcase-card:hover .category-arrow {
-    color: var(--brand-primary);
-    transform: translateX(4px);
-  }
-
-  /* AI Spotlight Section */
-  .ai-spotlight {
-    background: var(--bg-primary);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ai-spotlight::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--bg-gradient-feature);
-    pointer-events: none;
-  }
-
-  .ai-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 4rem;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-  }
-
-  @media (min-width: 1024px) {
-    .ai-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  .ai-content {
-    max-width: 32rem;
-  }
-
-  .ai-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0.75rem 0;
-    letter-spacing: -0.025em;
-  }
-
-  @media (min-width: 768px) {
-    .ai-title {
-      font-size: 2.5rem;
-    }
-  }
-
-  .ai-description {
-    font-size: 1.0625rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 2rem;
-  }
-
-  .ai-services {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: 2rem;
-  }
-
-  .ai-service-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.875rem 1rem;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
-    border-radius: 0.75rem;
-    text-decoration: none;
-    transition: all 0.2s ease;
-  }
-
-  .ai-service-item:hover {
-    border-color: var(--border-secondary);
-    background: var(--bg-tertiary);
-    transform: translateX(4px);
-  }
-
-  .ai-service-icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(139, 92, 246, 0.05));
-    color: #8b5cf6;
-    border-radius: 0.625rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .ai-service-content {
-    flex: 1;
-  }
-
-  .ai-service-content strong {
-    display: block;
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: var(--text-primary);
-  }
-
-  .ai-service-content span {
+  .featured-time {
     font-size: 0.8125rem;
     color: var(--text-tertiary);
   }
 
-  .ai-service-arrow {
-    color: var(--text-muted);
-    transition: all 0.2s ease;
-    flex-shrink: 0;
-  }
-
-  .ai-service-item:hover .ai-service-arrow {
+  .featured-link {
+    font-size: 0.875rem;
+    font-weight: 500;
     color: var(--brand-primary);
-    transform: translateX(2px);
+    text-decoration: none;
   }
 
-  /* AI Visual */
-  .ai-visual {
-    display: none;
-    justify-content: center;
-    align-items: center;
+  .featured-link:hover {
+    text-decoration: underline;
   }
 
-  @media (min-width: 1024px) {
-    .ai-visual {
-      display: flex;
+  .featured-cta {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+
+  /* CTA */
+  .cta {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .cta {
+      padding: 6rem 0;
     }
   }
 
-  .ai-graphic {
-    position: relative;
-    width: 320px;
-    height: 320px;
-  }
-
-  .ai-orbit {
-    position: absolute;
-    border: 1px solid var(--border-primary);
-    border-radius: 50%;
-  }
-
-  .ai-orbit-1 {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    animation: rotate-slow 25s linear infinite;
-  }
-
-  .ai-orbit-2 {
-    width: 70%;
-    height: 70%;
-    top: 15%;
-    left: 15%;
-    border-style: dashed;
-    animation: rotate-slow 20s linear infinite reverse;
-  }
-
-  .ai-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 6rem;
-    height: 6rem;
-    background: linear-gradient(135deg, #8b5cf6, #3b82f6);
-    border-radius: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    box-shadow: 0 0 60px rgba(139, 92, 246, 0.4);
-    animation: pulse-glow 3s ease-in-out infinite;
-  }
-
-  .ai-node {
-    position: absolute;
-    width: 3rem;
-    height: 3rem;
-    background: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    border-radius: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-secondary);
-    box-shadow: var(--shadow-md);
-  }
-
-  .ai-node-1 {
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .ai-node-2 {
-    bottom: 15%;
-    left: 5%;
-  }
-
-  .ai-node-3 {
-    bottom: 15%;
-    right: 5%;
-  }
-
-  /* CTA Section */
-  .cta-section {
-    background: linear-gradient(180deg, var(--bg-secondary), var(--bg-primary));
-  }
-
   .cta-content {
-    text-align: center;
-    max-width: 40rem;
+    max-width: 32rem;
     margin: 0 auto;
+    text-align: center;
   }
 
   .cta-title {
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 1rem;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
   }
 
   @media (min-width: 768px) {
     .cta-title {
-      font-size: 2.5rem;
+      font-size: 2rem;
     }
   }
 
   .cta-description {
     font-size: 1.0625rem;
+    line-height: 1.6;
     color: var(--text-secondary);
     margin-bottom: 2rem;
-    line-height: 1.6;
   }
 
   .cta-actions {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
   }
 
-  /* Animations */
-  @keyframes pulse-glow {
-    0%, 100% {
-      box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-    }
-    50% {
-      box-shadow: 0 0 40px rgba(59, 130, 246, 0.5);
+  /* Container */
+  .container {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding: 0 2rem;
     }
   }
 
-  @keyframes rotate-slow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+  /* Section Header */
+  .section-header {
+    text-align: center;
+    max-width: 32rem;
+    margin: 0 auto 3rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 768px) {
+    .section-title {
+      font-size: 2rem;
+    }
+  }
+
+  .section-description {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #ffffff;
+    background: var(--brand-primary);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .btn-primary:hover {
+    background: var(--brand-hover);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--border-secondary);
+    background: var(--bg-secondary);
   }
 </style>

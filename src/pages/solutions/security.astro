@@ -1,0 +1,498 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Security Services - Waymark";
+const description = "Comprehensive security services for small and medium businesses. Assessments, managed security programs, incident response, and compliance reviews.";
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+          </svg>
+        </div>
+        <h1 class="hero-title">Security Services</h1>
+        <p class="hero-description">
+          Protect your business with expert security services designed for SMBs.
+          From initial assessments to ongoing managed protection.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="services">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Our security services</h2>
+        <p class="section-description">
+          Choose the level of engagement that fits your needs.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Assessments -->
+        <div class="service-category">
+          <div class="category-header">
+            <span class="category-type">Assessment</span>
+            <h3 class="category-title">Security Assessments</h3>
+            <p class="category-description">
+              Understand your current security posture and get a prioritized roadmap for improvement.
+            </p>
+          </div>
+
+          <div class="service-list">
+            <div class="service-item">
+              <h4 class="service-name">M365 Security Assessment</h4>
+              <p class="service-desc">Review of your Microsoft 365 security configuration against best practices.</p>
+              <span class="service-time">5-7 days</span>
+            </div>
+
+            <div class="service-item">
+              <h4 class="service-name">Security Posture Review</h4>
+              <p class="service-desc">Comprehensive assessment of your overall security across all systems.</p>
+              <span class="service-time">7-10 days</span>
+            </div>
+
+            <div class="service-item">
+              <h4 class="service-name">Compliance Gap Analysis</h4>
+              <p class="service-desc">Identify gaps in your compliance posture (SOC 2, ISO 27001, etc).</p>
+              <span class="service-time">5-10 days</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Implementation -->
+        <div class="service-category">
+          <div class="category-header">
+            <span class="category-type implementation">Implementation</span>
+            <h3 class="category-title">Security Implementation</h3>
+            <p class="category-description">
+              Deploy security controls and configurations with clear scope and deliverables.
+            </p>
+          </div>
+
+          <div class="service-list">
+            <div class="service-item">
+              <h4 class="service-name">Security Hardening</h4>
+              <p class="service-desc">Implement security recommendations from assessments across your environment.</p>
+              <span class="service-time">2-4 weeks</span>
+            </div>
+
+            <div class="service-item">
+              <h4 class="service-name">MFA & Conditional Access</h4>
+              <p class="service-desc">Deploy multi-factor authentication and access policies across your organization.</p>
+              <span class="service-time">1-2 weeks</span>
+            </div>
+
+            <div class="service-item">
+              <h4 class="service-name">Email Security Setup</h4>
+              <p class="service-desc">Configure advanced email protection, anti-phishing, and safe attachments.</p>
+              <span class="service-time">1-2 weeks</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Managed -->
+        <div class="service-category">
+          <div class="category-header">
+            <span class="category-type managed">Managed</span>
+            <h3 class="category-title">Managed Security</h3>
+            <p class="category-description">
+              Ongoing monitoring, maintenance, and incident response to keep you protected.
+            </p>
+          </div>
+
+          <div class="service-list">
+            <div class="service-item">
+              <h4 class="service-name">Security Monitoring</h4>
+              <p class="service-desc">24/7 monitoring of security alerts with monthly reporting and analysis.</p>
+              <span class="service-time">Monthly</span>
+            </div>
+
+            <div class="service-item">
+              <h4 class="service-name">Incident Response</h4>
+              <p class="service-desc">Rapid response to security incidents with containment and remediation.</p>
+              <span class="service-time">On-call</span>
+            </div>
+
+            <div class="service-item">
+              <h4 class="service-name">vCISO Services</h4>
+              <p class="service-desc">Strategic security leadership and guidance for your organization.</p>
+              <span class="service-time">Monthly</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="benefits">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Why choose us</h2>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="benefit-title">Fixed Pricing</h3>
+          <p class="benefit-description">Know exactly what you'll pay before we start. No hourly billing surprises.</p>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
+            </svg>
+          </div>
+          <h3 class="benefit-title">SMB Focused</h3>
+          <p class="benefit-description">Services designed for small and medium businesses, not enterprise complexity.</p>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+            </svg>
+          </div>
+          <h3 class="benefit-title">Clear Outcomes</h3>
+          <p class="benefit-description">Every engagement has defined deliverables so you know what you're getting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Ready to improve your security?</h2>
+        <p class="cta-description">
+          Get a free consultation to discuss your security needs.
+        </p>
+        <a href="/contact" class="btn-primary">
+          Schedule a Call
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Container */
+  .container {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding: 0 2rem;
+    }
+  }
+
+  /* Hero */
+  .hero {
+    padding: 8rem 0 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero {
+      padding: 10rem 0 5rem;
+    }
+  }
+
+  .hero-content {
+    max-width: 40rem;
+  }
+
+  .hero-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    background: rgba(244, 63, 94, 0.1);
+    color: #f43f5e;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: 3rem;
+    }
+  }
+
+  .hero-description {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .hero-description {
+      font-size: 1.25rem;
+    }
+  }
+
+  /* Section Header */
+  .section-header {
+    text-align: center;
+    max-width: 32rem;
+    margin: 0 auto 3rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 768px) {
+    .section-title {
+      font-size: 2rem;
+    }
+  }
+
+  .section-description {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  /* Services Section */
+  .services {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .services {
+      padding: 6rem 0;
+    }
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .service-category {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .category-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  .category-type {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--brand-primary);
+    background: var(--brand-light);
+    border-radius: 0.375rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .category-type.implementation {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+  }
+
+  .category-type.managed {
+    color: #8b5cf6;
+    background: rgba(139, 92, 246, 0.1);
+  }
+
+  .category-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .category-description {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  .service-list {
+    padding: 0.5rem;
+  }
+
+  .service-item {
+    padding: 1rem;
+    border-radius: 0.625rem;
+    transition: background-color 0.15s ease;
+  }
+
+  .service-item:hover {
+    background: var(--bg-secondary);
+  }
+
+  .service-name {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .service-desc {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .service-time {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+  }
+
+  /* Benefits */
+  .benefits {
+    padding: 5rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .benefits {
+      padding: 6rem 0;
+    }
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .benefits-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .benefit-item {
+    text-align: center;
+  }
+
+  .benefit-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    margin: 0 auto 1rem;
+    background: var(--brand-light);
+    color: var(--brand-primary);
+    border-radius: 0.75rem;
+  }
+
+  .benefit-title {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .benefit-description {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  /* CTA */
+  .cta {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .cta {
+      padding: 6rem 0;
+    }
+  }
+
+  .cta-content {
+    max-width: 32rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cta-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .cta-description {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #ffffff;
+    background: var(--brand-primary);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .btn-primary:hover {
+    background: var(--brand-hover);
+    transform: translateY(-1px);
+  }
+</style>
