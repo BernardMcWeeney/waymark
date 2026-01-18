@@ -5,29 +5,27 @@ import ThemeToggle from './ThemeToggle.astro';
 const pathname = Astro.url.pathname;
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="main-header">
+<header class="header" id="main-header">
 	<div class="container-wide">
-		<nav class="flex items-center justify-between h-20">
+		<nav class="nav">
 			<!-- Logo -->
-			<a href="/" class="flex items-center gap-3 group" style="color: var(--text-primary);">
-				<div class="w-10 h-10 bg-gradient-to-br from-brand-500 to-accent-500 rounded-xl flex items-center justify-center transition-transform group-hover:scale-105">
-					<svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+			<a href="/" class="logo">
+				<div class="logo-icon">
+					<svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
 					</svg>
 				</div>
-				<span class="text-xl font-bold tracking-tight">{SITE_TITLE}</span>
+				<span class="logo-text">{SITE_TITLE}</span>
 			</a>
 
 			<!-- Desktop Navigation -->
-			<div class="hidden lg:flex items-center gap-1">
+			<div class="nav-links">
 				{NAV_LINKS.slice(0, -1).map((link) => (
 					<a
 						href={link.href}
 						class:list={[
-							"px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
-							pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))
-								? "nav-link-active"
-								: "nav-link"
+							"nav-link",
+							(pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))) && "active"
 						]}
 					>
 						{link.label}
@@ -35,27 +33,19 @@ const pathname = Astro.url.pathname;
 				))}
 			</div>
 
-			<!-- CTA Button & Theme Toggle -->
-			<div class="hidden lg:flex items-center gap-3">
+			<!-- Actions -->
+			<div class="nav-actions">
 				<ThemeToggle />
-				<a href="/contact" class="btn-primary">
-					Get Started
-					<svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-					</svg>
+				<a href="/contact" class="btn btn-primary btn-sm">
+					Contact
 				</a>
 			</div>
 
 			<!-- Mobile Menu Button -->
-			<div class="lg:hidden flex items-center gap-2">
+			<div class="mobile-actions">
 				<ThemeToggle />
-				<button
-					class="p-2 transition-colors rounded-lg"
-					style="color: var(--text-secondary);"
-					id="mobile-menu-btn"
-					aria-label="Toggle menu"
-				>
-					<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+				<button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+					<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
 					</svg>
 				</button>
@@ -64,24 +54,22 @@ const pathname = Astro.url.pathname;
 	</div>
 
 	<!-- Mobile Menu -->
-	<div class="lg:hidden hidden" id="mobile-menu">
-		<div class="container-wide py-4 border-t" style="border-color: var(--border-primary);">
-			<div class="flex flex-col gap-2">
+	<div class="mobile-menu hidden" id="mobile-menu">
+		<div class="container-wide">
+			<div class="mobile-menu-links">
 				{NAV_LINKS.map((link) => (
 					<a
 						href={link.href}
 						class:list={[
-							"px-4 py-3 rounded-xl text-base font-medium transition-all duration-200",
-							pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))
-								? "nav-link-active"
-								: "nav-link"
+							"mobile-link",
+							(pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))) && "active"
 						]}
 					>
 						{link.label}
 					</a>
 				))}
-				<a href="/contact" class="btn-primary mt-4 text-center">
-					Get Started
+				<a href="/contact" class="btn btn-primary w-full mt-4">
+					Contact
 				</a>
 			</div>
 		</div>
@@ -89,57 +77,205 @@ const pathname = Astro.url.pathname;
 </header>
 
 <style>
+	.header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 50;
+		background-color: var(--header-bg);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		border-bottom: 1px solid transparent;
+		transition: border-color 0.2s ease;
+	}
+
+	.header.scrolled {
+		border-bottom-color: var(--header-border);
+	}
+
+	.nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 4rem;
+	}
+
+	@media (min-width: 768px) {
+		.nav {
+			height: 4.5rem;
+		}
+	}
+
+	/* Logo */
+	.logo {
+		display: flex;
+		align-items: center;
+		gap: 0.625rem;
+		color: var(--text-primary);
+		text-decoration: none;
+	}
+
+	.logo:hover {
+		color: var(--text-primary);
+	}
+
+	.logo-icon {
+		width: 2rem;
+		height: 2rem;
+		background-color: var(--brand-primary);
+		border-radius: 0.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.logo-text {
+		font-size: 1.125rem;
+		font-weight: 600;
+		letter-spacing: -0.02em;
+	}
+
+	/* Desktop Navigation */
+	.nav-links {
+		display: none;
+		align-items: center;
+		gap: 0.25rem;
+	}
+
+	@media (min-width: 1024px) {
+		.nav-links {
+			display: flex;
+		}
+	}
+
 	.nav-link {
+		padding: 0.5rem 0.875rem;
+		font-size: 0.875rem;
+		font-weight: 450;
 		color: var(--text-secondary);
+		text-decoration: none;
+		border-radius: 0.375rem;
+		transition: color 0.15s ease, background-color 0.15s ease;
 	}
 
 	.nav-link:hover {
 		color: var(--text-primary);
-		background-color: var(--bg-tertiary);
 	}
 
-	.nav-link-active {
+	.nav-link.active {
 		color: var(--text-primary);
 		background-color: var(--bg-tertiary);
 	}
 
-	#main-header.scrolled {
-		background-color: var(--header-bg);
-		backdrop-filter: blur(16px);
-		-webkit-backdrop-filter: blur(16px);
-		border-bottom: 1px solid var(--border-primary);
+	/* Actions */
+	.nav-actions {
+		display: none;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	@media (min-width: 1024px) {
+		.nav-actions {
+			display: flex;
+		}
+	}
+
+	/* Mobile */
+	.mobile-actions {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	@media (min-width: 1024px) {
+		.mobile-actions {
+			display: none;
+		}
+	}
+
+	.mobile-menu-btn {
+		padding: 0.5rem;
+		color: var(--text-secondary);
+		background: none;
+		border: none;
+		cursor: pointer;
+		border-radius: 0.375rem;
+		transition: color 0.15s ease;
+	}
+
+	.mobile-menu-btn:hover {
+		color: var(--text-primary);
+	}
+
+	/* Mobile Menu */
+	.mobile-menu {
+		border-top: 1px solid var(--border-primary);
+		background-color: var(--bg-primary);
+		padding: 1rem 0;
+	}
+
+	.mobile-menu.hidden {
+		display: none;
+	}
+
+	@media (min-width: 1024px) {
+		.mobile-menu {
+			display: none !important;
+		}
+	}
+
+	.mobile-menu-links {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.mobile-link {
+		padding: 0.75rem 1rem;
+		font-size: 0.9375rem;
+		font-weight: 450;
+		color: var(--text-secondary);
+		text-decoration: none;
+		border-radius: 0.5rem;
+		transition: color 0.15s ease, background-color 0.15s ease;
+	}
+
+	.mobile-link:hover {
+		color: var(--text-primary);
+		background-color: var(--bg-secondary);
+	}
+
+	.mobile-link.active {
+		color: var(--text-primary);
+		background-color: var(--bg-tertiary);
 	}
 </style>
 
 <script>
-	// Header scroll effect
-	const header = document.getElementById('main-header');
-	let lastScroll = 0;
+	function initHeader() {
+		const header = document.getElementById('main-header');
+		const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+		const mobileMenu = document.getElementById('mobile-menu');
 
-	function handleScroll() {
-		const currentScroll = window.pageYOffset;
-
-		if (currentScroll > 50) {
-			header?.classList.add('scrolled');
-		} else {
-			header?.classList.remove('scrolled');
+		// Scroll effect
+		function handleScroll() {
+			if (window.scrollY > 10) {
+				header?.classList.add('scrolled');
+			} else {
+				header?.classList.remove('scrolled');
+			}
 		}
 
-		lastScroll = currentScroll;
+		window.addEventListener('scroll', handleScroll, { passive: true });
+		handleScroll();
+
+		// Mobile menu toggle
+		mobileMenuBtn?.addEventListener('click', () => {
+			mobileMenu?.classList.toggle('hidden');
+		});
 	}
 
-	window.addEventListener('scroll', handleScroll);
-
-	// Mobile menu toggle
-	const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-	const mobileMenu = document.getElementById('mobile-menu');
-
-	mobileMenuBtn?.addEventListener('click', () => {
-		mobileMenu?.classList.toggle('hidden');
-	});
-
-	// Re-initialize on Astro page transitions
-	document.addEventListener('astro:after-swap', () => {
-		handleScroll();
-	});
+	initHeader();
+	document.addEventListener('astro:after-swap', initHeader);
 </script>

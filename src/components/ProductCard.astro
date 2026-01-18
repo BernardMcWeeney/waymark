@@ -10,34 +10,69 @@ interface Props {
 const { title, description, image, href, badge } = Astro.props;
 ---
 
-<a href={href} class="group block">
-	<div class="card hover-lift overflow-hidden">
-		{image && (
-			<div class="aspect-video bg-slate-800 relative overflow-hidden">
-				<img
-					src={image}
-					alt={title}
-					class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-				/>
-				<div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
-			</div>
+<a href={href} class="product-card group">
+	<div class="product-card-content">
+		{badge && (
+			<span class="badge badge-primary mb-3">{badge}</span>
 		)}
-		<div class="p-6">
-			{badge && (
-				<span class="badge-brand mb-3">{badge}</span>
-			)}
-			<h3 class="text-xl font-semibold text-white mb-2 group-hover:text-brand-400 transition-colors">
-				{title}
-			</h3>
-			<p class="text-slate-400 text-sm leading-relaxed">
-				{description}
-			</p>
-			<div class="mt-4 flex items-center text-brand-400 text-sm font-medium">
-				Learn more
-				<svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-					<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-				</svg>
-			</div>
+		<h3 class="product-card-title">
+			{title}
+		</h3>
+		<p class="product-card-description">
+			{description}
+		</p>
+		<div class="product-card-link">
+			Learn more
+			<svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+			</svg>
 		</div>
 	</div>
 </a>
+
+<style>
+	.product-card {
+		display: block;
+		background-color: var(--bg-primary);
+		border: 1px solid var(--border-primary);
+		border-radius: 0.75rem;
+		transition: border-color 0.15s ease, box-shadow 0.15s ease;
+		text-decoration: none;
+	}
+
+	.product-card:hover {
+		border-color: var(--border-secondary);
+		box-shadow: var(--shadow-md);
+	}
+
+	.product-card-content {
+		padding: 1.5rem;
+	}
+
+	.product-card-title {
+		font-size: 1.125rem;
+		font-weight: 600;
+		color: var(--text-primary);
+		margin-bottom: 0.5rem;
+		transition: color 0.15s ease;
+	}
+
+	.product-card:hover .product-card-title {
+		color: var(--brand-primary);
+	}
+
+	.product-card-description {
+		font-size: 0.875rem;
+		color: var(--text-secondary);
+		line-height: 1.6;
+	}
+
+	.product-card-link {
+		display: inline-flex;
+		align-items: center;
+		margin-top: 1rem;
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: var(--brand-primary);
+	}
+</style>

@@ -22,21 +22,18 @@ const products = [
 	{
 		title: 'Microsoft 365 Security',
 		description: 'Enterprise-grade protection for your Microsoft environment with advanced threat detection and compliance.',
-		image: '/images/m365-security.jpg',
 		href: '/solutions/microsoft-365',
 		badge: 'Most Popular',
 	},
 	{
 		title: 'Network Infrastructure',
 		description: 'High-performance networking with Ubiquiti and enterprise-grade hardware for reliable connectivity.',
-		image: '/images/networking.jpg',
 		href: '/solutions/networking',
 		badge: 'Enterprise',
 	},
 	{
 		title: 'Managed Security',
 		description: 'Ongoing protection with vulnerability management, monitoring, and incident response.',
-		image: '/images/soc.jpg',
 		href: '/services#plans',
 		badge: 'Recurring',
 	},
@@ -52,74 +49,60 @@ const trustedBy = [
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
 	<!-- Hero Section -->
-	<section class="relative min-h-[90vh] flex items-center overflow-hidden">
-		<!-- Background Effects -->
-		<div class="absolute inset-0">
-			<div class="absolute inset-0" style="background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary), var(--bg-primary));"></div>
-			<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl"></div>
-			<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl"></div>
-		</div>
-
-		<div class="container-wide relative z-10">
-			<div class="max-w-4xl">
+	<section class="hero">
+		<div class="container-wide">
+			<div class="hero-content">
 				<!-- Badge -->
-				<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 animate-in" style="background-color: var(--bg-tertiary); border: 1px solid var(--border-primary);">
-					<span class="w-2 h-2 rounded-full bg-accent-500 animate-pulse"></span>
-					<span class="text-sm" style="color: var(--text-secondary);">Securing businesses since 2010</span>
+				<div class="hero-badge">
+					<span class="hero-badge-dot"></span>
+					<span>Securing businesses since 2010</span>
 				</div>
 
 				<!-- Headline -->
-				<h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-in" style="color: var(--text-primary); animation-delay: 100ms;">
+				<h1 class="hero-title">
 					Enterprise Security.<br/>
-					<span class="gradient-text">Simplified.</span>
+					<span class="hero-title-accent">Simplified.</span>
 				</h1>
 
 				<!-- Subheadline -->
-				<p class="text-xl md:text-2xl mb-10 max-w-2xl animate-in" style="color: var(--text-secondary); animation-delay: 200ms;">
+				<p class="hero-description">
 					Productized security services with fixed scope, clear outcomes, and measurable results for your business.
 				</p>
 
 				<!-- CTAs -->
-				<div class="flex flex-wrap gap-4 mb-16 animate-in" style="animation-delay: 300ms;">
-					<a href="/contact" class="btn-primary btn-lg">
+				<div class="hero-actions">
+					<a href="/contact" class="btn btn-primary btn-lg">
 						Get a Free Assessment
 						<svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
 						</svg>
 					</a>
-					<a href="/services" class="btn-secondary btn-lg">
+					<a href="/services" class="btn btn-secondary btn-lg">
 						View All Services
 					</a>
 				</div>
 
 				<!-- Trust Badges -->
-				<div class="flex flex-wrap items-center gap-6 animate-in" style="animation-delay: 400ms;">
-					<span class="text-sm" style="color: var(--text-muted);">Trusted by:</span>
-					{trustedBy.map((badge) => (
-						<span class="px-4 py-2 rounded-lg text-sm" style="background-color: var(--bg-tertiary); border: 1px solid var(--border-primary); color: var(--text-secondary);">
-							{badge}
-						</span>
-					))}
+				<div class="hero-trust">
+					<span class="hero-trust-label">Trusted by:</span>
+					<div class="hero-trust-badges">
+						{trustedBy.map((badge) => (
+							<span class="hero-trust-badge">{badge}</span>
+						))}
+					</div>
 				</div>
 			</div>
-		</div>
-
-		<!-- Scroll indicator -->
-		<div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-			<svg class="w-6 h-6" style="color: var(--text-muted);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-				<path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-			</svg>
 		</div>
 	</section>
 
 	<!-- Stats Section -->
-	<section class="py-16" style="background-color: var(--bg-secondary); border-top: 1px solid var(--border-primary); border-bottom: 1px solid var(--border-primary);">
+	<section class="stats-section">
 		<div class="container-wide">
-			<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+			<div class="stats-grid">
 				{stats.map((stat) => (
-					<div class="text-center">
-						<div class="text-4xl md:text-5xl font-bold mb-2" style="color: var(--text-primary);">{stat.value}</div>
-						<div style="color: var(--text-secondary);">{stat.label}</div>
+					<div class="stat-item">
+						<div class="stat-value">{stat.value}</div>
+						<div class="stat-label">{stat.label}</div>
 					</div>
 				))}
 			</div>
@@ -129,17 +112,17 @@ const trustedBy = [
 	<!-- Services Section -->
 	<section class="section-padding">
 		<div class="container-wide">
-			<div class="text-center max-w-3xl mx-auto mb-16">
-				<span class="badge-brand mb-4">Productized Services</span>
-				<h2 class="text-4xl md:text-5xl font-bold mb-6" style="color: var(--text-primary);">
+			<div class="section-header">
+				<span class="badge badge-primary">Productized Services</span>
+				<h2 class="section-title">
 					Security Solutions with Clear Outcomes
 				</h2>
-				<p class="text-xl" style="color: var(--text-secondary);">
+				<p class="section-description">
 					Fixed scope, defined deliverables, and predictable pricing. Every service designed to deliver measurable results.
 				</p>
 			</div>
 
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+			<div class="services-grid">
 				{featuredServices.map((service) => (
 					<ServiceCard
 						title={service.title}
@@ -150,8 +133,8 @@ const trustedBy = [
 				))}
 			</div>
 
-			<div class="text-center mt-12">
-				<a href="/services" class="btn-secondary">
+			<div class="section-cta">
+				<a href="/services" class="btn btn-secondary">
 					View All 50+ Services
 					<svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -162,19 +145,19 @@ const trustedBy = [
 	</section>
 
 	<!-- Products Section -->
-	<section class="section-padding" style="background-color: var(--bg-secondary);">
+	<section class="section-padding section-alt">
 		<div class="container-wide">
-			<div class="text-center max-w-3xl mx-auto mb-16">
-				<span class="badge-accent mb-4">Solutions</span>
-				<h2 class="text-4xl md:text-5xl font-bold mb-6" style="color: var(--text-primary);">
+			<div class="section-header">
+				<span class="badge badge-neutral">Solutions</span>
+				<h2 class="section-title">
 					Products Built for Security
 				</h2>
-				<p class="text-xl" style="color: var(--text-secondary);">
+				<p class="section-description">
 					Industry-leading solutions designed to protect your infrastructure and empower your team.
 				</p>
 			</div>
 
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+			<div class="products-grid">
 				{products.map((product) => (
 					<ProductCard
 						title={product.title}
@@ -190,17 +173,17 @@ const trustedBy = [
 	<!-- Microsoft 365 Feature Section -->
 	<section class="section-padding">
 		<div class="container-wide">
-			<div class="grid lg:grid-cols-2 gap-16 items-center">
-				<div>
-					<span class="badge-brand mb-4">Microsoft 365</span>
-					<h2 class="text-4xl md:text-5xl font-bold mb-6" style="color: var(--text-primary);">
+			<div class="feature-grid">
+				<div class="feature-content">
+					<span class="badge badge-primary">Microsoft 365</span>
+					<h2 class="feature-title">
 						Secure Your Microsoft Environment
 					</h2>
-					<p class="text-xl mb-8" style="color: var(--text-secondary);">
+					<p class="feature-description">
 						Comprehensive security for Microsoft 365, Entra ID, and your entire Microsoft ecosystem with advanced threat protection and compliance management.
 					</p>
 
-					<ul class="space-y-4 mb-8">
+					<ul class="feature-list">
 						{[
 							'Advanced Threat Protection & Email Security',
 							'Identity & Access Management',
@@ -208,8 +191,8 @@ const trustedBy = [
 							'Microsoft Defender Integration',
 							'Security Score Optimization',
 						].map((feature) => (
-							<li class="flex items-center gap-3" style="color: var(--text-secondary);">
-								<svg class="w-5 h-5 text-accent-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<li class="feature-list-item">
+								<svg class="feature-check" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 								</svg>
 								{feature}
@@ -217,7 +200,7 @@ const trustedBy = [
 						))}
 					</ul>
 
-					<a href="/solutions/microsoft-365" class="btn-primary">
+					<a href="/solutions/microsoft-365" class="btn btn-primary">
 						Learn More
 						<svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -225,88 +208,76 @@ const trustedBy = [
 					</a>
 				</div>
 
-				<div class="relative">
-					<div class="aspect-square rounded-3xl p-8 flex items-center justify-center" style="background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary)); border: 1px solid var(--border-primary);">
-						<div class="grid grid-cols-2 gap-4 w-full max-w-sm">
-							<div class="glass-card text-center py-6">
-								<div class="text-3xl font-bold mb-1" style="color: var(--text-primary);">99.9%</div>
-								<div class="text-sm" style="color: var(--text-secondary);">Threat Detection</div>
-							</div>
-							<div class="glass-card text-center py-6">
-								<div class="text-3xl font-bold mb-1" style="color: var(--text-primary);">85+</div>
-								<div class="text-sm" style="color: var(--text-secondary);">Security Score</div>
-							</div>
-							<div class="glass-card text-center py-6">
-								<div class="text-3xl font-bold mb-1" style="color: var(--text-primary);">Zero</div>
-								<div class="text-sm" style="color: var(--text-secondary);">Data Breaches</div>
-							</div>
-							<div class="glass-card text-center py-6">
-								<div class="text-3xl font-bold mb-1" style="color: var(--text-primary);">24/7</div>
-								<div class="text-sm" style="color: var(--text-secondary);">Monitoring</div>
-							</div>
+				<div class="feature-visual">
+					<div class="feature-stats-grid">
+						<div class="feature-stat-card">
+							<div class="feature-stat-value">99.9%</div>
+							<div class="feature-stat-label">Threat Detection</div>
+						</div>
+						<div class="feature-stat-card">
+							<div class="feature-stat-value">85+</div>
+							<div class="feature-stat-label">Security Score</div>
+						</div>
+						<div class="feature-stat-card">
+							<div class="feature-stat-value">Zero</div>
+							<div class="feature-stat-label">Data Breaches</div>
+						</div>
+						<div class="feature-stat-card">
+							<div class="feature-stat-value">24/7</div>
+							<div class="feature-stat-label">Monitoring</div>
 						</div>
 					</div>
-					<!-- Decorative elements -->
-					<div class="absolute -top-4 -right-4 w-32 h-32 bg-brand-500/20 rounded-full blur-2xl"></div>
-					<div class="absolute -bottom-4 -left-4 w-32 h-32 bg-accent-500/20 rounded-full blur-2xl"></div>
 				</div>
 			</div>
 		</div>
 	</section>
 
 	<!-- Networking Section -->
-	<section class="section-padding" style="background-color: var(--bg-secondary);">
+	<section class="section-padding section-alt">
 		<div class="container-wide">
-			<div class="grid lg:grid-cols-2 gap-16 items-center">
-				<div class="order-2 lg:order-1 relative">
-					<div class="aspect-square rounded-3xl p-8 flex items-center justify-center" style="background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary)); border: 1px solid var(--border-primary);">
-						<!-- Network visualization -->
-						<div class="relative w-full h-full flex items-center justify-center">
-							<div class="absolute w-48 h-48 rounded-full border-2 border-dashed" style="border-color: var(--border-secondary);"></div>
-							<div class="absolute w-72 h-72 rounded-full border" style="border-color: var(--border-primary);"></div>
-							<div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-brand-500 to-accent-500 flex items-center justify-center z-10">
-								<svg class="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-									<path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
-								</svg>
-							</div>
-							<!-- Connection nodes -->
-							<div class="absolute top-8 left-1/2 -translate-x-1/2 w-10 h-10 rounded-xl flex items-center justify-center" style="background-color: var(--bg-tertiary); border: 1px solid var(--border-primary);">
-								<svg class="w-5 h-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-									<path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
-								</svg>
-							</div>
-							<div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-10 h-10 rounded-xl flex items-center justify-center" style="background-color: var(--bg-tertiary); border: 1px solid var(--border-primary);">
-								<svg class="w-5 h-5 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-									<path stroke-linecap="round" stroke-linejoin="round" d="M21.75 17.25v-.228a4.5 4.5 0 00-.12-1.03l-2.268-9.64a3.375 3.375 0 00-3.285-2.602H7.923a3.375 3.375 0 00-3.285 2.602l-2.268 9.64a4.5 4.5 0 00-.12 1.03v.228m19.5 0a3 3 0 01-3 3H5.25a3 3 0 01-3-3m19.5 0a3 3 0 00-3-3H5.25a3 3 0 00-3 3m16.5 0h.008v.008h-.008v-.008zm-3 0h.008v.008h-.008v-.008z" />
-								</svg>
-							</div>
-							<div class="absolute left-8 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl flex items-center justify-center" style="background-color: var(--bg-tertiary); border: 1px solid var(--border-primary);">
-								<svg class="w-5 h-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-									<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
-								</svg>
-							</div>
-							<div class="absolute right-8 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl flex items-center justify-center" style="background-color: var(--bg-tertiary); border: 1px solid var(--border-primary);">
-								<svg class="w-5 h-5 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-									<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />
-								</svg>
-							</div>
+			<div class="feature-grid feature-grid-reverse">
+				<div class="feature-visual">
+					<div class="network-visual">
+						<div class="network-ring network-ring-outer"></div>
+						<div class="network-ring network-ring-inner"></div>
+						<div class="network-center">
+							<svg class="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
+							</svg>
+						</div>
+						<div class="network-node network-node-top">
+							<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+							</svg>
+						</div>
+						<div class="network-node network-node-bottom">
+							<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M21.75 17.25v-.228a4.5 4.5 0 00-.12-1.03l-2.268-9.64a3.375 3.375 0 00-3.285-2.602H7.923a3.375 3.375 0 00-3.285 2.602l-2.268 9.64a4.5 4.5 0 00-.12 1.03v.228m19.5 0a3 3 0 01-3 3H5.25a3 3 0 01-3-3m19.5 0a3 3 0 00-3-3H5.25a3 3 0 00-3 3m16.5 0h.008v.008h-.008v-.008zm-3 0h.008v.008h-.008v-.008z" />
+							</svg>
+						</div>
+						<div class="network-node network-node-left">
+							<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+							</svg>
+						</div>
+						<div class="network-node network-node-right">
+							<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />
+							</svg>
 						</div>
 					</div>
-					<!-- Decorative elements -->
-					<div class="absolute -top-4 -left-4 w-32 h-32 bg-accent-500/20 rounded-full blur-2xl"></div>
-					<div class="absolute -bottom-4 -right-4 w-32 h-32 bg-brand-500/20 rounded-full blur-2xl"></div>
 				</div>
 
-				<div class="order-1 lg:order-2">
-					<span class="badge-accent mb-4">Networking</span>
-					<h2 class="text-4xl md:text-5xl font-bold mb-6" style="color: var(--text-primary);">
+				<div class="feature-content">
+					<span class="badge badge-neutral">Networking</span>
+					<h2 class="feature-title">
 						Enterprise-Grade Network Solutions
 					</h2>
-					<p class="text-xl mb-8" style="color: var(--text-secondary);">
+					<p class="feature-description">
 						Build reliable, high-performance networks with Ubiquiti hardware and professional implementation services.
 					</p>
 
-					<ul class="space-y-4 mb-8">
+					<ul class="feature-list">
 						{[
 							'Ubiquiti UniFi Full Stack Deployment',
 							'Secure VPN & Remote Access',
@@ -314,8 +285,8 @@ const trustedBy = [
 							'High-Availability Architecture',
 							'Managed Network Operations',
 						].map((feature) => (
-							<li class="flex items-center gap-3" style="color: var(--text-secondary);">
-								<svg class="w-5 h-5 text-accent-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<li class="feature-list-item">
+								<svg class="feature-check" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 								</svg>
 								{feature}
@@ -323,7 +294,7 @@ const trustedBy = [
 						))}
 					</ul>
 
-					<a href="/solutions/networking" class="btn-primary">
+					<a href="/solutions/networking" class="btn btn-primary">
 						Explore Networking
 						<svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -337,36 +308,450 @@ const trustedBy = [
 	<!-- CTA Section -->
 	<section class="section-padding">
 		<div class="container-wide">
-			<div class="relative rounded-3xl overflow-hidden" style="background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary)); border: 1px solid var(--border-primary);">
-				<!-- Background -->
-				<div class="absolute inset-0">
-					<div class="absolute top-0 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl"></div>
-					<div class="absolute bottom-0 left-0 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl"></div>
-				</div>
-
-				<div class="relative z-10 px-8 py-16 md:px-16 md:py-24 text-center">
-					<h2 class="text-4xl md:text-5xl font-bold mb-6" style="color: var(--text-primary);">
-						Ready to Secure Your Business?
-					</h2>
-					<p class="text-xl mb-10 max-w-2xl mx-auto" style="color: var(--text-secondary);">
-						Get a free security assessment and discover how Waymark can protect your organization from modern threats.
-					</p>
-					<div class="flex flex-wrap justify-center gap-4">
-						<a href="/contact" class="btn-primary btn-lg">
-							Schedule a Consultation
-							<svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-								<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-							</svg>
-						</a>
-						<a href="tel:+15551234567" class="btn-secondary btn-lg">
-							<svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-								<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
-							</svg>
-							Call Us
-						</a>
-					</div>
+			<div class="cta-card">
+				<h2 class="cta-title">
+					Ready to Secure Your Business?
+				</h2>
+				<p class="cta-description">
+					Get a free security assessment and discover how Waymark can protect your organization from modern threats.
+				</p>
+				<div class="cta-actions">
+					<a href="/contact" class="btn btn-primary btn-lg">
+						Schedule a Consultation
+						<svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+						</svg>
+					</a>
+					<a href="tel:+15551234567" class="btn btn-secondary btn-lg">
+						<svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+						</svg>
+						Call Us
+					</a>
 				</div>
 			</div>
 		</div>
 	</section>
 </BaseLayout>
+
+<style>
+	/* Hero Section */
+	.hero {
+		padding-top: 8rem;
+		padding-bottom: 5rem;
+	}
+
+	@media (min-width: 768px) {
+		.hero {
+			padding-top: 10rem;
+			padding-bottom: 6rem;
+		}
+	}
+
+	.hero-content {
+		max-width: 48rem;
+	}
+
+	.hero-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.5rem 1rem;
+		background-color: var(--bg-tertiary);
+		border: 1px solid var(--border-primary);
+		border-radius: 9999px;
+		margin-bottom: 2rem;
+		font-size: 0.875rem;
+		color: var(--text-secondary);
+	}
+
+	.hero-badge-dot {
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 9999px;
+		background-color: var(--success);
+	}
+
+	.hero-title {
+		font-size: 3rem;
+		font-weight: 700;
+		line-height: 1.1;
+		letter-spacing: -0.02em;
+		color: var(--text-primary);
+		margin-bottom: 1.5rem;
+	}
+
+	@media (min-width: 768px) {
+		.hero-title {
+			font-size: 4rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.hero-title {
+			font-size: 4.5rem;
+		}
+	}
+
+	.hero-title-accent {
+		color: var(--brand-primary);
+	}
+
+	.hero-description {
+		font-size: 1.25rem;
+		line-height: 1.6;
+		color: var(--text-secondary);
+		margin-bottom: 2.5rem;
+		max-width: 36rem;
+	}
+
+	.hero-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		margin-bottom: 3rem;
+	}
+
+	.hero-trust {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.hero-trust-label {
+		font-size: 0.875rem;
+		color: var(--text-muted);
+	}
+
+	.hero-trust-badges {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.hero-trust-badge {
+		padding: 0.5rem 1rem;
+		background-color: var(--bg-tertiary);
+		border: 1px solid var(--border-primary);
+		border-radius: 0.5rem;
+		font-size: 0.875rem;
+		color: var(--text-secondary);
+	}
+
+	/* Stats Section */
+	.stats-section {
+		padding: 3rem 0;
+		background-color: var(--bg-secondary);
+		border-top: 1px solid var(--border-primary);
+		border-bottom: 1px solid var(--border-primary);
+	}
+
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 2rem;
+	}
+
+	@media (min-width: 768px) {
+		.stats-grid {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+
+	.stat-item {
+		text-align: center;
+	}
+
+	/* Section Styles */
+	.section-alt {
+		background-color: var(--bg-secondary);
+	}
+
+	.section-header {
+		text-align: center;
+		max-width: 48rem;
+		margin: 0 auto 4rem;
+	}
+
+	.section-title {
+		font-size: 2.25rem;
+		font-weight: 700;
+		color: var(--text-primary);
+		margin: 1rem 0;
+		letter-spacing: -0.02em;
+	}
+
+	@media (min-width: 768px) {
+		.section-title {
+			font-size: 2.5rem;
+		}
+	}
+
+	.section-description {
+		font-size: 1.125rem;
+		color: var(--text-secondary);
+		line-height: 1.6;
+	}
+
+	.section-cta {
+		text-align: center;
+		margin-top: 3rem;
+	}
+
+	/* Services Grid */
+	.services-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+	}
+
+	@media (min-width: 640px) {
+		.services-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.services-grid {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+
+	/* Products Grid */
+	.products-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+	}
+
+	@media (min-width: 640px) {
+		.products-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.products-grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	/* Feature Section */
+	.feature-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 4rem;
+		align-items: center;
+	}
+
+	@media (min-width: 1024px) {
+		.feature-grid {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.feature-grid-reverse .feature-visual {
+			order: -1;
+		}
+	}
+
+	.feature-content {
+		max-width: 32rem;
+	}
+
+	.feature-title {
+		font-size: 2.25rem;
+		font-weight: 700;
+		color: var(--text-primary);
+		margin: 1rem 0;
+		letter-spacing: -0.02em;
+	}
+
+	@media (min-width: 768px) {
+		.feature-title {
+			font-size: 2.5rem;
+		}
+	}
+
+	.feature-description {
+		font-size: 1.125rem;
+		color: var(--text-secondary);
+		line-height: 1.6;
+		margin-bottom: 2rem;
+	}
+
+	.feature-list {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 2rem;
+	}
+
+	.feature-list-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.75rem;
+		padding: 0.5rem 0;
+		color: var(--text-secondary);
+	}
+
+	.feature-check {
+		width: 1.25rem;
+		height: 1.25rem;
+		flex-shrink: 0;
+		color: var(--success);
+		margin-top: 0.125rem;
+	}
+
+	/* Feature Stats Grid */
+	.feature-visual {
+		display: flex;
+		justify-content: center;
+	}
+
+	.feature-stats-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem;
+		max-width: 20rem;
+	}
+
+	.feature-stat-card {
+		background-color: var(--bg-primary);
+		border: 1px solid var(--border-primary);
+		border-radius: 0.75rem;
+		padding: 1.5rem;
+		text-align: center;
+	}
+
+	.feature-stat-value {
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: var(--text-primary);
+		margin-bottom: 0.25rem;
+	}
+
+	.feature-stat-label {
+		font-size: 0.75rem;
+		color: var(--text-tertiary);
+	}
+
+	/* Network Visual */
+	.network-visual {
+		position: relative;
+		width: 18rem;
+		height: 18rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.network-ring {
+		position: absolute;
+		border-radius: 9999px;
+	}
+
+	.network-ring-outer {
+		width: 100%;
+		height: 100%;
+		border: 1px solid var(--border-primary);
+	}
+
+	.network-ring-inner {
+		width: 70%;
+		height: 70%;
+		border: 1px dashed var(--border-secondary);
+	}
+
+	.network-center {
+		width: 4rem;
+		height: 4rem;
+		background-color: var(--brand-primary);
+		border-radius: 0.75rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 1;
+	}
+
+	.network-node {
+		position: absolute;
+		width: 2.5rem;
+		height: 2.5rem;
+		background-color: var(--bg-primary);
+		border: 1px solid var(--border-primary);
+		border-radius: 0.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--text-secondary);
+	}
+
+	.network-node-top {
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.network-node-bottom {
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.network-node-left {
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.network-node-right {
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	/* CTA Section */
+	.cta-card {
+		background-color: var(--bg-secondary);
+		border: 1px solid var(--border-primary);
+		border-radius: 1rem;
+		padding: 4rem 2rem;
+		text-align: center;
+	}
+
+	@media (min-width: 768px) {
+		.cta-card {
+			padding: 5rem 4rem;
+		}
+	}
+
+	.cta-title {
+		font-size: 2.25rem;
+		font-weight: 700;
+		color: var(--text-primary);
+		margin-bottom: 1rem;
+		letter-spacing: -0.02em;
+	}
+
+	@media (min-width: 768px) {
+		.cta-title {
+			font-size: 2.5rem;
+		}
+	}
+
+	.cta-description {
+		font-size: 1.125rem;
+		color: var(--text-secondary);
+		max-width: 36rem;
+		margin: 0 auto 2.5rem;
+	}
+
+	.cta-actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1rem;
+	}
+</style>
