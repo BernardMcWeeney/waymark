@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { BUNDLES, PRODUCT_CATEGORIES, getFeaturedProducts } from '../consts';
 
-const title = "Waymark - IT Security for Growing Businesses";
-const description = "Protect your business with expert IT security services. Microsoft 365, identity management, network security, and ongoing protection for small and medium businesses.";
+const featuredProducts = getFeaturedProducts().slice(0, 6);
+const title = "Waymark - Enterprise IT Security for SMBs";
+const description = "Enterprise-grade security, Microsoft, AI, cloud and digital delivery — productised for small and medium businesses. Clear, fixed-scope, outcome-led.";
 ---
 
 <BaseLayout title={title} description={description}>
@@ -10,14 +12,14 @@ const description = "Protect your business with expert IT security services. Mic
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <p class="hero-eyebrow">IT Security for SMBs</p>
+        <p class="hero-eyebrow">Enterprise IT for SMBs</p>
         <h1 class="hero-title">
-          Secure your business.<br />
-          <span class="hero-title-accent">Simply.</span>
+          Security you can<br />
+          <span class="hero-title-accent">actually buy.</span>
         </h1>
         <p class="hero-description">
-          We help small and medium businesses protect their data, manage their devices,
-          and secure their cloud with clear, fixed-price services.
+          Enterprise-grade security, Microsoft 365, AI, cloud and digital delivery —
+          productised for small and medium businesses. Clear scope. Fixed price. Real outcomes.
         </p>
         <div class="hero-actions">
           <a href="/contact" class="btn-primary">
@@ -26,7 +28,7 @@ const description = "Protect your business with expert IT security services. Mic
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
           </a>
-          <a href="/services" class="btn-secondary">View Services</a>
+          <a href="/products" class="btn-secondary">View All Products</a>
         </div>
       </div>
     </div>
@@ -36,6 +38,11 @@ const description = "Protect your business with expert IT security services. Mic
   <section class="trust-bar">
     <div class="container">
       <div class="trust-items">
+        <div class="trust-item">
+          <span class="trust-value">50+</span>
+          <span class="trust-label">Products</span>
+        </div>
+        <div class="trust-divider"></div>
         <div class="trust-item">
           <span class="trust-value">100%</span>
           <span class="trust-label">Fixed Pricing</span>
@@ -54,94 +61,99 @@ const description = "Protect your business with expert IT security services. Mic
     </div>
   </section>
 
-  <!-- Core Pillars -->
-  <section class="pillars">
+  <!-- Bundles Section -->
+  <section class="bundles">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">How we help</h2>
+        <p class="section-eyebrow">Packages</p>
+        <h2 class="section-title">Choose your level of protection</h2>
         <p class="section-description">
-          Three core areas of focus to keep your business secure and productive.
+          Three packages designed for different needs. Start with Core and scale up as you grow.
         </p>
       </div>
 
-      <div class="pillars-grid">
-        <!-- Microsoft 365 -->
-        <a href="/solutions/microsoft-365" class="pillar-card">
-          <div class="pillar-icon blue">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
-            </svg>
+      <div class="bundles-grid">
+        {BUNDLES.map((bundle) => (
+          <div class={`bundle-card ${bundle.featured ? 'featured' : ''}`}>
+            {bundle.featured && <span class="bundle-badge">Most Popular</span>}
+            <h3 class="bundle-name">{bundle.name}</h3>
+            <p class="bundle-tagline">{bundle.tagline}</p>
+            <p class="bundle-description">{bundle.description}</p>
+            <ul class="bundle-includes">
+              {bundle.includes.map((item) => (
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <a href="/contact" class={`bundle-cta ${bundle.featured ? 'primary' : 'secondary'}`}>
+              Get Started
+            </a>
           </div>
-          <h3 class="pillar-title">Microsoft 365</h3>
-          <p class="pillar-description">
-            Secure your cloud productivity suite. Email protection, data governance,
-            and compliance for your entire organization.
-          </p>
-          <ul class="pillar-features">
-            <li>Security assessments & hardening</li>
-            <li>Intune device management</li>
-            <li>Identity with Entra ID</li>
-            <li>Copilot readiness</li>
-          </ul>
-          <span class="pillar-link">
-            Learn more
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-          </span>
-        </a>
+        ))}
+      </div>
+    </div>
+  </section>
 
-        <!-- Security -->
-        <a href="/solutions/security" class="pillar-card">
-          <div class="pillar-icon rose">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-            </svg>
-          </div>
-          <h3 class="pillar-title">Security Services</h3>
-          <p class="pillar-description">
-            Assess your risks, implement protections, and get ongoing monitoring.
-            Cyber security that grows with your business.
-          </p>
-          <ul class="pillar-features">
-            <li>Security assessments</li>
-            <li>Managed security programs</li>
-            <li>Incident response</li>
-            <li>Compliance reviews</li>
-          </ul>
-          <span class="pillar-link">
-            Learn more
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-          </span>
-        </a>
+  <!-- Solutions Grid -->
+  <section class="solutions">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Solutions</p>
+        <h2 class="section-title">Six areas of expertise</h2>
+        <p class="section-description">
+          Every product is clear, fixed-scope, and outcome-led. You'll see exactly what you're getting, and what it achieves.
+        </p>
+      </div>
 
-        <!-- Infrastructure -->
-        <a href="/solutions/infrastructure" class="pillar-card">
-          <div class="pillar-icon emerald">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
-            </svg>
-          </div>
-          <h3 class="pillar-title">Infrastructure</h3>
-          <p class="pillar-description">
-            Modern networks and smooth migrations. Get your foundation right
-            with enterprise-grade infrastructure at SMB prices.
-          </p>
-          <ul class="pillar-features">
-            <li>UniFi network deployment</li>
-            <li>Cloud migrations</li>
-            <li>Site technology</li>
-            <li>Web security (Cloudflare)</li>
-          </ul>
-          <span class="pillar-link">
-            Learn more
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <div class="solutions-grid">
+        {PRODUCT_CATEGORIES.map((category) => (
+          <a href={category.href} class={`solution-card ${category.color}`}>
+            <div class="solution-icon">
+              {category.icon === 'sparkles' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+                </svg>
+              )}
+              {category.icon === 'shield' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                </svg>
+              )}
+              {category.icon === 'grid' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
+                </svg>
+              )}
+              {category.icon === 'laptop' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+                </svg>
+              )}
+              {category.icon === 'server' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" />
+                </svg>
+              )}
+              {category.icon === 'globe' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+                </svg>
+              )}
+            </div>
+            <div class="solution-content">
+              <h3 class="solution-title">{category.shortTitle}</h3>
+              <p class="solution-description">{category.description}</p>
+              <span class="solution-count">{category.products.length} products</span>
+            </div>
+            <svg class="solution-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
-          </span>
-        </a>
+          </a>
+        ))}
       </div>
     </div>
   </section>
@@ -150,93 +162,83 @@ const description = "Protect your business with expert IT security services. Mic
   <section class="process">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">How we work</h2>
+        <p class="section-eyebrow">How it works</p>
+        <h2 class="section-title">Three ways to engage</h2>
         <p class="section-description">
-          Every engagement follows a clear path. No hidden fees, no surprises.
+          Every product follows a clear delivery model. No hidden fees, no surprises.
         </p>
       </div>
 
       <div class="process-grid">
         <div class="process-step">
-          <div class="process-number">1</div>
+          <div class="process-icon assessment">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+          </div>
           <h3 class="process-title">Assess</h3>
           <p class="process-description">
-            We review your current setup, identify risks, and create a prioritized action plan.
+            We review your current setup, identify risks, and create a prioritised action plan. Know exactly where you stand.
           </p>
+          <span class="process-tag">Fixed scope</span>
         </div>
 
         <div class="process-step">
-          <div class="process-number">2</div>
+          <div class="process-icon implementation">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
+            </svg>
+          </div>
           <h3 class="process-title">Implement</h3>
           <p class="process-description">
-            Fixed-scope projects to deploy solutions. Clear deliverables with predictable timelines.
+            Fixed-scope projects to deploy solutions. Clear deliverables, predictable timelines, documented handover.
           </p>
+          <span class="process-tag">Fixed price</span>
         </div>
 
         <div class="process-step">
-          <div class="process-number">3</div>
+          <div class="process-icon managed">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+            </svg>
+          </div>
           <h3 class="process-title">Manage</h3>
           <p class="process-description">
-            Ongoing monitoring and maintenance. Monthly plans that keep you protected.
+            Ongoing monitoring, maintenance, and improvement. Monthly plans that keep you protected and moving forward.
           </p>
+          <span class="process-tag">Monthly</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Featured Services -->
+  <!-- Featured Products -->
   <section class="featured">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">Popular services</h2>
+        <p class="section-eyebrow">Popular</p>
+        <h2 class="section-title">Featured products</h2>
         <p class="section-description">
-          Our most requested services for small and medium businesses.
+          Our most requested products for small and medium businesses.
         </p>
       </div>
 
       <div class="featured-grid">
-        <div class="featured-card">
-          <span class="featured-type">Assessment</span>
-          <h3 class="featured-title">M365 Security Assessment</h3>
-          <p class="featured-description">
-            Comprehensive review of your Microsoft 365 security configuration with
-            prioritized recommendations.
-          </p>
-          <div class="featured-footer">
-            <span class="featured-time">5-7 days</span>
+        {featuredProducts.map((product) => (
+          <div class="featured-card">
+            <span class={`featured-type ${product.type}`}>{product.type}</span>
+            <h3 class="featured-title">{product.shortTitle || product.title}</h3>
+            <p class="featured-description">{product.description}</p>
+            <div class="featured-outcome">
+              <strong>You get:</strong> {product.outcome}
+            </div>
             <a href="/contact" class="featured-link">Get started</a>
           </div>
-        </div>
-
-        <div class="featured-card">
-          <span class="featured-type">Implementation</span>
-          <h3 class="featured-title">Intune Deployment</h3>
-          <p class="featured-description">
-            Full setup of Microsoft Intune for device management, security policies,
-            and app deployment.
-          </p>
-          <div class="featured-footer">
-            <span class="featured-time">2-4 weeks</span>
-            <a href="/contact" class="featured-link">Get started</a>
-          </div>
-        </div>
-
-        <div class="featured-card">
-          <span class="featured-type">Managed</span>
-          <h3 class="featured-title">Security Monitoring</h3>
-          <p class="featured-description">
-            Continuous monitoring of your environment with monthly reporting
-            and incident response.
-          </p>
-          <div class="featured-footer">
-            <span class="featured-time">Monthly</span>
-            <a href="/contact" class="featured-link">Get started</a>
-          </div>
-        </div>
+        ))}
       </div>
 
       <div class="featured-cta">
-        <a href="/services" class="btn-secondary">View all services</a>
+        <a href="/products" class="btn-secondary">View all 50+ products</a>
       </div>
     </div>
   </section>
@@ -247,8 +249,7 @@ const description = "Protect your business with expert IT security services. Mic
       <div class="cta-content">
         <h2 class="cta-title">Ready to secure your business?</h2>
         <p class="cta-description">
-          Get a free consultation to discuss your security needs.
-          No obligation, just honest advice.
+          Get a free consultation to discuss your needs. No obligation, just honest advice about what you actually need.
         </p>
         <div class="cta-actions">
           <a href="/contact" class="btn-primary">
@@ -264,6 +265,55 @@ const description = "Protect your business with expert IT security services. Mic
 </BaseLayout>
 
 <style>
+  /* Container */
+  .container {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding: 0 2rem;
+    }
+  }
+
+  /* Section Header */
+  .section-header {
+    text-align: center;
+    max-width: 36rem;
+    margin: 0 auto 3rem;
+  }
+
+  .section-eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--brand-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 768px) {
+    .section-title {
+      font-size: 2.25rem;
+    }
+  }
+
+  .section-description {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
   /* Hero */
   .hero {
     padding: 8rem 0 4rem;
@@ -276,7 +326,7 @@ const description = "Protect your business with expert IT security services. Mic
   }
 
   .hero-content {
-    max-width: 40rem;
+    max-width: 42rem;
   }
 
   .hero-eyebrow {
@@ -337,13 +387,13 @@ const description = "Protect your business with expert IT security services. Mic
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
   }
 
   @media (min-width: 768px) {
     .trust-items {
-      gap: 4rem;
+      gap: 3rem;
     }
   }
 
@@ -361,7 +411,7 @@ const description = "Protect your business with expert IT security services. Mic
   }
 
   .trust-label {
-    font-size: 0.75rem;
+    font-size: 0.6875rem;
     color: var(--text-tertiary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -380,133 +430,269 @@ const description = "Protect your business with expert IT security services. Mic
     }
   }
 
-  /* Pillars */
-  .pillars {
+  /* Bundles */
+  .bundles {
     padding: 5rem 0;
   }
 
   @media (min-width: 768px) {
-    .pillars {
+    .bundles {
       padding: 6rem 0;
     }
   }
 
-  .pillars-grid {
+  .bundles-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 
   @media (min-width: 768px) {
-    .pillars-grid {
+    .bundles-grid {
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
     }
   }
 
-  .pillar-card {
+  .bundle-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     padding: 2rem;
     background: var(--bg-primary);
     border: 1px solid var(--border-primary);
     border-radius: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .bundle-card:hover {
+    border-color: var(--border-secondary);
+    box-shadow: 0 8px 30px -10px rgba(0, 0, 0, 0.1);
+  }
+
+  .bundle-card.featured {
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 1px var(--brand-primary);
+  }
+
+  .bundle-badge {
+    position: absolute;
+    top: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.25rem 0.875rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    background: var(--brand-primary);
+    border-radius: 9999px;
+  }
+
+  .bundle-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .bundle-tagline {
+    font-size: 0.875rem;
+    color: var(--brand-primary);
+    margin-bottom: 1rem;
+  }
+
+  .bundle-description {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .bundle-includes {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    flex-grow: 1;
+  }
+
+  .bundle-includes li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.625rem;
+  }
+
+  .bundle-includes li svg {
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+    color: var(--success);
+  }
+
+  .bundle-cta {
+    display: block;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+
+  .bundle-cta.primary {
+    color: #ffffff;
+    background: var(--brand-primary);
+  }
+
+  .bundle-cta.primary:hover {
+    background: var(--brand-hover);
+  }
+
+  .bundle-cta.secondary {
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+  }
+
+  .bundle-cta.secondary:hover {
+    border-color: var(--border-secondary);
+    background: var(--bg-secondary);
+  }
+
+  /* Solutions */
+  .solutions {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .solutions {
+      padding: 6rem 0;
+    }
+  }
+
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .solutions-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .solutions-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .solution-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.875rem;
     text-decoration: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   }
 
-  .pillar-card:hover {
+  .solution-card:hover {
     border-color: var(--border-secondary);
-    box-shadow: 0 8px 30px -10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px -8px rgba(0, 0, 0, 0.1);
     transform: translateY(-2px);
   }
 
-  .pillar-icon {
+  .solution-card:hover .solution-arrow {
+    transform: translateX(3px);
+  }
+
+  .solution-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 0.875rem;
-    margin-bottom: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+    flex-shrink: 0;
   }
 
-  .pillar-icon.blue {
+  .solution-card.purple .solution-icon {
+    background: rgba(139, 92, 246, 0.1);
+    color: #8b5cf6;
+  }
+
+  .solution-card.blue .solution-icon {
     background: rgba(59, 130, 246, 0.1);
     color: #3b82f6;
   }
 
-  .pillar-icon.rose {
-    background: rgba(244, 63, 94, 0.1);
-    color: #f43f5e;
+  .solution-card.cyan .solution-icon {
+    background: rgba(6, 182, 212, 0.1);
+    color: #06b6d4;
   }
 
-  .pillar-icon.emerald {
+  .solution-card.emerald .solution-icon {
     background: rgba(16, 185, 129, 0.1);
     color: #10b981;
   }
 
-  .pillar-title {
-    font-size: 1.25rem;
+  .solution-card.orange .solution-icon {
+    background: rgba(249, 115, 22, 0.1);
+    color: #f97316;
+  }
+
+  .solution-card.rose .solution-icon {
+    background: rgba(244, 63, 94, 0.1);
+    color: #f43f5e;
+  }
+
+  .solution-content {
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  .solution-title {
+    font-size: 1rem;
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.375rem;
   }
 
-  .pillar-description {
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    color: var(--text-secondary);
-    margin-bottom: 1.25rem;
-  }
-
-  .pillar-features {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 1.5rem;
-    flex-grow: 1;
-  }
-
-  .pillar-features li {
-    position: relative;
-    padding-left: 1.25rem;
-    font-size: 0.875rem;
+  .solution-description {
+    font-size: 0.8125rem;
+    line-height: 1.5;
     color: var(--text-secondary);
     margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
-  .pillar-features li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.5rem;
-    width: 0.375rem;
-    height: 0.375rem;
-    border-radius: 50%;
-    background: var(--brand-primary);
+  .solution-count {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
   }
 
-  .pillar-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: var(--brand-primary);
-  }
-
-  .pillar-card:hover .pillar-link svg {
-    transform: translateX(3px);
-  }
-
-  .pillar-link svg {
+  .solution-arrow {
+    flex-shrink: 0;
+    color: var(--text-tertiary);
     transition: transform 0.2s ease;
+    margin-top: 0.25rem;
   }
 
   /* Process */
   .process {
     padding: 5rem 0;
-    background: var(--bg-secondary);
   }
 
   @media (min-width: 768px) {
@@ -519,33 +705,44 @@ const description = "Protect your business with expert IT security services. Mic
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
-    max-width: 48rem;
-    margin: 0 auto;
   }
 
   @media (min-width: 768px) {
     .process-grid {
       grid-template-columns: repeat(3, 1fr);
-      max-width: none;
     }
   }
 
   .process-step {
     text-align: center;
+    padding: 2rem 1.5rem;
+    background: var(--bg-secondary);
+    border-radius: 1rem;
   }
 
-  .process-number {
+  .process-icon {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 3rem;
     height: 3rem;
     margin: 0 auto 1rem;
-    background: var(--brand-primary);
-    color: #ffffff;
-    font-size: 1.125rem;
-    font-weight: 600;
     border-radius: 0.75rem;
+  }
+
+  .process-icon.assessment {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+  }
+
+  .process-icon.implementation {
+    background: rgba(139, 92, 246, 0.1);
+    color: #8b5cf6;
+  }
+
+  .process-icon.managed {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
   }
 
   .process-title {
@@ -559,11 +756,24 @@ const description = "Protect your business with expert IT security services. Mic
     font-size: 0.9375rem;
     line-height: 1.6;
     color: var(--text-secondary);
+    margin-bottom: 1rem;
   }
 
-  /* Featured Services */
+  .process-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 9999px;
+  }
+
+  /* Featured */
   .featured {
     padding: 5rem 0;
+    background: var(--bg-secondary);
   }
 
   @media (min-width: 768px) {
@@ -575,10 +785,16 @@ const description = "Protect your business with expert IT security services. Mic
   .featured-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 640px) {
+    .featured-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
     .featured-grid {
       grid-template-columns: repeat(3, 1fr);
     }
@@ -600,15 +816,28 @@ const description = "Protect your business with expert IT security services. Mic
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--brand-primary);
-    background: var(--brand-light);
     border-radius: 0.375rem;
     margin-bottom: 1rem;
     width: fit-content;
   }
 
+  .featured-type.assessment {
+    color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+  }
+
+  .featured-type.implementation {
+    color: #8b5cf6;
+    background: rgba(139, 92, 246, 0.1);
+  }
+
+  .featured-type.managed {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+  }
+
   .featured-title {
-    font-size: 1.0625rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 0.5rem;
@@ -618,21 +847,19 @@ const description = "Protect your business with expert IT security services. Mic
     font-size: 0.875rem;
     line-height: 1.6;
     color: var(--text-secondary);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .featured-outcome {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--text-tertiary);
+    margin-bottom: 1rem;
     flex-grow: 1;
   }
 
-  .featured-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-primary);
-  }
-
-  .featured-time {
-    font-size: 0.8125rem;
-    color: var(--text-tertiary);
+  .featured-outcome strong {
+    color: var(--text-secondary);
   }
 
   .featured-link {
@@ -654,7 +881,6 @@ const description = "Protect your business with expert IT security services. Mic
   /* CTA */
   .cta {
     padding: 5rem 0;
-    background: var(--bg-secondary);
   }
 
   @media (min-width: 768px) {
@@ -693,46 +919,6 @@ const description = "Protect your business with expert IT security services. Mic
   .cta-actions {
     display: flex;
     justify-content: center;
-  }
-
-  /* Container */
-  .container {
-    max-width: 72rem;
-    margin: 0 auto;
-    padding: 0 1.25rem;
-  }
-
-  @media (min-width: 640px) {
-    .container {
-      padding: 0 2rem;
-    }
-  }
-
-  /* Section Header */
-  .section-header {
-    text-align: center;
-    max-width: 32rem;
-    margin: 0 auto 3rem;
-  }
-
-  .section-title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.02em;
-  }
-
-  @media (min-width: 768px) {
-    .section-title {
-      font-size: 2rem;
-    }
-  }
-
-  .section-description {
-    font-size: 1.0625rem;
-    line-height: 1.6;
-    color: var(--text-secondary);
   }
 
   /* Buttons */

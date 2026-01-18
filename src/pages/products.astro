@@ -1,0 +1,478 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { PRODUCT_CATEGORIES, BUNDLES, getAllProducts } from '../consts';
+
+const allProducts = getAllProducts();
+const title = "All Products - Waymark";
+const description = "Browse our complete catalogue of 50+ productised IT security, Microsoft 365, AI, cloud and digital services for SMBs. Fixed pricing, clear outcomes.";
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero-title">Product Catalogue</h1>
+      <p class="hero-description">
+        {allProducts.length}+ productised services across {PRODUCT_CATEGORIES.length} solution areas.
+        Every product is clear, fixed-scope, and outcome-led.
+      </p>
+    </div>
+  </section>
+
+  <!-- Bundles -->
+  <section class="bundles">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Packages</p>
+        <h2 class="section-title">Start with a package</h2>
+        <p class="section-description">
+          Three packages designed for different needs. Or pick individual products below.
+        </p>
+      </div>
+
+      <div class="bundles-grid">
+        {BUNDLES.map((bundle) => (
+          <div class={`bundle-card ${bundle.featured ? 'featured' : ''}`}>
+            {bundle.featured && <span class="bundle-badge">Most Popular</span>}
+            <h3 class="bundle-name">{bundle.name}</h3>
+            <p class="bundle-tagline">{bundle.tagline}</p>
+            <p class="bundle-description">{bundle.description}</p>
+            <a href="/contact" class={`bundle-cta ${bundle.featured ? 'primary' : 'secondary'}`}>
+              Get Started
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="categories">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Browse by category</p>
+        <h2 class="section-title">Solution Areas</h2>
+      </div>
+
+      {PRODUCT_CATEGORIES.map((category) => (
+        <div class="category-section" id={category.id}>
+          <div class="category-header">
+            <h3 class="category-title">{category.title}</h3>
+            <p class="category-description">{category.description}</p>
+            <span class="category-count">{category.products.length} products</span>
+          </div>
+
+          <div class="products-grid">
+            {category.products.map((product) => (
+              <div class="product-card">
+                <div class="product-header">
+                  <span class={`product-type ${product.type}`}>{product.type}</span>
+                  {product.featured && <span class="product-featured">Popular</span>}
+                </div>
+                <h4 class="product-title">{product.shortTitle || product.title}</h4>
+                <p class="product-description">{product.description}</p>
+                <div class="product-outcome">
+                  <strong>You get:</strong> {product.outcome}
+                </div>
+                <a href="/contact" class="product-cta">Get Started</a>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Not sure where to start?</h2>
+        <p class="cta-description">
+          Get a free consultation. We'll help you identify what you actually need.
+        </p>
+        <a href="/contact" class="btn-primary">Schedule a Call</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding: 0 2rem;
+    }
+  }
+
+  /* Hero */
+  .hero {
+    padding: 8rem 0 4rem;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .hero {
+      padding: 10rem 0 5rem;
+    }
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: 3rem;
+    }
+  }
+
+  .hero-description {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+
+  /* Section Header */
+  .section-header {
+    text-align: center;
+    max-width: 36rem;
+    margin: 0 auto 3rem;
+  }
+
+  .section-eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--brand-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .section-description {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  /* Bundles */
+  .bundles {
+    padding: 4rem 0;
+    background: var(--bg-secondary);
+  }
+
+  .bundles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .bundles-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .bundle-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+    text-align: center;
+  }
+
+  .bundle-card.featured {
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 1px var(--brand-primary);
+  }
+
+  .bundle-badge {
+    position: absolute;
+    top: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.25rem 0.75rem;
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: var(--brand-primary);
+    border-radius: 9999px;
+  }
+
+  .bundle-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .bundle-tagline {
+    font-size: 0.875rem;
+    color: var(--brand-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .bundle-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .bundle-cta {
+    display: block;
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+
+  .bundle-cta.primary {
+    color: #ffffff;
+    background: var(--brand-primary);
+  }
+
+  .bundle-cta.primary:hover {
+    background: var(--brand-hover);
+  }
+
+  .bundle-cta.secondary {
+    color: var(--text-primary);
+    border: 1px solid var(--border-primary);
+  }
+
+  .bundle-cta.secondary:hover {
+    border-color: var(--border-secondary);
+    background: var(--bg-secondary);
+  }
+
+  /* Categories */
+  .categories {
+    padding: 5rem 0;
+  }
+
+  .category-section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  .category-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .category-header {
+    margin-bottom: 2rem;
+  }
+
+  .category-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .category-description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    max-width: 40rem;
+  }
+
+  .category-count {
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .products-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.875rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .product-card:hover {
+    border-color: var(--border-secondary);
+    box-shadow: 0 4px 20px -8px rgba(0, 0, 0, 0.1);
+  }
+
+  .product-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .product-type {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 0.25rem;
+  }
+
+  .product-type.assessment {
+    color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+  }
+
+  .product-type.implementation {
+    color: #8b5cf6;
+    background: rgba(139, 92, 246, 0.1);
+  }
+
+  .product-type.managed {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+  }
+
+  .product-featured {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #f97316;
+    background: rgba(249, 115, 22, 0.1);
+    border-radius: 0.25rem;
+  }
+
+  .product-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.375rem;
+  }
+
+  .product-description {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+  }
+
+  .product-outcome {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: var(--text-tertiary);
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--border-primary);
+    margin-top: auto;
+    margin-bottom: 0.75rem;
+  }
+
+  .product-outcome strong {
+    color: var(--text-secondary);
+  }
+
+  .product-cta {
+    display: block;
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--brand-primary);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.375rem;
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+
+  .product-cta:hover {
+    background: var(--brand-primary);
+    color: #ffffff;
+    border-color: var(--brand-primary);
+  }
+
+  /* CTA */
+  .cta {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+  }
+
+  .cta-content {
+    max-width: 32rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cta-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .cta-description {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #ffffff;
+    background: var(--brand-primary);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background-color 0.15s;
+  }
+
+  .btn-primary:hover {
+    background: var(--brand-hover);
+  }
+</style>
