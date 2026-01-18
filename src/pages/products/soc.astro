@@ -1,0 +1,320 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { PRODUCTS } from '../../consts';
+
+const product = PRODUCTS.find(p => p.id === 'soc')!;
+const title = "Security Operations Center";
+const description = product.description;
+
+const capabilities = [
+	{
+		title: '24/7/365 Monitoring',
+		description: 'Round-the-clock security monitoring by certified analysts who never sleep, so you can.',
+		icon: 'clock',
+	},
+	{
+		title: 'SIEM Integration',
+		description: 'Seamless integration with your existing SIEM, or we deploy and manage one for you.',
+		icon: 'integration',
+	},
+	{
+		title: 'Threat Hunting',
+		description: 'Proactive threat hunting to find advanced threats that evade traditional detection.',
+		icon: 'search',
+	},
+	{
+		title: 'Incident Response',
+		description: 'Rapid incident response with containment, eradication, and recovery support.',
+		icon: 'response',
+	},
+	{
+		title: 'Forensic Analysis',
+		description: 'Deep-dive forensic investigations to understand attack vectors and prevent recurrence.',
+		icon: 'forensics',
+	},
+	{
+		title: 'Executive Reporting',
+		description: 'Board-ready reports with metrics that matter to leadership and compliance.',
+		icon: 'report',
+	},
+];
+
+const stats = [
+	{ value: '< 15min', label: 'Mean Time to Detect' },
+	{ value: '< 1hr', label: 'Mean Time to Respond' },
+	{ value: '99.99%', label: 'Platform Uptime' },
+	{ value: '50+', label: 'Certified Analysts' },
+];
+
+const certifications = [
+	'CISSP', 'CISM', 'CEH', 'GCIH', 'GCIA', 'OSCP'
+];
+
+const pricing = [
+	{
+		name: 'SOC Essentials',
+		description: 'Core monitoring for mid-sized organizations',
+		price: '2,500',
+		period: '/month',
+		features: [
+			'24/7 monitoring',
+			'Up to 500 endpoints',
+			'Standard SIEM integration',
+			'4-hour response SLA',
+			'Monthly reports',
+			'Email & phone support',
+		],
+		popular: false,
+	},
+	{
+		name: 'SOC Professional',
+		description: 'Advanced protection with threat hunting',
+		price: '5,000',
+		period: '/month',
+		features: [
+			'24/7 monitoring',
+			'Up to 2,000 endpoints',
+			'Advanced SIEM with SOAR',
+			'1-hour response SLA',
+			'Proactive threat hunting',
+			'Weekly reports',
+			'Dedicated analyst',
+		],
+		popular: true,
+	},
+	{
+		name: 'SOC Enterprise',
+		description: 'Full-scale SOC with dedicated team',
+		price: 'Custom',
+		period: '',
+		features: [
+			'24/7 monitoring',
+			'Unlimited endpoints',
+			'Custom SIEM deployment',
+			'15-minute response SLA',
+			'Continuous threat hunting',
+			'Real-time dashboards',
+			'Dedicated SOC team',
+			'Executive briefings',
+		],
+		popular: false,
+	},
+];
+---
+
+<BaseLayout title={title} description={description}>
+	<!-- Hero Section -->
+	<section class="relative py-24 lg:py-32 overflow-hidden">
+		<div class="absolute inset-0">
+			<div class="absolute inset-0 bg-slate-950"></div>
+			<div class="absolute inset-0 bg-[linear-gradient(rgba(34,197,94,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(34,197,94,0.03)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
+			<div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-accent-500/5 rounded-full blur-[120px]"></div>
+		</div>
+
+		<div class="container-wide relative z-10">
+			<div class="grid lg:grid-cols-2 gap-16 items-center">
+				<div>
+					<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-500/10 border border-accent-500/20 text-accent-400 text-sm font-medium mb-6">
+						<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+						</svg>
+						Managed Security
+					</div>
+					<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+						24/7 Security Operations Center
+					</h1>
+					<p class="text-xl text-slate-400 mb-8">
+						{description}
+					</p>
+					<div class="flex flex-wrap gap-4 mb-8">
+						<a href="/contact" class="btn-primary btn-lg">
+							Talk to an Expert
+							<svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+							</svg>
+						</a>
+						<a href="#pricing" class="btn-secondary btn-lg">
+							View Pricing
+						</a>
+					</div>
+
+					<!-- Certifications -->
+					<div class="flex flex-wrap gap-2">
+						{certifications.map((cert) => (
+							<span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-400 text-xs font-medium">
+								{cert}
+							</span>
+						))}
+					</div>
+				</div>
+
+				<!-- SOC Dashboard Visual -->
+				<div class="relative">
+					<div class="rounded-2xl bg-slate-900 border border-slate-800 p-6 shadow-2xl">
+						<div class="flex items-center justify-between mb-6">
+							<div class="flex items-center gap-2">
+								<span class="w-2 h-2 rounded-full bg-accent-500 animate-pulse"></span>
+								<span class="text-sm text-slate-400">SOC Dashboard</span>
+							</div>
+							<span class="px-2 py-1 rounded bg-accent-500/20 text-accent-400 text-xs">All Systems Operational</span>
+						</div>
+
+						<!-- Metrics -->
+						<div class="grid grid-cols-2 gap-3 mb-4">
+							<div class="bg-slate-800/50 rounded-xl p-4">
+								<p class="text-xs text-slate-500 mb-1">Events Analyzed</p>
+								<p class="text-2xl font-bold text-white">1.2M</p>
+								<p class="text-xs text-accent-400">Last 24 hours</p>
+							</div>
+							<div class="bg-slate-800/50 rounded-xl p-4">
+								<p class="text-xs text-slate-500 mb-1">Threats Mitigated</p>
+								<p class="text-2xl font-bold text-white">847</p>
+								<p class="text-xs text-accent-400">Last 24 hours</p>
+							</div>
+						</div>
+
+						<!-- Activity Feed -->
+						<div class="bg-slate-800/30 rounded-xl p-4">
+							<p class="text-xs text-slate-500 mb-3">Live Activity</p>
+							<div class="space-y-2">
+								{[
+									{ status: 'success', event: 'Malware blocked at endpoint', time: '2s ago' },
+									{ status: 'info', event: 'Analyst investigating alert #4521', time: '1m ago' },
+									{ status: 'success', event: 'Suspicious IP blocked', time: '3m ago' },
+									{ status: 'warning', event: 'Elevated login attempts detected', time: '5m ago' },
+								].map((item) => (
+									<div class="flex items-center gap-3">
+										<span class={`w-2 h-2 rounded-full ${
+											item.status === 'success' ? 'bg-accent-500' :
+											item.status === 'warning' ? 'bg-yellow-500' : 'bg-brand-500'
+										}`}></span>
+										<span class="text-xs text-slate-400 flex-1">{item.event}</span>
+										<span class="text-xs text-slate-600">{item.time}</span>
+									</div>
+								))}
+							</div>
+						</div>
+					</div>
+					<div class="absolute -bottom-4 -right-4 w-32 h-32 bg-accent-500/20 rounded-full blur-2xl"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Stats -->
+	<section class="py-12 bg-slate-900 border-y border-slate-800">
+		<div class="container-wide">
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+				{stats.map((stat) => (
+					<div class="text-center">
+						<div class="text-3xl font-bold text-white mb-1">{stat.value}</div>
+						<div class="text-sm text-slate-500">{stat.label}</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Capabilities -->
+	<section class="section-padding bg-slate-950">
+		<div class="container-wide">
+			<div class="max-w-3xl mb-16">
+				<p class="text-sm font-medium text-accent-400 uppercase tracking-wider mb-4">Capabilities</p>
+				<h2 class="text-4xl font-bold text-white mb-6">
+					Enterprise-Grade Security Operations
+				</h2>
+				<p class="text-xl text-slate-400">
+					Our SOC combines advanced technology with expert human analysis to protect your organization 24/7.
+				</p>
+			</div>
+
+			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+				{capabilities.map((cap) => (
+					<div class="card p-6">
+						<div class="w-12 h-12 rounded-xl bg-accent-500/10 flex items-center justify-center mb-4">
+							<svg class="w-6 h-6 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+							</svg>
+						</div>
+						<h3 class="text-lg font-semibold text-white mb-2">{cap.title}</h3>
+						<p class="text-slate-400 text-sm">{cap.description}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Pricing -->
+	<section id="pricing" class="section-padding bg-slate-900/50">
+		<div class="container-wide">
+			<div class="text-center max-w-3xl mx-auto mb-16">
+				<p class="text-sm font-medium text-brand-400 uppercase tracking-wider mb-4">Pricing</p>
+				<h2 class="text-4xl font-bold text-white mb-6">
+					Security That Never Sleeps
+				</h2>
+				<p class="text-xl text-slate-400">
+					Choose the SOC tier that matches your security requirements and budget.
+				</p>
+			</div>
+
+			<div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+				{pricing.map((plan) => (
+					<div class={`card p-8 ${plan.popular ? 'border-accent-500 relative' : ''}`}>
+						{plan.popular && (
+							<div class="absolute -top-4 left-1/2 -translate-x-1/2">
+								<span class="px-4 py-1 rounded-full bg-accent-500 text-white text-sm font-medium">Most Popular</span>
+							</div>
+						)}
+						<div class="text-center mb-8">
+							<h3 class="text-xl font-bold text-white mb-2">{plan.name}</h3>
+							<p class="text-slate-400 text-sm mb-4">{plan.description}</p>
+							<div class="flex items-baseline justify-center gap-1">
+								{plan.price !== 'Custom' ? (
+									<>
+										<span class="text-4xl font-bold text-white">${plan.price}</span>
+										<span class="text-slate-500">{plan.period}</span>
+									</>
+								) : (
+									<span class="text-3xl font-bold text-white">{plan.price}</span>
+								)}
+							</div>
+						</div>
+						<ul class="space-y-3 mb-8">
+							{plan.features.map((feature) => (
+								<li class="flex items-center gap-3 text-sm text-slate-300">
+									<svg class="w-5 h-5 text-accent-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+									</svg>
+									{feature}
+								</li>
+							))}
+						</ul>
+						<a href="/contact" class={plan.popular ? 'btn-primary w-full' : 'btn-secondary w-full'}>
+							Get Started
+						</a>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section class="section-padding bg-slate-950">
+		<div class="container-wide">
+			<div class="text-center max-w-3xl mx-auto">
+				<h2 class="text-4xl font-bold text-white mb-6">
+					Ready for 24/7 Protection?
+				</h2>
+				<p class="text-xl text-slate-400 mb-10">
+					Talk to our security experts and discover how our SOC can protect your organization around the clock.
+				</p>
+				<a href="/contact" class="btn-primary btn-lg">
+					Schedule Consultation
+					<svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+					</svg>
+				</a>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

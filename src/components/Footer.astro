@@ -4,23 +4,21 @@ import { SITE_TITLE, COMPANY_INFO, SOCIAL_LINKS } from '../consts';
 const currentYear = new Date().getFullYear();
 
 const footerLinks = {
+	products: [
+		{ label: 'Phishing Simulation', href: '/products/phishing-simulation' },
+		{ label: 'Dark Web Monitoring', href: '/products/dark-web-monitoring' },
+		{ label: '24/7 SOC', href: '/products/soc' },
+		{ label: 'Vulnerability Assessment', href: '/products/vulnerability-assessment' },
+	],
 	solutions: [
 		{ label: 'Microsoft 365 Security', href: '/solutions/microsoft-365' },
 		{ label: 'Network Infrastructure', href: '/solutions/networking' },
-		{ label: 'Security Assessment', href: '/services#assessment' },
-		{ label: '24/7 Monitoring', href: '/services#monitoring' },
+		{ label: 'Managed Services', href: '/services' },
 	],
 	company: [
 		{ label: 'About Us', href: '/about' },
-		{ label: 'Blog', href: '/blog' },
-		{ label: 'Careers', href: '/careers' },
+		{ label: 'Security Insights', href: '/blog' },
 		{ label: 'Contact', href: '/contact' },
-	],
-	resources: [
-		{ label: 'Documentation', href: '/docs' },
-		{ label: 'Case Studies', href: '/case-studies' },
-		{ label: 'Security Blog', href: '/blog' },
-		{ label: 'Support', href: '/support' },
 	],
 };
 ---
@@ -61,6 +59,20 @@ const footerLinks = {
 				</div>
 			</div>
 
+			<!-- Products -->
+			<div>
+				<h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Products</h4>
+				<ul class="space-y-3">
+					{footerLinks.products.map((link) => (
+						<li>
+							<a href={link.href} class="text-slate-400 hover:text-white transition-colors text-sm">
+								{link.label}
+							</a>
+						</li>
+					))}
+				</ul>
+			</div>
+
 			<!-- Solutions -->
 			<div>
 				<h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Solutions</h4>
@@ -80,20 +92,6 @@ const footerLinks = {
 				<h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Company</h4>
 				<ul class="space-y-3">
 					{footerLinks.company.map((link) => (
-						<li>
-							<a href={link.href} class="text-slate-400 hover:text-white transition-colors text-sm">
-								{link.label}
-							</a>
-						</li>
-					))}
-				</ul>
-			</div>
-
-			<!-- Resources -->
-			<div>
-				<h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Resources</h4>
-				<ul class="space-y-3">
-					{footerLinks.resources.map((link) => (
 						<li>
 							<a href={link.href} class="text-slate-400 hover:text-white transition-colors text-sm">
 								{link.label}
